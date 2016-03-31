@@ -1,0 +1,6 @@
+[submodule "external/spine-runtimes"]
+	path = external/spine-runtimes
+	url = https://github.com/EsotericSoftware/spine-runtimes.git
+[submodule "external/ouzel"]
+	path = external/ouzel
+	url = https://github.com/elvman/ouzel
