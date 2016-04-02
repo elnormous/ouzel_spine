@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30324DB91CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
+		30324DBA1CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
+		30324DBB1CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
 		303647A11C418E4C0024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3036479F1C414EF50024DB5B /* Assets.xcassets */; };
 		303647A21C418E790024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 304A8E161C237B96008B1151 /* Assets.xcassets */; };
 		303647A31C418E7C0024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303647A01C414F120024DB5B /* Assets.xcassets */; };
@@ -153,6 +156,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "spine-ouzel.cpp"; sourceTree = "<group>"; };
+		30324DAF1CAFB8CA00601A64 /* spine-ouzel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spine-ouzel.h"; sourceTree = "<group>"; };
 		3036479F1C414EF50024DB5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ios/Assets.xcassets; sourceTree = "<group>"; };
 		303647A01C414F120024DB5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		303B74ED1C27F6A100FEDE92 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -263,6 +268,8 @@
 		30324DA71CAFB84500601A64 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */,
+				30324DAF1CAFB8CA00601A64 /* spine-ouzel.h */,
 				304A8EA81C27429A008B1151 /* Application.cpp */,
 				304A8EA91C27429A008B1151 /* Application.h */,
 				303B75181C29EB8400FEDE92 /* main.cpp */,
@@ -596,6 +603,7 @@
 				30C56CFE1CACA9A7007AEF8F /* Bone.c in Sources */,
 				30C56D221CACA9A7007AEF8F /* SkeletonBounds.c in Sources */,
 				30C56D011CACA9A7007AEF8F /* BoneData.c in Sources */,
+				30324DBA1CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */,
 				30C56CF21CACA9A7007AEF8F /* Atlas.c in Sources */,
 				30C56D371CACA9A7007AEF8F /* TransformConstraintData.c in Sources */,
 				30C56CEC1CACA9A7007AEF8F /* AnimationState.c in Sources */,
@@ -633,6 +641,7 @@
 				30C56CFF1CACA9A7007AEF8F /* Bone.c in Sources */,
 				30C56D231CACA9A7007AEF8F /* SkeletonBounds.c in Sources */,
 				30C56D021CACA9A7007AEF8F /* BoneData.c in Sources */,
+				30324DBB1CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */,
 				30C56CF31CACA9A7007AEF8F /* Atlas.c in Sources */,
 				30C56D381CACA9A7007AEF8F /* TransformConstraintData.c in Sources */,
 				30C56CED1CACA9A7007AEF8F /* AnimationState.c in Sources */,
@@ -670,6 +679,7 @@
 				30C56CFD1CACA9A7007AEF8F /* Bone.c in Sources */,
 				30C56D211CACA9A7007AEF8F /* SkeletonBounds.c in Sources */,
 				30C56D001CACA9A7007AEF8F /* BoneData.c in Sources */,
+				30324DB91CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */,
 				30C56CF11CACA9A7007AEF8F /* Atlas.c in Sources */,
 				30C56D361CACA9A7007AEF8F /* TransformConstraintData.c in Sources */,
 				30C56CEB1CACA9A7007AEF8F /* AnimationState.c in Sources */,
