@@ -158,7 +158,7 @@
 		303B74ED1C27F6A100FEDE92 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		303B74F01C27F6DD00FEDE92 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		303B74F21C27F6EB00FEDE92 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		303B75181C29EB8400FEDE92 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = "<group>"; };
+		303B75181C29EB8400FEDE92 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		303B76201C34CFE300FEDE92 /* ouzel_spine_osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ouzel_spine_osx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		303B76221C34D0A900FEDE92 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/OpenGLES.framework; sourceTree = DEVELOPER_DIR; };
 		303B76251C34D10200FEDE92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -174,8 +174,8 @@
 		304A8E0A1C237B95008B1151 /* ouzel_spine_osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ouzel_spine_osx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		304A8E161C237B96008B1151 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		304A8E1B1C237B96008B1151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		304A8EA81C27429A008B1151 /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Application.cpp; path = ../Application.cpp; sourceTree = "<group>"; };
-		304A8EA91C27429A008B1151 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Application.h; path = ../Application.h; sourceTree = "<group>"; };
+		304A8EA81C27429A008B1151 /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
+		304A8EA91C27429A008B1151 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		304A8EAB1C2742D9008B1151 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		30575A961C38C90F0009C8A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30575A971C38C90F0009C8A7 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
@@ -260,6 +260,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30324DA71CAFB84500601A64 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				304A8EA81C27429A008B1151 /* Application.cpp */,
+				304A8EA91C27429A008B1151 /* Application.h */,
+				303B75181C29EB8400FEDE92 /* main.cpp */,
+			);
+			name = src;
+			path = ../src;
+			sourceTree = "<group>";
+		};
 		303B74EF1C27F6B000FEDE92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,17 +308,15 @@
 		304A8E011C237B95008B1151 = {
 			isa = PBXGroup;
 			children = (
-				30C56CCA1CACA973007AEF8F /* spine */,
-				30C56CBB1CACA70E007AEF8F /* ouzel.xcodeproj */,
-				304A8EA81C27429A008B1151 /* Application.cpp */,
-				304A8EA91C27429A008B1151 /* Application.h */,
-				303B762A1C34D21100FEDE92 /* ios */,
-				303B75181C29EB8400FEDE92 /* main.cpp */,
-				304A8EA41C274113008B1151 /* osx */,
-				30575A951C38C8ED0009C8A7 /* tvos */,
-				304A8EB21C2765C4008B1151 /* Resources */,
 				303B74EF1C27F6B000FEDE92 /* Frameworks */,
+				303B762A1C34D21100FEDE92 /* ios */,
+				304A8EA41C274113008B1151 /* osx */,
+				30C56CBB1CACA70E007AEF8F /* ouzel.xcodeproj */,
 				304A8E0B1C237B95008B1151 /* Products */,
+				304A8EB21C2765C4008B1151 /* Resources */,
+				30C56CCA1CACA973007AEF8F /* spine */,
+				30324DA71CAFB84500601A64 /* src */,
+				30575A951C38C8ED0009C8A7 /* tvos */,
 			);
 			sourceTree = "<group>";
 		};
