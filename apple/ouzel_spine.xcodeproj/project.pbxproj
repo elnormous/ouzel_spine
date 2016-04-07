@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30324DB91CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
-		30324DBA1CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
-		30324DBB1CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
 		303647A11C418E4C0024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3036479F1C414EF50024DB5B /* Assets.xcassets */; };
 		303647A21C418E790024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 304A8E161C237B96008B1151 /* Assets.xcassets */; };
 		303647A31C418E7C0024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303647A01C414F120024DB5B /* Assets.xcassets */; };
@@ -33,6 +30,12 @@
 		30575AEA1C3C99010009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AE91C3C99010009C8A7 /* GameController.framework */; };
 		30575AEC1C3C990B0009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AEB1C3C990B0009C8A7 /* GameController.framework */; };
 		305F6DBB1C66C50000B76A03 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305F6DBA1C66C50000B76A03 /* CoreVideo.framework */; };
+		30AFE15A1CB6BD5900478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1581CB6BD5900478AA2 /* Metal.framework */; };
+		30AFE15B1CB6BD5900478AA2 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1591CB6BD5900478AA2 /* MetalKit.framework */; };
+		30AFE15E1CB6BD6500478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE15C1CB6BD6500478AA2 /* Metal.framework */; };
+		30AFE15F1CB6BD6500478AA2 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE15D1CB6BD6500478AA2 /* MetalKit.framework */; };
+		30AFE1621CB6BD7000478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1601CB6BD7000478AA2 /* Metal.framework */; };
+		30AFE1631CB6BD7000478AA2 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1611CB6BD7000478AA2 /* MetalKit.framework */; };
 		30C56CAF1CACA65F007AEF8F /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAC1CACA65F007AEF8F /* spineboy.atlas */; };
 		30C56CB01CACA65F007AEF8F /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAC1CACA65F007AEF8F /* spineboy.atlas */; };
 		30C56CB11CACA65F007AEF8F /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAC1CACA65F007AEF8F /* spineboy.atlas */; };
@@ -188,6 +191,12 @@
 		30575AE91C3C99010009C8A7 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
 		30575AEB1C3C990B0009C8A7 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
 		305F6DBA1C66C50000B76A03 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		30AFE1581CB6BD5900478AA2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		30AFE1591CB6BD5900478AA2 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		30AFE15C1CB6BD6500478AA2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
+		30AFE15D1CB6BD6500478AA2 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
+		30AFE1601CB6BD7000478AA2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
+		30AFE1611CB6BD7000478AA2 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
 		30C56CAC1CACA65F007AEF8F /* spineboy.atlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spineboy.atlas; sourceTree = "<group>"; };
 		30C56CAD1CACA65F007AEF8F /* spineboy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spineboy.json; sourceTree = "<group>"; };
 		30C56CAE1CACA65F007AEF8F /* spineboy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spineboy.png; sourceTree = "<group>"; };
@@ -234,6 +243,8 @@
 				303B76231C34D0A900FEDE92 /* OpenGLES.framework in Frameworks */,
 				303B76C81C35695900FEDE92 /* QuartzCore.framework in Frameworks */,
 				303B76281C34D11500FEDE92 /* UIKit.framework in Frameworks */,
+				30AFE15E1CB6BD6500478AA2 /* Metal.framework in Frameworks */,
+				30AFE15F1CB6BD6500478AA2 /* MetalKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +258,8 @@
 				303B76A61C355AE900FEDE92 /* OpenGLES.framework in Frameworks */,
 				303B76CA1C35696200FEDE92 /* QuartzCore.framework in Frameworks */,
 				303B76A41C355ADC00FEDE92 /* UIKit.framework in Frameworks */,
+				30AFE1621CB6BD7000478AA2 /* Metal.framework in Frameworks */,
+				30AFE1631CB6BD7000478AA2 /* MetalKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +272,8 @@
 				303B74F31C27F6EB00FEDE92 /* Cocoa.framework in Frameworks */,
 				303B74EE1C27F6A100FEDE92 /* OpenGL.framework in Frameworks */,
 				30575AE81C3C98F50009C8A7 /* GameController.framework in Frameworks */,
+				30AFE15A1CB6BD5900478AA2 /* Metal.framework in Frameworks */,
+				30AFE15B1CB6BD5900478AA2 /* MetalKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +296,12 @@
 		303B74EF1C27F6B000FEDE92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30AFE1601CB6BD7000478AA2 /* Metal.framework */,
+				30AFE1611CB6BD7000478AA2 /* MetalKit.framework */,
+				30AFE15C1CB6BD6500478AA2 /* Metal.framework */,
+				30AFE15D1CB6BD6500478AA2 /* MetalKit.framework */,
+				30AFE1581CB6BD5900478AA2 /* Metal.framework */,
+				30AFE1591CB6BD5900478AA2 /* MetalKit.framework */,
 				305F6DBA1C66C50000B76A03 /* CoreVideo.framework */,
 				30575AEB1C3C990B0009C8A7 /* GameController.framework */,
 				30575AE91C3C99010009C8A7 /* GameController.framework */,
@@ -603,7 +624,6 @@
 				30C56CFE1CACA9A7007AEF8F /* Bone.c in Sources */,
 				30C56D221CACA9A7007AEF8F /* SkeletonBounds.c in Sources */,
 				30C56D011CACA9A7007AEF8F /* BoneData.c in Sources */,
-				30324DBA1CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */,
 				30C56CF21CACA9A7007AEF8F /* Atlas.c in Sources */,
 				30C56D371CACA9A7007AEF8F /* TransformConstraintData.c in Sources */,
 				30C56CEC1CACA9A7007AEF8F /* AnimationState.c in Sources */,
@@ -641,7 +661,6 @@
 				30C56CFF1CACA9A7007AEF8F /* Bone.c in Sources */,
 				30C56D231CACA9A7007AEF8F /* SkeletonBounds.c in Sources */,
 				30C56D021CACA9A7007AEF8F /* BoneData.c in Sources */,
-				30324DBB1CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */,
 				30C56CF31CACA9A7007AEF8F /* Atlas.c in Sources */,
 				30C56D381CACA9A7007AEF8F /* TransformConstraintData.c in Sources */,
 				30C56CED1CACA9A7007AEF8F /* AnimationState.c in Sources */,
@@ -679,7 +698,6 @@
 				30C56CFD1CACA9A7007AEF8F /* Bone.c in Sources */,
 				30C56D211CACA9A7007AEF8F /* SkeletonBounds.c in Sources */,
 				30C56D001CACA9A7007AEF8F /* BoneData.c in Sources */,
-				30324DB91CAFB8CA00601A64 /* spine-ouzel.cpp in Sources */,
 				30C56CF11CACA9A7007AEF8F /* Atlas.c in Sources */,
 				30C56D361CACA9A7007AEF8F /* TransformConstraintData.c in Sources */,
 				30C56CEB1CACA9A7007AEF8F /* AnimationState.c in Sources */,

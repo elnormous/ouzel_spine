@@ -29,7 +29,8 @@ void Application::begin()
     scene::ScenePtr scene = make_shared<scene::Scene>();
     sharedEngine->getSceneManager()->setScene(scene);
 
-    _layer = scene::Layer::create();
+    _layer = std::make_shared<scene::Layer>();
+    _layer->setCamera(std::make_shared<scene::Camera>());
     scene->addLayer(_layer);
 
     sharedEngine->getInput()->startGamepadDiscovery();
