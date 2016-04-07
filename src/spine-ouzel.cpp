@@ -37,9 +37,12 @@ namespace spine
 {
     SkeletonDrawable::SkeletonDrawable (SkeletonData* skeletonData, AnimationStateData* stateData) :
 				timeScale(1),
-				vertexArray(new VertexArray(Triangles, skeletonData->bonesCount * 4)),
 				worldVertices(0)
     {
+        meshBuffer = ouzel::sharedEngine->getRenderer()->createMeshBuffer();
+        meshBuffer->setIndexSize(sizeof(uint16_t));
+        meshBuffer->setVertexAttributes(ouzel::video::VertexPCT::ATTRIBUTES);
+
         worldVertices = MALLOC(float, SPINE_MESH_VERTEX_COUNT_MAX);
         skeleton = Skeleton_create(skeletonData);
 
@@ -50,7 +53,6 @@ namespace spine
     }
 
     SkeletonDrawable::~SkeletonDrawable () {
-        delete vertexArray;
         FREE(worldVertices);
         if (ownsAnimationStateData) AnimationStateData_dispose(state->data);
         AnimationState_dispose(state);
@@ -64,8 +66,8 @@ namespace spine
         Skeleton_updateWorldTransform(skeleton);
     }
 
-    void SkeletonDrawable::draw(RenderTarget& target, RenderStates states) const {
-        vertexArray->clear();
+    void SkeletonDrawable::draw() const {
+        /*vertexArray->clear();
 
         sf::Vertex vertices[4];
         sf::Vertex vertex;
@@ -203,6 +205,6 @@ namespace spine
                 states.texture = texture;
             }
         }
-        target.draw(*vertexArray, states);
+        target.draw(*vertexArray, states);*/
     }
 }

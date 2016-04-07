@@ -36,6 +36,9 @@
 		30AFE15F1CB6BD6500478AA2 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE15D1CB6BD6500478AA2 /* MetalKit.framework */; };
 		30AFE1621CB6BD7000478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1601CB6BD7000478AA2 /* Metal.framework */; };
 		30AFE1631CB6BD7000478AA2 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1611CB6BD7000478AA2 /* MetalKit.framework */; };
+		30AFE1771CB7064700478AA2 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
+		30AFE17B1CB7064800478AA2 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
+		30AFE17C1CB7064800478AA2 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
 		30C56CAF1CACA65F007AEF8F /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAC1CACA65F007AEF8F /* spineboy.atlas */; };
 		30C56CB01CACA65F007AEF8F /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAC1CACA65F007AEF8F /* spineboy.atlas */; };
 		30C56CB11CACA65F007AEF8F /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAC1CACA65F007AEF8F /* spineboy.atlas */; };
@@ -630,6 +633,7 @@
 				30C56D161CACA9A7007AEF8F /* Json.c in Sources */,
 				30C56CF81CACA9A7007AEF8F /* Attachment.c in Sources */,
 				30C56CE91CACA9A7007AEF8F /* Animation.c in Sources */,
+				30AFE17B1CB7064800478AA2 /* spine-ouzel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +671,7 @@
 				30C56D171CACA9A7007AEF8F /* Json.c in Sources */,
 				30C56CF91CACA9A7007AEF8F /* Attachment.c in Sources */,
 				30C56CEA1CACA9A7007AEF8F /* Animation.c in Sources */,
+				30AFE17C1CB7064800478AA2 /* spine-ouzel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,6 +709,7 @@
 				30C56D151CACA9A7007AEF8F /* Json.c in Sources */,
 				30C56CF71CACA9A7007AEF8F /* Attachment.c in Sources */,
 				30C56CE81CACA9A7007AEF8F /* Animation.c in Sources */,
+				30AFE1771CB7064700478AA2 /* spine-ouzel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
