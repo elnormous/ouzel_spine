@@ -1,7 +1,8 @@
 // Copyright (C) 2016 Elviss Strazdins
 
-#include "Application.h"
 #include <cmath>
+#include "Application.h"
+#include "spine-ouzel.h"
 
 using namespace std;
 using namespace ouzel;

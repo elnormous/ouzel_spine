@@ -20,11 +20,18 @@ namespace spine
         SkeletonDrawable (SkeletonData* skeleton, AnimationStateData* stateData = 0);
         ~SkeletonDrawable ();
 
-        void update (float deltaTime);
-        virtual void draw() const;
+        void update(float delta);
+        virtual void draw() override;
         
     private:
         bool ownsAnimationStateData;
         float* worldVertices;
+        
+        ouzel::video::ShaderPtr _shader;
+        ouzel::video::BlendStatePtr _blendState;
+
+        uint32_t _uniModelViewProj;
+
+        ouzel::UpdateCallbackPtr _updateCallback;
     };
 }
