@@ -18,7 +18,7 @@ void _spAtlasPage_createTexture (spAtlasPage* self, const char* path)
     SpineTexture* texture = new SpineTexture();
 
     texture->texture = ouzel::sharedEngine->getCache()->getTexture(path);
-
+    self->rendererObject = texture;
     self->width = static_cast<int>(texture->texture->getSize().width);
     self->height = static_cast<int>(texture->texture->getSize().height);
 }

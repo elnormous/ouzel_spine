@@ -108,7 +108,6 @@ bool Application::handleMouse(const MouseEventPtr& event, const VoidPtr& sender)
     {
         case ouzel::Event::Type::MOUSE_DOWN:
         {
-            sharedEngine->getInput()->setCursorVisible(!sharedEngine->getInput()->isCursorVisible());
             break;
         }
         case ouzel::Event::Type::MOUSE_MOVE:
