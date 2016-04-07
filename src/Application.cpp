@@ -34,12 +34,44 @@ void Application::begin()
     _layer->setCamera(std::make_shared<scene::Camera>());
     scene->addLayer(_layer);
 
+    Atlas* atlas = Atlas_createFromFile("spineboy.atlas", 0);
+    SkeletonJson* json = SkeletonJson_create(atlas);
+    json->scale = 0.6f;
+    SkeletonData *skeletonData = SkeletonJson_readSkeletonDataFile(json, "spineboy.json");
+    if (!skeletonData) {
+        printf("%s\n", json->error);
+        exit(0);
+    }
+    SkeletonJson_dispose(json);
+    SkeletonBounds* bounds = SkeletonBounds_create();
+
+    // Configure mixing.
+    AnimationStateData* stateData = AnimationStateData_create(skeletonData);
+    AnimationStateData_setMixByName(stateData, "walk", "jump", 0.2f);
+    AnimationStateData_setMixByName(stateData, "jump", "run", 0.2f);
+
+    std::shared_ptr<spine::SkeletonDrawable> drawable = std::make_shared<spine::SkeletonDrawable>(skeletonData, stateData);
+    drawable->timeScale = 1;
+
+    Skeleton* skeleton = drawable->skeleton;
+    skeleton->flipX = false;
+    skeleton->flipY = false;
+    Skeleton_setToSetupPose(skeleton);
+
+    skeleton->x = 320;
+    skeleton->y = 460;
+    Skeleton_updateWorldTransform(skeleton);
+
+    _layer->addChild(drawable);
+
+    //Slot* headSlot = Skeleton_findSlot(skeleton, "head");
+
     sharedEngine->getInput()->startGamepadDiscovery();
 }
 
 bool Application::handleKeyboard(const KeyboardEventPtr& event, const VoidPtr& sender) const
 {
-    if (event->type == Event::Type::KEY_DOWN)
+    if (event->type == ouzel::Event::Type::KEY_DOWN)
     {
         Vector2 position = _layer->getCamera()->getPosition();
 
@@ -74,12 +106,12 @@ bool Application::handleMouse(const MouseEventPtr& event, const VoidPtr& sender)
 {
     switch (event->type)
     {
-        case Event::Type::MOUSE_DOWN:
+        case ouzel::Event::Type::MOUSE_DOWN:
         {
             sharedEngine->getInput()->setCursorVisible(!sharedEngine->getInput()->isCursorVisible());
             break;
         }
-        case Event::Type::MOUSE_MOVE:
+        case ouzel::Event::Type::MOUSE_MOVE:
         {
             break;
         }
@@ -97,7 +129,7 @@ bool Application::handleTouch(const TouchEventPtr& event, const VoidPtr& sender)
 
 bool Application::handleGamepad(const GamepadEventPtr& event, const VoidPtr& sender) const
 {
-    if (event->type == Event::Type::GAMEPAD_BUTTON_CHANGE)
+    if (event->type == ouzel::Event::Type::GAMEPAD_BUTTON_CHANGE)
     {
 
     }
