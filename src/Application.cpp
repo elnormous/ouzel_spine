@@ -31,8 +31,13 @@ void Application::begin()
     sharedEngine->getSceneManager()->setScene(scene);
 
     _layer = std::make_shared<scene::Layer>();
-    _layer->setCamera(std::make_shared<scene::Camera>());
+
+    ouzel::scene::CameraPtr camera = std::make_shared<scene::Camera>();
+    _layer->setCamera(camera);
     scene->addLayer(_layer);
+
+    camera->setZoom(0.5f);
+    camera->setPosition(Vector2(500.0f, 500.0f));
 
     Atlas* atlas = Atlas_createFromFile("spineboy.atlas", 0);
     SkeletonJson* json = SkeletonJson_create(atlas);
@@ -62,6 +67,14 @@ void Application::begin()
     skeleton->y = 460;
     Skeleton_updateWorldTransform(skeleton);
 
+    if (false) {
+        AnimationState_setAnimationByName(drawable->state, 0, "test", true);
+    } else {
+        AnimationState_setAnimationByName(drawable->state, 0, "walk", true);
+        AnimationState_addAnimationByName(drawable->state, 0, "jump", false, 3);
+        AnimationState_addAnimationByName(drawable->state, 0, "run", true, 0);
+    }
+    
     _layer->addChild(drawable);
 
     //Slot* headSlot = Skeleton_findSlot(skeleton, "head");
