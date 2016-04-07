@@ -36,9 +36,6 @@ void Application::begin()
     _layer->setCamera(camera);
     scene->addLayer(_layer);
 
-    camera->setZoom(0.5f);
-    camera->setPosition(Vector2(500.0f, 500.0f));
-
     Atlas* atlas = Atlas_createFromFile("spineboy.atlas", 0);
     SkeletonJson* json = SkeletonJson_create(atlas);
     json->scale = 0.6f;
@@ -63,8 +60,8 @@ void Application::begin()
     skeleton->flipY = false;
     Skeleton_setToSetupPose(skeleton);
 
-    skeleton->x = 320;
-    skeleton->y = 460;
+    //skeleton->x = 320;
+    skeleton->y = -200;
     Skeleton_updateWorldTransform(skeleton);
 
     if (false) {

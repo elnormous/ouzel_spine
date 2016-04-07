@@ -13,7 +13,7 @@ struct SpineTexture
     std::shared_ptr<ouzel::video::Texture> texture;
 };
 
-void _spAtlasPage_createTexture (spAtlasPage* self, const char* path)
+void _spAtlasPage_createTexture(spAtlasPage* self, const char* path)
 {
     SpineTexture* texture = new SpineTexture();
 
@@ -23,19 +23,19 @@ void _spAtlasPage_createTexture (spAtlasPage* self, const char* path)
     self->height = static_cast<int>(texture->texture->getSize().height);
 }
 
-void _spAtlasPage_disposeTexture (spAtlasPage* self)
+void _spAtlasPage_disposeTexture(spAtlasPage* self)
 {
     delete static_cast<SpineTexture*>(self->rendererObject);
 }
 
-char* _spUtil_readFile (const char* path, int* length)
+char* _spUtil_readFile(const char* path, int* length)
 {
     return _readFile(ouzel::sharedEngine->getFileSystem()->getPath(path).c_str(), length);
 }
 
 namespace spine
 {
-    SkeletonDrawable::SkeletonDrawable (SkeletonData* skeletonData, AnimationStateData* stateData):
+    SkeletonDrawable::SkeletonDrawable(SkeletonData* skeletonData, AnimationStateData* stateData):
         timeScale(1)
     {
         meshBuffer = ouzel::sharedEngine->getRenderer()->createMeshBuffer();
@@ -64,7 +64,7 @@ namespace spine
         ouzel::sharedEngine->scheduleUpdate(_updateCallback);
     }
 
-    SkeletonDrawable::~SkeletonDrawable ()
+    SkeletonDrawable::~SkeletonDrawable()
     {
         FREE(worldVertices);
         if (ownsAnimationStateData) AnimationStateData_dispose(state->data);
