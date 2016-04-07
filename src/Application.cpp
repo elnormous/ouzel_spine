@@ -12,6 +12,28 @@ Application::~Application()
     sharedEngine->getEventDispatcher()->removeEventHandler(_eventHandler);
 }
 
+void callback (AnimationState* state, int trackIndex, EventType type, spEvent* event, int loopCount) {
+    TrackEntry* entry = AnimationState_getCurrent(state, trackIndex);
+    const char* animationName = (entry && entry->animation) ? entry->animation->name : 0;
+
+    switch (type) {
+        case ANIMATION_START:
+            printf("%d start: %s\n", trackIndex, animationName);
+            break;
+        case ANIMATION_END:
+            printf("%d end: %s\n", trackIndex, animationName);
+            break;
+        case ANIMATION_COMPLETE:
+            printf("%d complete: %s, %d\n", trackIndex, animationName, loopCount);
+            break;
+        case ANIMATION_EVENT:
+            printf("%d event: %s, %s: %d, %f, %s\n", trackIndex, animationName, event->data->name, event->intValue, event->floatValue,
+                   event->stringValue);
+            break;
+    }
+    fflush(stdout);
+}
+
 void Application::begin()
 {
     _eventHandler = make_shared<EventHandler>();
@@ -54,6 +76,8 @@ void Application::begin()
 
     std::shared_ptr<spine::SkeletonDrawable> drawable = std::make_shared<spine::SkeletonDrawable>(skeletonData, stateData);
     drawable->timeScale = 1;
+
+    drawable->state->listener = callback;
 
     Skeleton* skeleton = drawable->skeleton;
     skeleton->flipX = false;
