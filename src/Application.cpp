@@ -88,6 +88,8 @@ void Application::begin()
     skeleton->y = -200;
     Skeleton_updateWorldTransform(skeleton);
 
+    SkeletonBounds_update(bounds, skeleton, true);
+
     if (false) {
         AnimationState_setAnimationByName(drawable->state, 0, "test", true);
     } else {
