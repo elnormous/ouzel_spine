@@ -35,7 +35,7 @@ char* _spUtil_readFile(const char* path, int* length)
 
 namespace spine
 {
-    SkeletonDrawable::SkeletonDrawable(SkeletonData* skeletonData, AnimationStateData* stateData):
+    SkeletonDrawable::SkeletonDrawable(spSkeletonData* skeletonData, spAnimationStateData* stateData):
         timeScale(1)
     {
         meshBuffer = ouzel::sharedEngine->getRenderer()->createMeshBuffer();
@@ -43,12 +43,12 @@ namespace spine
         meshBuffer->setVertexAttributes(ouzel::video::VertexPCT::ATTRIBUTES);
 
         worldVertices = MALLOC(float, SPINE_MESH_VERTEX_COUNT_MAX);
-        skeleton = Skeleton_create(skeletonData);
+        skeleton = spSkeleton_create(skeletonData);
 
         ownsAnimationStateData = stateData == 0;
-        if (ownsAnimationStateData) stateData = AnimationStateData_create(skeletonData);
+        if (ownsAnimationStateData) stateData = spAnimationStateData_create(skeletonData);
         
-        state = AnimationState_create(stateData);
+        state = spAnimationState_create(stateData);
 
         _blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::video::BLEND_ALPHA);
         _shader = ouzel::sharedEngine->getCache()->getShader(ouzel::video::SHADER_TEXTURE);
@@ -67,19 +67,19 @@ namespace spine
     SkeletonDrawable::~SkeletonDrawable()
     {
         FREE(worldVertices);
-        if (ownsAnimationStateData) AnimationStateData_dispose(state->data);
-        AnimationState_dispose(state);
-        Skeleton_dispose(skeleton);
+        if (ownsAnimationStateData) spAnimationStateData_dispose(state->data);
+        spAnimationState_dispose(state);
+        spSkeleton_dispose(skeleton);
 
         ouzel::sharedEngine->unscheduleUpdate(_updateCallback);
     }
 
     void SkeletonDrawable::update(float delta)
     {
-        Skeleton_update(skeleton, delta);
-        AnimationState_update(state, delta * timeScale);
-        AnimationState_apply(state, skeleton);
-        Skeleton_updateWorldTransform(skeleton);
+        spSkeleton_update(skeleton, delta);
+        spAnimationState_update(state, delta * timeScale);
+        spAnimationState_apply(state, skeleton);
+        spSkeleton_updateWorldTransform(skeleton);
     }
 
     void SkeletonDrawable::draw()
@@ -94,8 +94,8 @@ namespace spine
 
         for (int i = 0; i < skeleton->slotsCount; ++i)
         {
-            Slot* slot = skeleton->drawOrder[i];
-            Attachment* attachment = slot->attachment;
+            spSlot* slot = skeleton->drawOrder[i];
+            spAttachment* attachment = slot->attachment;
             if (!attachment) continue;
 
             /*sf::BlendMode blend;
@@ -117,56 +117,55 @@ namespace spine
             }*/
 
             SpineTexture* texture = 0;
-            if (attachment->type == ATTACHMENT_REGION)
+            if (attachment->type == SP_ATTACHMENT_REGION)
             {
-                RegionAttachment* regionAttachment = (RegionAttachment*)attachment;
-                texture = (SpineTexture*)((AtlasRegion*)regionAttachment->rendererObject)->page->rendererObject;
-                RegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices);
+                spRegionAttachment* regionAttachment = (spRegionAttachment*)attachment;
+                texture = (SpineTexture*)((spAtlasRegion*)regionAttachment->rendererObject)->page->rendererObject;
+                spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices);
 
                 uint8_t r = static_cast<uint8_t>(skeleton->r * slot->r * 255);
                 uint8_t g = static_cast<uint8_t>(skeleton->g * slot->g * 255);
                 uint8_t b = static_cast<uint8_t>(skeleton->b * slot->b * 255);
                 uint8_t a = static_cast<uint8_t>(skeleton->a * slot->a * 255);
 
-                ouzel::Size2 size = texture->texture->getSize();
                 vertex.color.r = r;
                 vertex.color.g = g;
                 vertex.color.b = b;
                 vertex.color.a = a;
-                vertex.position.x = worldVertices[VERTEX_X1];
-                vertex.position.y = worldVertices[VERTEX_Y1];
-                vertex.texCoord.x = regionAttachment->uvs[VERTEX_X1];
-                vertex.texCoord.y = regionAttachment->uvs[VERTEX_Y1];
+                vertex.position.x = worldVertices[SP_VERTEX_X1];
+                vertex.position.y = worldVertices[SP_VERTEX_Y1];
+                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X1];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y1];
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
                 vertex.color.g = g;
                 vertex.color.b = b;
                 vertex.color.a = a;
-                vertex.position.x = worldVertices[VERTEX_X2];
-                vertex.position.y = worldVertices[VERTEX_Y2];
-                vertex.texCoord.x = regionAttachment->uvs[VERTEX_X2];
-                vertex.texCoord.y = regionAttachment->uvs[VERTEX_Y2];
+                vertex.position.x = worldVertices[SP_VERTEX_X2];
+                vertex.position.y = worldVertices[SP_VERTEX_Y2];
+                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X2];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y2];
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
                 vertex.color.g = g;
                 vertex.color.b = b;
                 vertex.color.a = a;
-                vertex.position.x = worldVertices[VERTEX_X3];
-                vertex.position.y = worldVertices[VERTEX_Y3];
-                vertex.texCoord.x = regionAttachment->uvs[VERTEX_X3];
-                vertex.texCoord.y = regionAttachment->uvs[VERTEX_Y3];
+                vertex.position.x = worldVertices[SP_VERTEX_X3];
+                vertex.position.y = worldVertices[SP_VERTEX_Y3];
+                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X3];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y3];
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
                 vertex.color.g = g;
                 vertex.color.b = b;
                 vertex.color.a = a;
-                vertex.position.x = worldVertices[VERTEX_X4];
-                vertex.position.y = worldVertices[VERTEX_Y4];
-                vertex.texCoord.x = regionAttachment->uvs[VERTEX_X4];
-                vertex.texCoord.y = regionAttachment->uvs[VERTEX_Y4];
+                vertex.position.x = worldVertices[SP_VERTEX_X4];
+                vertex.position.y = worldVertices[SP_VERTEX_Y4];
+                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X4];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y4];
                 vertices.push_back(vertex);
 
                 indices.push_back(currentVertexIndex + 0);
@@ -178,12 +177,12 @@ namespace spine
 
                 currentVertexIndex += 4;
             }
-            else if (attachment->type == ATTACHMENT_MESH)
+            else if (attachment->type == SP_ATTACHMENT_MESH)
             {
-                MeshAttachment* mesh = (MeshAttachment*)attachment;
+                spMeshAttachment* mesh = (spMeshAttachment*)attachment;
                 if (mesh->verticesCount > SPINE_MESH_VERTEX_COUNT_MAX) continue;
-                texture = (SpineTexture*)((AtlasRegion*)mesh->rendererObject)->page->rendererObject;
-                MeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
+                texture = (SpineTexture*)((spAtlasRegion*)mesh->rendererObject)->page->rendererObject;
+                spMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
 
                 uint8_t r = static_cast<uint8_t>(skeleton->r * slot->r * 255);
                 uint8_t g = static_cast<uint8_t>(skeleton->g * slot->g * 255);
@@ -194,7 +193,6 @@ namespace spine
                 vertex.color.b = b;
                 vertex.color.a = a;
 
-                ouzel::Size2 size = texture->texture->getSize();
                 for (int t = 0; t < mesh->trianglesCount; ++t)
                 {
                     int index = mesh->triangles[t] << 1;
@@ -209,12 +207,12 @@ namespace spine
                 }
                 
             }
-            else if (attachment->type == ATTACHMENT_WEIGHTED_MESH)
+            else if (attachment->type == SP_ATTACHMENT_WEIGHTED_MESH)
             {
-                WeightedMeshAttachment* mesh = (WeightedMeshAttachment*)attachment;
+                spWeightedMeshAttachment* mesh = (spWeightedMeshAttachment*)attachment;
                 if (mesh->uvsCount > SPINE_MESH_VERTEX_COUNT_MAX) continue;
-                texture = (SpineTexture*)((AtlasRegion*)mesh->rendererObject)->page->rendererObject;
-                WeightedMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
+                texture = (SpineTexture*)((spAtlasRegion*)mesh->rendererObject)->page->rendererObject;
+                spWeightedMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
                 
                 uint8_t r = static_cast<uint8_t>(skeleton->r * slot->r * 255);
                 uint8_t g = static_cast<uint8_t>(skeleton->g * slot->g * 255);
@@ -224,8 +222,7 @@ namespace spine
                 vertex.color.g = g;
                 vertex.color.b = b;
                 vertex.color.a = a;
-                
-                ouzel::Size2 size = texture->texture->getSize();
+
                 for (int t = 0; t < mesh->trianglesCount; ++t)
                 {
                     int index = mesh->triangles[t] << 1;
@@ -240,7 +237,7 @@ namespace spine
                 }
             }
 
-            if (texture->texture)
+            if (texture && texture->texture)
             {
                 ouzel::sharedEngine->getRenderer()->activateTexture(texture->texture, 0);
             }

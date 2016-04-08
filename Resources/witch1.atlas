@@ -1,0 +1,111 @@
+
+witch1.png
+size: 128,1161
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm
+  rotate: true
+  xy: 70, 400
+  size: 71, 56
+  orig: 71, 56
+  offset: 0, 0
+  index: -1
+backhair
+  rotate: false
+  xy: 92, 616
+  size: 30, 51
+  orig: 30, 51
+  offset: 0, 0
+  index: -1
+backshawl
+  rotate: true
+  xy: 2, 216
+  size: 92, 47
+  orig: 92, 47
+  offset: 0, 0
+  index: -1
+brow
+  rotate: true
+  xy: 118, 597
+  size: 17, 8
+  orig: 17, 8
+  offset: 0, 0
+  index: -1
+cape
+  rotate: false
+  xy: 2, 473
+  size: 67, 81
+  orig: 67, 81
+  offset: 0, 0
+  index: -1
+eye
+  rotate: false
+  xy: 70, 395
+  size: 4, 3
+  orig: 4, 3
+  offset: 0, 0
+  index: -1
+hair
+  rotate: true
+  xy: 2, 96
+  size: 49, 44
+  orig: 49, 44
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 2, 147
+  size: 67, 45
+  orig: 67, 45
+  offset: 0, 0
+  index: -1
+jaw
+  rotate: true
+  xy: 2, 2
+  size: 44, 30
+  orig: 44, 30
+  offset: 0, 0
+  index: -1
+overhair
+  rotate: false
+  xy: 2, 48
+  size: 39, 46
+  orig: 39, 46
+  offset: 0, 0
+  index: -1
+shawl2
+  rotate: true
+  xy: 2, 391
+  size: 80, 66
+  orig: 80, 66
+  offset: 0, 0
+  index: -1
+shawl3
+  rotate: false
+  xy: 2, 310
+  size: 67, 79
+  orig: 67, 79
+  offset: 0, 0
+  index: -1
+shawltop
+  rotate: true
+  xy: 71, 530
+  size: 24, 15
+  orig: 24, 15
+  offset: 0, 0
+  index: -1
+sticky stuff
+  rotate: false
+  xy: 92, 594
+  size: 24, 20
+  orig: 24, 20
+  offset: 0, 0
+  index: -1
+torso
+  rotate: false
+  xy: 2, 556
+  size: 88, 111
+  orig: 88, 111
+  offset: 0, 0
+  index: -1

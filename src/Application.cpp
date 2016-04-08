@@ -12,21 +12,21 @@ Application::~Application()
     sharedEngine->getEventDispatcher()->removeEventHandler(_eventHandler);
 }
 
-void callback (AnimationState* state, int trackIndex, EventType type, spEvent* event, int loopCount) {
-    TrackEntry* entry = AnimationState_getCurrent(state, trackIndex);
+void callback (spAnimationState* state, int trackIndex, spEventType type, spEvent* event, int loopCount) {
+    spTrackEntry* entry = spAnimationState_getCurrent(state, trackIndex);
     const char* animationName = (entry && entry->animation) ? entry->animation->name : 0;
 
     switch (type) {
-        case ANIMATION_START:
+        case SP_ANIMATION_START:
             printf("%d start: %s\n", trackIndex, animationName);
             break;
-        case ANIMATION_END:
+        case SP_ANIMATION_END:
             printf("%d end: %s\n", trackIndex, animationName);
             break;
-        case ANIMATION_COMPLETE:
+        case SP_ANIMATION_COMPLETE:
             printf("%d complete: %s, %d\n", trackIndex, animationName, loopCount);
             break;
-        case ANIMATION_EVENT:
+        case SP_ANIMATION_EVENT:
             printf("%d event: %s, %s: %d, %f, %s\n", trackIndex, animationName, event->data->name, event->intValue, event->floatValue,
                    event->stringValue);
             break;
@@ -58,45 +58,39 @@ void Application::begin()
     _layer->setCamera(camera);
     scene->addLayer(_layer);
 
-    Atlas* atlas = Atlas_createFromFile("spineboy.atlas", 0);
-    SkeletonJson* json = SkeletonJson_create(atlas);
-    json->scale = 0.6f;
-    SkeletonData *skeletonData = SkeletonJson_readSkeletonDataFile(json, "spineboy.json");
+    spAtlas* atlas = spAtlas_createFromFile("witch1.atlas", 0);
+    spSkeletonJson* json = spSkeletonJson_create(atlas);
+    //json->scale = 0.6f;
+    spSkeletonData *skeletonData = spSkeletonJson_readSkeletonDataFile(json, "witch1.json");
     if (!skeletonData) {
         printf("%s\n", json->error);
         exit(0);
     }
-    SkeletonJson_dispose(json);
-    SkeletonBounds* bounds = SkeletonBounds_create();
+    spSkeletonJson_dispose(json);
+    spSkeletonBounds* bounds = spSkeletonBounds_create();
 
     // Configure mixing.
-    AnimationStateData* stateData = AnimationStateData_create(skeletonData);
-    AnimationStateData_setMixByName(stateData, "walk", "jump", 0.2f);
-    AnimationStateData_setMixByName(stateData, "jump", "run", 0.2f);
+    spAnimationStateData* stateData = spAnimationStateData_create(skeletonData);
+    spAnimationStateData_setMixByName(stateData, "walk", "death", 0.5f);
 
     std::shared_ptr<spine::SkeletonDrawable> drawable = std::make_shared<spine::SkeletonDrawable>(skeletonData, stateData);
     drawable->timeScale = 1;
 
     drawable->state->listener = callback;
 
-    Skeleton* skeleton = drawable->skeleton;
+    spSkeleton* skeleton = drawable->skeleton;
     skeleton->flipX = false;
     skeleton->flipY = false;
-    Skeleton_setToSetupPose(skeleton);
+    spSkeleton_setToSetupPose(skeleton);
 
     //skeleton->x = 320;
     skeleton->y = -200;
-    Skeleton_updateWorldTransform(skeleton);
+    spSkeleton_updateWorldTransform(skeleton);
 
-    SkeletonBounds_update(bounds, skeleton, true);
+    spSkeletonBounds_update(bounds, skeleton, true);
 
-    if (false) {
-        AnimationState_setAnimationByName(drawable->state, 0, "test", true);
-    } else {
-        AnimationState_setAnimationByName(drawable->state, 0, "walk", true);
-        AnimationState_addAnimationByName(drawable->state, 0, "jump", false, 3);
-        AnimationState_addAnimationByName(drawable->state, 0, "run", true, 0);
-    }
+    spAnimationState_setAnimationByName(drawable->state, 0, "walk", true);
+    spAnimationState_addAnimationByName(drawable->state, 0, "death", true, 5);
     
     _layer->addChild(drawable);
 

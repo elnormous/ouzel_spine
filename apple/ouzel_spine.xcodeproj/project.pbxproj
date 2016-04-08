@@ -39,15 +39,15 @@
 		30AFE1771CB7064700478AA2 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
 		30AFE17B1CB7064800478AA2 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
 		30AFE17C1CB7064800478AA2 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
-		30C56CAF1CACA65F007AEF8F /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAC1CACA65F007AEF8F /* spineboy.atlas */; };
-		30C56CB01CACA65F007AEF8F /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAC1CACA65F007AEF8F /* spineboy.atlas */; };
-		30C56CB11CACA65F007AEF8F /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAC1CACA65F007AEF8F /* spineboy.atlas */; };
-		30C56CB21CACA65F007AEF8F /* spineboy.json in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAD1CACA65F007AEF8F /* spineboy.json */; };
-		30C56CB31CACA65F007AEF8F /* spineboy.json in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAD1CACA65F007AEF8F /* spineboy.json */; };
-		30C56CB41CACA65F007AEF8F /* spineboy.json in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAD1CACA65F007AEF8F /* spineboy.json */; };
-		30C56CB51CACA65F007AEF8F /* spineboy.png in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAE1CACA65F007AEF8F /* spineboy.png */; };
-		30C56CB61CACA65F007AEF8F /* spineboy.png in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAE1CACA65F007AEF8F /* spineboy.png */; };
-		30C56CB71CACA65F007AEF8F /* spineboy.png in Resources */ = {isa = PBXBuildFile; fileRef = 30C56CAE1CACA65F007AEF8F /* spineboy.png */; };
+		30AFE1861CB7301500478AA2 /* witch1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1831CB7301500478AA2 /* witch1.atlas */; };
+		30AFE1871CB7301500478AA2 /* witch1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1831CB7301500478AA2 /* witch1.atlas */; };
+		30AFE1881CB7301500478AA2 /* witch1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1831CB7301500478AA2 /* witch1.atlas */; };
+		30AFE1891CB7301500478AA2 /* witch1.json in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1841CB7301500478AA2 /* witch1.json */; };
+		30AFE18A1CB7301500478AA2 /* witch1.json in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1841CB7301500478AA2 /* witch1.json */; };
+		30AFE18B1CB7301500478AA2 /* witch1.json in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1841CB7301500478AA2 /* witch1.json */; };
+		30AFE18C1CB7301500478AA2 /* witch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1851CB7301500478AA2 /* witch1.png */; };
+		30AFE18D1CB7301500478AA2 /* witch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1851CB7301500478AA2 /* witch1.png */; };
+		30AFE18E1CB7301500478AA2 /* witch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1851CB7301500478AA2 /* witch1.png */; };
 		30C56CC71CACA732007AEF8F /* libouzel_osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C56CC21CACA70E007AEF8F /* libouzel_osx.a */; };
 		30C56CC81CACA736007AEF8F /* libouzel_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C56CC41CACA70E007AEF8F /* libouzel_ios.a */; };
 		30C56CC91CACA73A007AEF8F /* libouzel_tvos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C56CC61CACA70E007AEF8F /* libouzel_tvos.a */; };
@@ -200,9 +200,9 @@
 		30AFE15D1CB6BD6500478AA2 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
 		30AFE1601CB6BD7000478AA2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
 		30AFE1611CB6BD7000478AA2 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
-		30C56CAC1CACA65F007AEF8F /* spineboy.atlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spineboy.atlas; sourceTree = "<group>"; };
-		30C56CAD1CACA65F007AEF8F /* spineboy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spineboy.json; sourceTree = "<group>"; };
-		30C56CAE1CACA65F007AEF8F /* spineboy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spineboy.png; sourceTree = "<group>"; };
+		30AFE1831CB7301500478AA2 /* witch1.atlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = witch1.atlas; sourceTree = "<group>"; };
+		30AFE1841CB7301500478AA2 /* witch1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = witch1.json; sourceTree = "<group>"; };
+		30AFE1851CB7301500478AA2 /* witch1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = witch1.png; sourceTree = "<group>"; };
 		30C56CBB1CACA70E007AEF8F /* ouzel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ouzel.xcodeproj; path = ../external/ouzel/build/ouzel.xcodeproj; sourceTree = "<group>"; };
 		30C56CCB1CACA9A7007AEF8F /* Animation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Animation.c; sourceTree = "<group>"; };
 		30C56CCC1CACA9A7007AEF8F /* AnimationState.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AnimationState.c; sourceTree = "<group>"; };
@@ -375,9 +375,9 @@
 		304A8EB21C2765C4008B1151 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				30C56CAC1CACA65F007AEF8F /* spineboy.atlas */,
-				30C56CAD1CACA65F007AEF8F /* spineboy.json */,
-				30C56CAE1CACA65F007AEF8F /* spineboy.png */,
+				30AFE1831CB7301500478AA2 /* witch1.atlas */,
+				30AFE1841CB7301500478AA2 /* witch1.json */,
+				30AFE1851CB7301500478AA2 /* witch1.png */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -567,10 +567,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30C56CB31CACA65F007AEF8F /* spineboy.json in Resources */,
-				30C56CB61CACA65F007AEF8F /* spineboy.png in Resources */,
-				30C56CB01CACA65F007AEF8F /* spineboy.atlas in Resources */,
+				30AFE18D1CB7301500478AA2 /* witch1.png in Resources */,
+				30AFE18A1CB7301500478AA2 /* witch1.json in Resources */,
 				303647A11C418E4C0024DB5B /* Assets.xcassets in Resources */,
+				30AFE1871CB7301500478AA2 /* witch1.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,10 +578,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30C56CB41CACA65F007AEF8F /* spineboy.json in Resources */,
-				30C56CB71CACA65F007AEF8F /* spineboy.png in Resources */,
-				30C56CB11CACA65F007AEF8F /* spineboy.atlas in Resources */,
+				30AFE18E1CB7301500478AA2 /* witch1.png in Resources */,
+				30AFE18B1CB7301500478AA2 /* witch1.json in Resources */,
 				303647A31C418E7C0024DB5B /* Assets.xcassets in Resources */,
+				30AFE1881CB7301500478AA2 /* witch1.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,10 +589,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30C56CB21CACA65F007AEF8F /* spineboy.json in Resources */,
-				30C56CB51CACA65F007AEF8F /* spineboy.png in Resources */,
-				30C56CAF1CACA65F007AEF8F /* spineboy.atlas in Resources */,
+				30AFE18C1CB7301500478AA2 /* witch1.png in Resources */,
+				30AFE1891CB7301500478AA2 /* witch1.json in Resources */,
 				303647A21C418E790024DB5B /* Assets.xcassets in Resources */,
+				30AFE1861CB7301500478AA2 /* witch1.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
