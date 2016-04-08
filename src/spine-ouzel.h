@@ -20,6 +20,9 @@ namespace spine
 
         void update(float delta);
         virtual void draw() override;
+
+        float getTimeScale() const { return _timeScale; }
+        void setTimeScale(float timeScale) { _timeScale = timeScale; }
         
     private:
         spSkeleton* _skeleton = nullptr;

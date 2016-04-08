@@ -60,7 +60,8 @@ namespace spine
         spSkeletonJson* json = spSkeletonJson_create(atlas);
         //json->scale = 0.6f;
         spSkeletonData* skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonFile.c_str());
-        if (!skeletonData) {
+        if (!skeletonData)
+        {
             printf("%s\n", json->error);
             return;
         }
