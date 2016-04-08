@@ -6,25 +6,28 @@
 #include <spine/spine.h>
 #include <spine/extension.h>
 
+#ifndef SPINE_MESH_VERTEX_COUNT_MAX
+#define SPINE_MESH_VERTEX_COUNT_MAX 1000
+#endif
+
 namespace spine
 {
     class SkeletonDrawable: public ouzel::scene::Node
     {
     public:
-        spSkeleton* skeleton;
-        spAnimationState* state;
-        float timeScale;
-        ouzel::video::MeshBufferPtr meshBuffer;
-
-        SkeletonDrawable (spSkeletonData* skeleton, spAnimationStateData* stateData = 0);
-        ~SkeletonDrawable ();
+        SkeletonDrawable(const std::string& atlasFile, const std::string& skeletonFile);
+        ~SkeletonDrawable();
 
         void update(float delta);
         virtual void draw() override;
         
     private:
-        bool ownsAnimationStateData;
-        float* worldVertices;
+        spSkeleton* _skeleton = nullptr;
+        spAnimationState* _state = nullptr;
+        float _timeScale = 1.0f;
+        ouzel::video::MeshBufferPtr _meshBuffer;
+
+        float _worldVertices[SPINE_MESH_VERTEX_COUNT_MAX / sizeof(float)];
         
         ouzel::video::ShaderPtr _shader;
         ouzel::video::BlendStatePtr _blendState;

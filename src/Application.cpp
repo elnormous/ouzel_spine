@@ -12,28 +12,6 @@ Application::~Application()
     sharedEngine->getEventDispatcher()->removeEventHandler(_eventHandler);
 }
 
-void callback (spAnimationState* state, int trackIndex, spEventType type, spEvent* event, int loopCount) {
-    spTrackEntry* entry = spAnimationState_getCurrent(state, trackIndex);
-    const char* animationName = (entry && entry->animation) ? entry->animation->name : 0;
-
-    switch (type) {
-        case SP_ANIMATION_START:
-            printf("%d start: %s\n", trackIndex, animationName);
-            break;
-        case SP_ANIMATION_END:
-            printf("%d end: %s\n", trackIndex, animationName);
-            break;
-        case SP_ANIMATION_COMPLETE:
-            printf("%d complete: %s, %d\n", trackIndex, animationName, loopCount);
-            break;
-        case SP_ANIMATION_EVENT:
-            printf("%d event: %s, %s: %d, %f, %s\n", trackIndex, animationName, event->data->name, event->intValue, event->floatValue,
-                   event->stringValue);
-            break;
-    }
-    fflush(stdout);
-}
-
 void Application::begin()
 {
     _eventHandler = make_shared<EventHandler>();
@@ -58,40 +36,7 @@ void Application::begin()
     _layer->setCamera(camera);
     scene->addLayer(_layer);
 
-    spAtlas* atlas = spAtlas_createFromFile("witch1.atlas", 0);
-    spSkeletonJson* json = spSkeletonJson_create(atlas);
-    //json->scale = 0.6f;
-    spSkeletonData *skeletonData = spSkeletonJson_readSkeletonDataFile(json, "witch1.json");
-    if (!skeletonData) {
-        printf("%s\n", json->error);
-        exit(0);
-    }
-    spSkeletonJson_dispose(json);
-    spSkeletonBounds* bounds = spSkeletonBounds_create();
-
-    // Configure mixing.
-    spAnimationStateData* stateData = spAnimationStateData_create(skeletonData);
-    spAnimationStateData_setMixByName(stateData, "walk", "death", 0.5f);
-
-    std::shared_ptr<spine::SkeletonDrawable> drawable = std::make_shared<spine::SkeletonDrawable>(skeletonData, stateData);
-    drawable->timeScale = 1;
-
-    drawable->state->listener = callback;
-
-    spSkeleton* skeleton = drawable->skeleton;
-    skeleton->flipX = false;
-    skeleton->flipY = false;
-    spSkeleton_setToSetupPose(skeleton);
-
-    //skeleton->x = 320;
-    skeleton->y = -200;
-    spSkeleton_updateWorldTransform(skeleton);
-
-    spSkeletonBounds_update(bounds, skeleton, true);
-
-    spAnimationState_setAnimationByName(drawable->state, 0, "walk", true);
-    spAnimationState_addAnimationByName(drawable->state, 0, "death", true, 5);
-    
+    std::shared_ptr<spine::SkeletonDrawable> drawable = std::make_shared<spine::SkeletonDrawable>("witch1.atlas", "witch1.json");
     _layer->addChild(drawable);
 
     //Slot* headSlot = Skeleton_findSlot(skeleton, "head");
