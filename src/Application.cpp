@@ -36,7 +36,7 @@ void Application::begin()
     _layer->setCamera(camera);
     scene->addLayer(_layer);
 
-    std::shared_ptr<spine::SkeletonDrawable> drawable = std::make_shared<spine::SkeletonDrawable>("witch1.atlas", "witch1.json");
+    std::shared_ptr<spine::SkeletonDrawable> drawable = std::make_shared<spine::SkeletonDrawable>("witch.atlas", "witch.json");
     _layer->addChild(drawable);
 
     //Slot* headSlot = Skeleton_findSlot(skeleton, "head");

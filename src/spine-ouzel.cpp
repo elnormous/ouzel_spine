@@ -70,7 +70,7 @@ namespace spine
 
         // Configure mixing.
         spAnimationStateData* stateData = spAnimationStateData_create(skeletonData);
-        spAnimationStateData_setMixByName(stateData, "walk", "death", 0.5f);
+        spAnimationStateData_setMixByName(stateData, "witch_walk", "witch_death", 0.5f);
 
         _skeleton = spSkeleton_create(skeletonData);
 
@@ -89,8 +89,8 @@ namespace spine
 
         spSkeletonBounds_update(bounds, _skeleton, true);
 
-        spAnimationState_setAnimationByName(_state, 0, "walk", true);
-        spAnimationState_addAnimationByName(_state, 0, "death", true, 5);
+        spAnimationState_setAnimationByName(_state, 0, "witch_walk", true);
+        spAnimationState_addAnimationByName(_state, 0, "witch_death", true, 5);
 
         _meshBuffer = ouzel::sharedEngine->getRenderer()->createMeshBuffer();
         _meshBuffer->setIndexSize(sizeof(uint16_t));

@@ -1,0 +1,104 @@
+
+witch.png
+size: 128,1161
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+backhair_witch
+  rotate: false
+  xy: 2, 200
+  size: 42, 72
+  orig: 42, 72
+  offset: 0, 0
+  index: -1
+backshawl_witch
+  rotate: true
+  xy: 2, 274
+  size: 88, 44
+  orig: 88, 44
+  offset: 0, 0
+  index: -1
+brow_witch
+  rotate: true
+  xy: 71, 667
+  size: 25, 11
+  orig: 25, 11
+  offset: 0, 0
+  index: -1
+cape_witch
+  rotate: false
+  xy: 2, 611
+  size: 67, 81
+  orig: 67, 81
+  offset: 0, 0
+  index: -1
+hair_witch
+  rotate: true
+  xy: 2, 128
+  size: 70, 59
+  orig: 70, 59
+  offset: 0, 0
+  index: -1
+head_witch
+  rotate: true
+  xy: 2, 522
+  size: 87, 60
+  orig: 87, 60
+  offset: 0, 0
+  index: -1
+jaw_witch
+  rotate: true
+  xy: 2, 64
+  size: 62, 43
+  orig: 62, 43
+  offset: 0, 0
+  index: -1
+overhair_witch
+  rotate: true
+  xy: 63, 464
+  size: 56, 63
+  orig: 56, 63
+  offset: 0, 0
+  index: -1
+shawl1_witch
+  rotate: false
+  xy: 2, 2
+  size: 35, 60
+  orig: 35, 60
+  offset: 0, 0
+  index: -1
+shawl2_witch
+  rotate: true
+  xy: 2, 440
+  size: 80, 59
+  orig: 80, 59
+  offset: 0, 0
+  index: -1
+shawl3_witch
+  rotate: false
+  xy: 2, 364
+  size: 68, 74
+  orig: 68, 74
+  offset: 0, 0
+  index: -1
+shawltop_witch
+  rotate: false
+  xy: 93, 744
+  size: 33, 22
+  orig: 33, 22
+  offset: 0, 0
+  index: -1
+sticky stuff_witch copy 2
+  rotate: false
+  xy: 93, 768
+  size: 33, 29
+  orig: 33, 29
+  offset: 0, 0
+  index: -1
+torso_witch
+  rotate: false
+  xy: 2, 694
+  size: 89, 103
+  orig: 89, 103
+  offset: 0, 0
+  index: -1

@@ -1,111 +1,111 @@
 
 witch1.png
-size: 256,2048
+size: 128,1161
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 arm
   rotate: true
-  xy: 2, 613
-  size: 187, 147
-  orig: 187, 147
+  xy: 70, 400
+  size: 71, 56
+  orig: 71, 56
   offset: 0, 0
   index: -1
 backhair
   rotate: false
-  xy: 2, 44
-  size: 78, 134
-  orig: 78, 134
+  xy: 92, 616
+  size: 30, 51
+  orig: 30, 51
   offset: 0, 0
   index: -1
 backshawl
   rotate: true
-  xy: 2, 802
-  size: 242, 124
-  orig: 242, 124
+  xy: 2, 216
+  size: 92, 47
+  orig: 92, 47
   offset: 0, 0
   index: -1
 brow
   rotate: true
-  xy: 122, 566
-  size: 45, 20
-  orig: 45, 20
+  xy: 118, 597
+  size: 17, 8
+  orig: 17, 8
   offset: 0, 0
   index: -1
 cape
   rotate: false
-  xy: 2, 1470
-  size: 175, 214
-  orig: 175, 214
+  xy: 2, 473
+  size: 67, 81
+  orig: 67, 81
   offset: 0, 0
   index: -1
 eye
   rotate: false
-  xy: 236, 1968
-  size: 10, 9
-  orig: 10, 9
+  xy: 70, 395
+  size: 4, 3
+  orig: 4, 3
   offset: 0, 0
   index: -1
 hair
   rotate: true
-  xy: 2, 304
-  size: 130, 116
-  orig: 130, 116
+  xy: 2, 96
+  size: 49, 44
+  orig: 49, 44
   offset: 0, 0
   index: -1
 head
   rotate: true
-  xy: 2, 436
-  size: 175, 118
-  orig: 175, 118
+  xy: 2, 147
+  size: 67, 45
+  orig: 67, 45
   offset: 0, 0
   index: -1
 jaw
   rotate: true
-  xy: 128, 929
-  size: 115, 79
-  orig: 115, 79
+  xy: 2, 2
+  size: 44, 30
+  orig: 44, 30
   offset: 0, 0
   index: -1
 overhair
   rotate: false
-  xy: 2, 180
-  size: 103, 122
-  orig: 103, 122
+  xy: 2, 48
+  size: 39, 46
+  orig: 39, 46
   offset: 0, 0
   index: -1
 shawl2
   rotate: true
-  xy: 2, 1257
-  size: 211, 173
-  orig: 211, 173
+  xy: 2, 391
+  size: 80, 66
+  orig: 80, 66
   offset: 0, 0
   index: -1
 shawl3
   rotate: false
-  xy: 2, 1046
-  size: 176, 209
-  orig: 176, 209
+  xy: 2, 310
+  size: 67, 79
+  orig: 67, 79
   offset: 0, 0
   index: -1
 shawltop
-  rotate: false
-  xy: 2, 2
-  size: 62, 40
-  orig: 62, 40
+  rotate: true
+  xy: 71, 530
+  size: 24, 15
+  orig: 24, 15
   offset: 0, 0
   index: -1
 sticky stuff
-  rotate: true
-  xy: 179, 1622
-  size: 62, 52
-  orig: 62, 52
+  rotate: false
+  xy: 92, 594
+  size: 24, 20
+  orig: 24, 20
   offset: 0, 0
   index: -1
 torso
   rotate: false
-  xy: 2, 1686
-  size: 232, 291
-  orig: 232, 291
+  xy: 2, 556
+  size: 88, 111
+  orig: 88, 111
   offset: 0, 0
   index: -1
