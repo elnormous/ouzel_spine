@@ -35,8 +35,6 @@ namespace spine
         ouzel::video::ShaderPtr _shader;
         ouzel::video::BlendStatePtr _blendState;
 
-        uint32_t _uniModelViewProj;
-
         ouzel::UpdateCallbackPtr _updateCallback;
     };
 }

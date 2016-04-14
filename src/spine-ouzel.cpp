@@ -99,12 +99,6 @@ namespace spine
         _blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::video::BLEND_ALPHA);
         _shader = ouzel::sharedEngine->getCache()->getShader(ouzel::video::SHADER_TEXTURE);
 
-#ifdef OUZEL_PLATFORM_WINDOWS
-        _uniModelViewProj = 0;
-#else
-        _uniModelViewProj = _shader->getVertexShaderConstantId("modelViewProj");
-#endif
-
         _updateCallback = std::make_shared<ouzel::UpdateCallback>();
         _updateCallback->callback = std::bind(&SkeletonDrawable::update, this, std::placeholders::_1);
         ouzel::sharedEngine->scheduleUpdate(_updateCallback);
@@ -142,7 +136,7 @@ namespace spine
 
             ouzel::Matrix4 modelViewProj = layer->getCamera()->getViewProjection() * _transform;
 
-            _shader->setVertexShaderConstant(_uniModelViewProj, { modelViewProj });
+            _shader->setVertexShaderConstant(0, { modelViewProj });
 
             ouzel::video::VertexPCT vertex;
 
