@@ -32,6 +32,8 @@ namespace spine
         spSkeleton* getSkeleton() const { return _skeleton; }
         spAtlas* getAtlas() const { return _atlas; }
         spAnimationState* getState() const { return _state; }
+
+        void callback(int trackIndex, spEventType type, spEvent* event, int loopCount);
         
     private:
         spSkeleton* _skeleton = nullptr;

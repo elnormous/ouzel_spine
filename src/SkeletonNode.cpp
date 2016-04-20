@@ -28,28 +28,9 @@ char* _spUtil_readFile(const char* path, int* length)
     return _readFile(ouzel::sharedEngine->getFileSystem()->getPath(path).c_str(), length);
 }
 
-static void callback(spAnimationState* state, int trackIndex, spEventType type, spEvent* event, int loopCount)
+static void listener(spAnimationState* state, int trackIndex, spEventType type, spEvent* event, int loopCount)
 {
-    spTrackEntry* entry = spAnimationState_getCurrent(state, trackIndex);
-    const char* animationName = (entry && entry->animation) ? entry->animation->name : 0;
-
-    switch (type)
-    {
-        case SP_ANIMATION_START:
-            printf("%d start: %s\n", trackIndex, animationName);
-            break;
-        case SP_ANIMATION_END:
-            printf("%d end: %s\n", trackIndex, animationName);
-            break;
-        case SP_ANIMATION_COMPLETE:
-            printf("%d complete: %s, %d\n", trackIndex, animationName, loopCount);
-            break;
-        case SP_ANIMATION_EVENT:
-            printf("%d event: %s, %s: %d, %f, %s\n", trackIndex, animationName, event->data->name, event->intValue, event->floatValue,
-                   event->stringValue);
-            break;
-    }
-    fflush(stdout);
+    static_cast<spine::SkeletonNode*>(state->rendererObject)->callback(trackIndex, type, event, loopCount);
 }
 
 namespace spine
@@ -80,7 +61,8 @@ namespace spine
         _stateData = spAnimationStateData_create(skeletonData);
         
         _state = spAnimationState_create(_stateData);
-        _state->listener = callback;
+        _state->listener = listener;
+        _state->rendererObject = this;
 
         _skeleton->flipX = false;
         _skeleton->flipY = false;
@@ -193,8 +175,8 @@ namespace spine
                 SpineTexture* texture = 0;
                 if (attachment->type == SP_ATTACHMENT_REGION)
                 {
-                    spRegionAttachment* regionAttachment = (spRegionAttachment*)attachment;
-                    texture = (SpineTexture*)((spAtlasRegion*)regionAttachment->rendererObject)->page->rendererObject;
+                    spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
+                    texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(regionAttachment->rendererObject))->page->rendererObject);
                     spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, _worldVertices);
 
                     uint8_t r = static_cast<uint8_t>(_skeleton->r * slot->r * 255);
@@ -253,9 +235,9 @@ namespace spine
                 }
                 else if (attachment->type == SP_ATTACHMENT_MESH)
                 {
-                    spMeshAttachment* mesh = (spMeshAttachment*)attachment;
+                    spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
                     if (mesh->verticesCount > SPINE_MESH_VERTEX_COUNT_MAX) continue;
-                    texture = (SpineTexture*)((spAtlasRegion*)mesh->rendererObject)->page->rendererObject;
+                    texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(mesh->rendererObject))->page->rendererObject);
                     spMeshAttachment_computeWorldVertices(mesh, slot, _worldVertices);
 
                     uint8_t r = static_cast<uint8_t>(_skeleton->r * slot->r * 255);
@@ -283,9 +265,9 @@ namespace spine
                 }
                 else if (attachment->type == SP_ATTACHMENT_WEIGHTED_MESH)
                 {
-                    spWeightedMeshAttachment* mesh = (spWeightedMeshAttachment*)attachment;
+                    spWeightedMeshAttachment* mesh = reinterpret_cast<spWeightedMeshAttachment*>(attachment);
                     if (mesh->uvsCount > SPINE_MESH_VERTEX_COUNT_MAX) continue;
-                    texture = (SpineTexture*)((spAtlasRegion*)mesh->rendererObject)->page->rendererObject;
+                    texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(mesh->rendererObject))->page->rendererObject);
                     spWeightedMeshAttachment_computeWorldVertices(mesh, slot, _worldVertices);
                     
                     uint8_t r = static_cast<uint8_t>(_skeleton->r * slot->r * 255);
@@ -340,5 +322,28 @@ namespace spine
     {
         // Configure mixing
         spAnimationStateData_setMixByName(_stateData, from.c_str(), to.c_str(), duration);
+    }
+
+    void SkeletonNode::callback(int trackIndex, spEventType type, spEvent* event, int loopCount)
+    {
+        spTrackEntry* entry = spAnimationState_getCurrent(_state, trackIndex);
+        const char* animationName = (entry && entry->animation) ? entry->animation->name : nullptr;
+
+        switch (type)
+        {
+            case SP_ANIMATION_START:
+                printf("%d start: %s\n", trackIndex, animationName);
+                break;
+            case SP_ANIMATION_END:
+                printf("%d end: %s\n", trackIndex, animationName);
+                break;
+            case SP_ANIMATION_COMPLETE:
+                printf("%d complete: %s, %d\n", trackIndex, animationName, loopCount);
+                break;
+            case SP_ANIMATION_EVENT:
+                printf("%d event: %s, %s: %d, %f, %s\n", trackIndex, animationName, event->data->name, event->intValue, event->floatValue,
+                       event->stringValue);
+                break;
+        }
     }
 }
