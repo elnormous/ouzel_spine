@@ -73,13 +73,11 @@ namespace spine
         }
         spSkeletonJson_dispose(json);
 
-        spSkeletonBounds* bounds = spSkeletonBounds_create();
+        //spSkeletonBounds* bounds = spSkeletonBounds_create();
 
         _skeleton = spSkeleton_create(skeletonData);
 
         _stateData = spAnimationStateData_create(skeletonData);
-        // Configure mixing
-        //spAnimationStateData_setMixByName(_stateData, "witch_walk", "witch_death", 0.5f);
         
         _state = spAnimationState_create(_stateData);
         _state->listener = callback;
@@ -89,13 +87,10 @@ namespace spine
         spSkeleton_setToSetupPose(_skeleton);
 
         //_skeleton->x = 320;
-        _skeleton->y = -200;
-        spSkeleton_updateWorldTransform(_skeleton);
+        //_skeleton->y = -200;
+        //spSkeleton_updateWorldTransform(_skeleton);
 
-        spSkeletonBounds_update(bounds, _skeleton, true);
-
-        spAnimationState_setAnimationByName(_state, 0, "witch_walk", true);
-        spAnimationState_addAnimationByName(_state, 0, "witch_death", true, 5);
+        //spSkeletonBounds_update(bounds, _skeleton, true);
 
         _meshBuffer = ouzel::sharedEngine->getRenderer()->createMeshBuffer();
         _meshBuffer->setIndexSize(sizeof(uint16_t));
@@ -315,5 +310,21 @@ namespace spine
             _meshBuffer->uploadVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
             ouzel::sharedEngine->getRenderer()->drawMeshBuffer(_meshBuffer);
         }
+    }
+
+    void SkeletonDrawable::setAnimation(int trackIndex, const std::string& animationName, bool loop)
+    {
+        spAnimationState_setAnimationByName(_state, trackIndex, animationName.c_str(), loop ? 1 : 0);
+    }
+
+    void SkeletonDrawable::addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay)
+    {
+        spAnimationState_addAnimationByName(_state, trackIndex, animationName.c_str(), loop ? 1 : 0, delay);
+    }
+
+    void SkeletonDrawable::setAnimationMix(const std::string& from, const std::string& to, float duration)
+    {
+        // Configure mixing
+        spAnimationStateData_setMixByName(_stateData, from.c_str(), to.c_str(), duration);
     }
 }

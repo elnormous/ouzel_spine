@@ -24,6 +24,11 @@ namespace spine
         float getTimeScale() const { return _timeScale; }
         void setTimeScale(float timeScale) { _timeScale = timeScale; }
 
+        void setAnimation(int trackIndex, const std::string& animationName, bool loop);
+        void addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay);
+
+        void setAnimationMix(const std::string& from, const std::string& to, float duration);
+
         spSkeleton* getSkeleton() const { return _skeleton; }
         spAtlas* getAtlas() const { return _atlas; }
         spAnimationState* getState() const { return _state; }

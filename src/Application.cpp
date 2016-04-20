@@ -39,6 +39,9 @@ void Application::begin()
     std::shared_ptr<spine::SkeletonDrawable> drawable = std::make_shared<spine::SkeletonDrawable>("witch.atlas", "witch.json");
     _layer->addChild(drawable);
 
+    drawable->setAnimation(0, "witch_walk", true);
+    drawable->addAnimation(0, "witch_death", false, 2.0f);
+
     //Slot* headSlot = Skeleton_findSlot(skeleton, "head");
 
     sharedEngine->getInput()->startGamepadDiscovery();
