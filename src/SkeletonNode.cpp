@@ -153,26 +153,29 @@ namespace spine
             std::vector<uint16_t> indices;
             std::vector<ouzel::video::VertexPCT> vertices;
 
+            //ouzel::video::BlendStatePtr currentBlendState;
+            //uint32_t offset = 0;
+
             for (int i = 0; i < _skeleton->slotsCount; ++i)
             {
                 spSlot* slot = _skeleton->drawOrder[i];
                 spAttachment* attachment = slot->attachment;
                 if (!attachment) continue;
 
-                /*sf::BlendMode blend;
+                ouzel::video::BlendStatePtr blendState;
                 switch (slot->data->blendMode)
                 {
-                    case BLEND_MODE_ADDITIVE:
-                        blend = BlendAdd;
+                    case SP_BLEND_MODE_ADDITIVE:
+                        blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::video::BLEND_ADD);
                         break;
-                    case BLEND_MODE_MULTIPLY:
-                        blend = BlendMultiply;
+                    case SP_BLEND_MODE_MULTIPLY:
+                        blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::video::BLEND_MULTIPLY);
                         break;
-                    case BLEND_MODE_SCREEN: // Unsupported, fall through.
+                    case SP_BLEND_MODE_SCREEN: // Unsupported, fall through.
                     default:
-                        blend = BlendAlpha;
+                        blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::video::BLEND_ALPHA);
                 }
-                if (states.blendMode != blend)
+                /*if (states.blendMode != blend)
                 {
                     target.draw(*vertexArray, states);
                     vertexArray->clear();
