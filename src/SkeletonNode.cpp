@@ -177,8 +177,10 @@ namespace spine
                 }
                 if (!currentBlendState || currentBlendState != blendState)
                 {
-                    if (indices.size())
+                    if (indices.size() - offset > 0)
                     {
+                        _meshBuffer->uploadIndices(indices.data(), static_cast<uint32_t>(indices.size()));
+                        _meshBuffer->uploadVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
                         ouzel::sharedEngine->getRenderer()->drawMeshBuffer(_meshBuffer, offset);
                     }
 
@@ -315,9 +317,12 @@ namespace spine
                 }
             }
 
-            _meshBuffer->uploadIndices(indices.data(), static_cast<uint32_t>(indices.size()));
-            _meshBuffer->uploadVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
-            ouzel::sharedEngine->getRenderer()->drawMeshBuffer(_meshBuffer, offset);
+            if (indices.size() - offset > 0)
+            {
+                _meshBuffer->uploadIndices(indices.data(), static_cast<uint32_t>(indices.size()));
+                _meshBuffer->uploadVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
+                ouzel::sharedEngine->getRenderer()->drawMeshBuffer(_meshBuffer, offset);
+            }
         }
     }
 
