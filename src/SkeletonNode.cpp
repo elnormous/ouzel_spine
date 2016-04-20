@@ -40,7 +40,7 @@ namespace spine
         _atlas = spAtlas_createFromFile(atlasFile.c_str(), 0);
         if (!_atlas)
         {
-            printf("Failed to load atlas\n");
+            ouzel::log("Failed to load atlas");
             return;
         }
 
@@ -49,7 +49,7 @@ namespace spine
         spSkeletonData* skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonFile.c_str());
         if (!skeletonData)
         {
-            printf("Failed to load skeleton: %s\n", json->error);
+            ouzel::log("Failed to load skeleton: %s", json->error);
             return;
         }
         spSkeletonJson_dispose(json);

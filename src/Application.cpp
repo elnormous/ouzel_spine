@@ -49,17 +49,16 @@ void Application::begin()
         switch (type)
         {
             case SP_ANIMATION_START:
-                printf("%d start: %s\n", trackIndex, animationName);
+                log("%d start: %s", trackIndex, animationName);
                 break;
             case SP_ANIMATION_END:
-                printf("%d end: %s\n", trackIndex, animationName);
+                log("%d end: %s", trackIndex, animationName);
                 break;
             case SP_ANIMATION_COMPLETE:
-                printf("%d complete: %s, %d\n", trackIndex, animationName, loopCount);
+                log("%d complete: %s, %d", trackIndex, animationName, loopCount);
                 break;
             case SP_ANIMATION_EVENT:
-                printf("%d event: %s, %s: %d, %f, %s\n", trackIndex, animationName, event->data->name, event->intValue, event->floatValue,
-                       event->stringValue);
+                log("%d event: %s, %s: %d, %f, %s", trackIndex, animationName, event->data->name, event->intValue, event->floatValue, event->stringValue);
                 break;
         }
     });
