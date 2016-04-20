@@ -153,8 +153,8 @@ namespace spine
             std::vector<uint16_t> indices;
             std::vector<ouzel::video::VertexPCT> vertices;
 
-            //ouzel::video::BlendStatePtr currentBlendState;
-            //uint32_t offset = 0;
+            ouzel::video::BlendStatePtr currentBlendState;
+            uint32_t offset = 0;
 
             for (int i = 0; i < _skeleton->slotsCount; ++i)
             {
@@ -175,13 +175,18 @@ namespace spine
                     default:
                         blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::video::BLEND_ALPHA);
                 }
-                /*if (states.blendMode != blend)
+                if (!currentBlendState || currentBlendState != blendState)
                 {
-                    target.draw(*vertexArray, states);
-                    vertexArray->clear();
-                    states.blendMode = blend;
-                }*/
-                ouzel::sharedEngine->getRenderer()->activateBlendState(blendState);
+                    if (indices.size())
+                    {
+                        ouzel::sharedEngine->getRenderer()->drawMeshBuffer(_meshBuffer, offset);
+                    }
+
+                    currentBlendState = blendState;
+                    offset = static_cast<uint32_t>(indices.size()) * sizeof(uint16_t);
+
+                    ouzel::sharedEngine->getRenderer()->activateBlendState(blendState);
+                }
 
                 SpineTexture* texture = 0;
                 if (attachment->type == SP_ATTACHMENT_REGION)
@@ -312,7 +317,7 @@ namespace spine
 
             _meshBuffer->uploadIndices(indices.data(), static_cast<uint32_t>(indices.size()));
             _meshBuffer->uploadVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
-            ouzel::sharedEngine->getRenderer()->drawMeshBuffer(_meshBuffer);
+            ouzel::sharedEngine->getRenderer()->drawMeshBuffer(_meshBuffer, offset);
         }
     }
 
