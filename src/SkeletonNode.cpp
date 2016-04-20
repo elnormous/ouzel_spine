@@ -1,6 +1,6 @@
 // Copyright (C) 2015 Elviss Strazdins
 
-#include "spine-ouzel.h"
+#include "SkeletonNode.h"
 #include <fstream>
 
 struct SpineTexture
@@ -54,7 +54,7 @@ static void callback(spAnimationState* state, int trackIndex, spEventType type, 
 
 namespace spine
 {
-    SkeletonDrawable::SkeletonDrawable(const std::string& atlasFile, const std::string& skeletonFile)
+    SkeletonNode::SkeletonNode(const std::string& atlasFile, const std::string& skeletonFile)
     {
         _atlas = spAtlas_createFromFile(atlasFile.c_str(), 0);
         if (!_atlas)
@@ -100,11 +100,11 @@ namespace spine
         _shader = ouzel::sharedEngine->getCache()->getShader(ouzel::video::SHADER_TEXTURE);
 
         _updateCallback = std::make_shared<ouzel::UpdateCallback>();
-        _updateCallback->callback = std::bind(&SkeletonDrawable::update, this, std::placeholders::_1);
+        _updateCallback->callback = std::bind(&SkeletonNode::update, this, std::placeholders::_1);
         ouzel::sharedEngine->scheduleUpdate(_updateCallback);
     }
 
-    SkeletonDrawable::~SkeletonDrawable()
+    SkeletonNode::~SkeletonNode()
     {
         if (_atlas)
         {
@@ -126,7 +126,7 @@ namespace spine
         ouzel::sharedEngine->unscheduleUpdate(_updateCallback);
     }
 
-    void SkeletonDrawable::update(float delta)
+    void SkeletonNode::update(float delta)
     {
         spSkeleton_update(_skeleton, delta);
         spAnimationState_update(_state, delta * _timeScale);
@@ -134,7 +134,7 @@ namespace spine
         spSkeleton_updateWorldTransform(_skeleton);
     }
 
-    void SkeletonDrawable::draw()
+    void SkeletonNode::draw()
     {
         Node::draw();
 
@@ -312,17 +312,17 @@ namespace spine
         }
     }
 
-    void SkeletonDrawable::setAnimation(int trackIndex, const std::string& animationName, bool loop)
+    void SkeletonNode::setAnimation(int trackIndex, const std::string& animationName, bool loop)
     {
         spAnimationState_setAnimationByName(_state, trackIndex, animationName.c_str(), loop ? 1 : 0);
     }
 
-    void SkeletonDrawable::addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay)
+    void SkeletonNode::addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay)
     {
         spAnimationState_addAnimationByName(_state, trackIndex, animationName.c_str(), loop ? 1 : 0, delay);
     }
 
-    void SkeletonDrawable::setAnimationMix(const std::string& from, const std::string& to, float duration)
+    void SkeletonNode::setAnimationMix(const std::string& from, const std::string& to, float duration)
     {
         // Configure mixing
         spAnimationStateData_setMixByName(_stateData, from.c_str(), to.c_str(), duration);

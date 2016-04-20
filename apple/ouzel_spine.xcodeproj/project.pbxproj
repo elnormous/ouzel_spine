@@ -45,9 +45,9 @@
 		30AFE15F1CB6BD6500478AA2 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE15D1CB6BD6500478AA2 /* MetalKit.framework */; };
 		30AFE1621CB6BD7000478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1601CB6BD7000478AA2 /* Metal.framework */; };
 		30AFE1631CB6BD7000478AA2 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1611CB6BD7000478AA2 /* MetalKit.framework */; };
-		30AFE1771CB7064700478AA2 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
-		30AFE17B1CB7064800478AA2 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
-		30AFE17C1CB7064800478AA2 /* spine-ouzel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */; };
+		30AFE1771CB7064700478AA2 /* SkeletonNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* SkeletonNode.cpp */; };
+		30AFE17B1CB7064800478AA2 /* SkeletonNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* SkeletonNode.cpp */; };
+		30AFE17C1CB7064800478AA2 /* SkeletonNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* SkeletonNode.cpp */; };
 		30AFE1861CB7301500478AA2 /* witch1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1831CB7301500478AA2 /* witch1.atlas */; };
 		30AFE1871CB7301500478AA2 /* witch1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1831CB7301500478AA2 /* witch1.atlas */; };
 		30AFE1881CB7301500478AA2 /* witch1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1831CB7301500478AA2 /* witch1.atlas */; };
@@ -171,8 +171,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "spine-ouzel.cpp"; sourceTree = "<group>"; };
-		30324DAF1CAFB8CA00601A64 /* spine-ouzel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spine-ouzel.h"; sourceTree = "<group>"; };
+		30324DAE1CAFB8CA00601A64 /* SkeletonNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkeletonNode.cpp; sourceTree = "<group>"; };
+		30324DAF1CAFB8CA00601A64 /* SkeletonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkeletonNode.h; sourceTree = "<group>"; };
 		3033C90E1CBBF415003307D1 /* witch.atlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = witch.atlas; sourceTree = "<group>"; };
 		3033C90F1CBBF415003307D1 /* witch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = witch.json; sourceTree = "<group>"; };
 		3033C9101CBBF415003307D1 /* witch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = witch.png; sourceTree = "<group>"; };
@@ -298,8 +298,8 @@
 		30324DA71CAFB84500601A64 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				30324DAE1CAFB8CA00601A64 /* spine-ouzel.cpp */,
-				30324DAF1CAFB8CA00601A64 /* spine-ouzel.h */,
+				30324DAE1CAFB8CA00601A64 /* SkeletonNode.cpp */,
+				30324DAF1CAFB8CA00601A64 /* SkeletonNode.h */,
 				304A8EA81C27429A008B1151 /* Application.cpp */,
 				304A8EA91C27429A008B1151 /* Application.h */,
 				303B75181C29EB8400FEDE92 /* main.cpp */,
@@ -657,7 +657,7 @@
 				30C56D161CACA9A7007AEF8F /* Json.c in Sources */,
 				30C56CF81CACA9A7007AEF8F /* Attachment.c in Sources */,
 				30C56CE91CACA9A7007AEF8F /* Animation.c in Sources */,
-				30AFE17B1CB7064800478AA2 /* spine-ouzel.cpp in Sources */,
+				30AFE17B1CB7064800478AA2 /* SkeletonNode.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,7 +695,7 @@
 				30C56D171CACA9A7007AEF8F /* Json.c in Sources */,
 				30C56CF91CACA9A7007AEF8F /* Attachment.c in Sources */,
 				30C56CEA1CACA9A7007AEF8F /* Animation.c in Sources */,
-				30AFE17C1CB7064800478AA2 /* spine-ouzel.cpp in Sources */,
+				30AFE17C1CB7064800478AA2 /* SkeletonNode.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,7 +733,7 @@
 				30C56D151CACA9A7007AEF8F /* Json.c in Sources */,
 				30C56CF71CACA9A7007AEF8F /* Attachment.c in Sources */,
 				30C56CE81CACA9A7007AEF8F /* Animation.c in Sources */,
-				30AFE1771CB7064700478AA2 /* spine-ouzel.cpp in Sources */,
+				30AFE1771CB7064700478AA2 /* SkeletonNode.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,11 +12,11 @@
 
 namespace spine
 {
-    class SkeletonDrawable: public ouzel::scene::Node
+    class SkeletonNode: public ouzel::scene::Node
     {
     public:
-        SkeletonDrawable(const std::string& atlasFile, const std::string& skeletonFile);
-        ~SkeletonDrawable();
+        SkeletonNode(const std::string& atlasFile, const std::string& skeletonFile);
+        ~SkeletonNode();
 
         void update(float delta);
         virtual void draw() override;
