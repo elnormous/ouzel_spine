@@ -5,7 +5,7 @@
 
 struct SpineTexture
 {
-    std::shared_ptr<ouzel::video::Texture> texture;
+    std::shared_ptr<ouzel::graphics::Texture> texture;
 };
 
 void _spAtlasPage_createTexture(spAtlasPage* self, const char* path)
@@ -94,10 +94,10 @@ namespace spine
 
         _meshBuffer = ouzel::sharedEngine->getRenderer()->createMeshBuffer();
         _meshBuffer->setIndexSize(sizeof(uint16_t));
-        _meshBuffer->setVertexAttributes(ouzel::video::VertexPCT::ATTRIBUTES);
+        _meshBuffer->setVertexAttributes(ouzel::graphics::VertexPCT::ATTRIBUTES);
 
-        _blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::video::BLEND_ALPHA);
-        _shader = ouzel::sharedEngine->getCache()->getShader(ouzel::video::SHADER_TEXTURE);
+        _blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
+        _shader = ouzel::sharedEngine->getCache()->getShader(ouzel::graphics::SHADER_TEXTURE);
 
         _updateCallback = std::make_shared<ouzel::UpdateCallback>();
         _updateCallback->callback = std::bind(&SkeletonNode::update, this, std::placeholders::_1);
@@ -147,13 +147,13 @@ namespace spine
 
             _shader->setVertexShaderConstant(0, { modelViewProj });
 
-            ouzel::video::VertexPCT vertex;
+            ouzel::graphics::VertexPCT vertex;
 
             uint16_t currentVertexIndex = 0;
             std::vector<uint16_t> indices;
-            std::vector<ouzel::video::VertexPCT> vertices;
+            std::vector<ouzel::graphics::VertexPCT> vertices;
 
-            ouzel::video::BlendStatePtr currentBlendState;
+            ouzel::graphics::BlendStatePtr currentBlendState;
             uint32_t offset = 0;
 
             for (int i = 0; i < _skeleton->slotsCount; ++i)
@@ -162,18 +162,18 @@ namespace spine
                 spAttachment* attachment = slot->attachment;
                 if (!attachment) continue;
 
-                ouzel::video::BlendStatePtr blendState;
+                ouzel::graphics::BlendStatePtr blendState;
                 switch (slot->data->blendMode)
                 {
                     case SP_BLEND_MODE_ADDITIVE:
-                        blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::video::BLEND_ADD);
+                        blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ADD);
                         break;
                     case SP_BLEND_MODE_MULTIPLY:
-                        blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::video::BLEND_MULTIPLY);
+                        blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_MULTIPLY);
                         break;
                     case SP_BLEND_MODE_SCREEN: // Unsupported, fall through.
                     default:
-                        blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::video::BLEND_ALPHA);
+                        blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
                 }
                 if (!currentBlendState || currentBlendState != blendState)
                 {

@@ -40,12 +40,12 @@ namespace spine
         spAnimationStateData* _stateData = nullptr;
 
         float _timeScale = 1.0f;
-        ouzel::video::MeshBufferPtr _meshBuffer;
+        ouzel::graphics::MeshBufferPtr _meshBuffer;
 
         float _worldVertices[SPINE_MESH_VERTEX_COUNT_MAX / sizeof(float)];
         
-        ouzel::video::ShaderPtr _shader;
-        ouzel::video::BlendStatePtr _blendState;
+        ouzel::graphics::ShaderPtr _shader;
+        ouzel::graphics::BlendStatePtr _blendState;
 
         ouzel::UpdateCallbackPtr _updateCallback;
     };

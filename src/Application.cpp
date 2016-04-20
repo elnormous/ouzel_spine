@@ -24,7 +24,7 @@ void Application::begin()
 
     sharedEngine->getEventDispatcher()->addEventHandler(_eventHandler);
 
-    sharedEngine->getRenderer()->setClearColor(video::Color(64, 0, 0));
+    sharedEngine->getRenderer()->setClearColor(graphics::Color(64, 0, 0));
     sharedEngine->getWindow()->setTitle("Spine import");
 
     scene::ScenePtr scene = make_shared<scene::Scene>();
