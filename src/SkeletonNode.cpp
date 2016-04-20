@@ -181,6 +181,7 @@ namespace spine
                     vertexArray->clear();
                     states.blendMode = blend;
                 }*/
+                ouzel::sharedEngine->getRenderer()->activateBlendState(blendState);
 
                 SpineTexture* texture = 0;
                 if (attachment->type == SP_ATTACHMENT_REGION)
