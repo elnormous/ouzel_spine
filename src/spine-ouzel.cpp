@@ -56,27 +56,32 @@ namespace spine
 {
     SkeletonDrawable::SkeletonDrawable(const std::string& atlasFile, const std::string& skeletonFile)
     {
-        spAtlas* atlas = spAtlas_createFromFile(atlasFile.c_str(), 0);
-        spSkeletonJson* json = spSkeletonJson_create(atlas);
+        _atlas = spAtlas_createFromFile(atlasFile.c_str(), 0);
+        if (!_atlas)
+        {
+            printf("Failed to load atlas\n");
+            return;
+        }
+
+        spSkeletonJson* json = spSkeletonJson_create(_atlas);
         //json->scale = 0.6f;
         spSkeletonData* skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonFile.c_str());
         if (!skeletonData)
         {
-            printf("%s\n", json->error);
+            printf("Failed to load skeleton: %s\n", json->error);
             return;
         }
         spSkeletonJson_dispose(json);
-        spSkeletonBounds* bounds = spSkeletonBounds_create();
 
-        // Configure mixing.
-        spAnimationStateData* stateData = spAnimationStateData_create(skeletonData);
-        spAnimationStateData_setMixByName(stateData, "witch_walk", "witch_death", 0.5f);
+        spSkeletonBounds* bounds = spSkeletonBounds_create();
 
         _skeleton = spSkeleton_create(skeletonData);
 
-        stateData = spAnimationStateData_create(skeletonData);
+        _stateData = spAnimationStateData_create(skeletonData);
+        // Configure mixing
+        //spAnimationStateData_setMixByName(_stateData, "witch_walk", "witch_death", 0.5f);
         
-        _state = spAnimationState_create(stateData);
+        _state = spAnimationState_create(_stateData);
         _state->listener = callback;
 
         _skeleton->flipX = false;
@@ -106,10 +111,19 @@ namespace spine
 
     SkeletonDrawable::~SkeletonDrawable()
     {
+        if (_atlas)
+        {
+            spAtlas_dispose(_atlas);
+        }
+
         if (_state)
         {
-            if (_state->data) spAnimationStateData_dispose(_state->data);
             spAnimationState_dispose(_state);
+        }
+
+        if (_stateData)
+        {
+            spAnimationStateData_dispose(_stateData);
         }
 
         if (_skeleton) spSkeleton_dispose(_skeleton);

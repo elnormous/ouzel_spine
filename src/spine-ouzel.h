@@ -23,10 +23,17 @@ namespace spine
 
         float getTimeScale() const { return _timeScale; }
         void setTimeScale(float timeScale) { _timeScale = timeScale; }
+
+        spSkeleton* getSkeleton() const { return _skeleton; }
+        spAtlas* getAtlas() const { return _atlas; }
+        spAnimationState* getState() const { return _state; }
         
     private:
         spSkeleton* _skeleton = nullptr;
+        spAtlas* _atlas = nullptr;
         spAnimationState* _state = nullptr;
+        spAnimationStateData* _stateData = nullptr;
+
         float _timeScale = 1.0f;
         ouzel::video::MeshBufferPtr _meshBuffer;
 
