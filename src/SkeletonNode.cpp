@@ -183,7 +183,7 @@ namespace spine
                     }
 
                     currentBlendState = blendState;
-                    offset = static_cast<uint32_t>(indices.size()) * sizeof(uint16_t);
+                    offset = static_cast<uint32_t>(indices.size());
 
                     ouzel::sharedEngine->getRenderer()->activateBlendState(blendState);
                 }
