@@ -30,7 +30,7 @@ char* _spUtil_readFile(const char* path, int* length)
 
 static void listener(spAnimationState* state, int trackIndex, spEventType type, spEvent* event, int loopCount)
 {
-    static_cast<spine::SkeletonNode*>(state->rendererObject)->callback(trackIndex, type, event, loopCount);
+    static_cast<spine::SkeletonNode*>(state->rendererObject)->handleEvent(trackIndex, type, event, loopCount);
 }
 
 namespace spine
@@ -58,11 +58,11 @@ namespace spine
 
         _skeleton = spSkeleton_create(skeletonData);
 
-        _stateData = spAnimationStateData_create(skeletonData);
+        _animationStateData = spAnimationStateData_create(skeletonData);
         
-        _state = spAnimationState_create(_stateData);
-        _state->listener = listener;
-        _state->rendererObject = this;
+        _animationState = spAnimationState_create(_animationStateData);
+        _animationState->listener = listener;
+        _animationState->rendererObject = this;
 
         _skeleton->flipX = false;
         _skeleton->flipY = false;
@@ -93,14 +93,14 @@ namespace spine
             spAtlas_dispose(_atlas);
         }
 
-        if (_state)
+        if (_animationState)
         {
-            spAnimationState_dispose(_state);
+            spAnimationState_dispose(_animationState);
         }
 
-        if (_stateData)
+        if (_animationStateData)
         {
-            spAnimationStateData_dispose(_stateData);
+            spAnimationStateData_dispose(_animationStateData);
         }
 
         if (_skeleton) spSkeleton_dispose(_skeleton);
@@ -111,8 +111,8 @@ namespace spine
     void SkeletonNode::update(float delta)
     {
         spSkeleton_update(_skeleton, delta);
-        spAnimationState_update(_state, delta * _timeScale);
-        spAnimationState_apply(_state, _skeleton);
+        spAnimationState_update(_animationState, delta * _timeScale);
+        spAnimationState_apply(_animationState, _skeleton);
         spSkeleton_updateWorldTransform(_skeleton);
     }
 
@@ -310,40 +310,30 @@ namespace spine
 
     void SkeletonNode::setAnimation(int trackIndex, const std::string& animationName, bool loop)
     {
-        spAnimationState_setAnimationByName(_state, trackIndex, animationName.c_str(), loop ? 1 : 0);
+        spAnimationState_setAnimationByName(_animationState, trackIndex, animationName.c_str(), loop ? 1 : 0);
     }
 
     void SkeletonNode::addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay)
     {
-        spAnimationState_addAnimationByName(_state, trackIndex, animationName.c_str(), loop ? 1 : 0, delay);
+        spAnimationState_addAnimationByName(_animationState, trackIndex, animationName.c_str(), loop ? 1 : 0, delay);
     }
 
     void SkeletonNode::setAnimationMix(const std::string& from, const std::string& to, float duration)
     {
         // Configure mixing
-        spAnimationStateData_setMixByName(_stateData, from.c_str(), to.c_str(), duration);
+        spAnimationStateData_setMixByName(_animationStateData, from.c_str(), to.c_str(), duration);
     }
 
-    void SkeletonNode::callback(int trackIndex, spEventType type, spEvent* event, int loopCount)
+    void SkeletonNode::setEventCallback(const std::function<void(int, spEventType, spEvent*, int)>& eventCallback)
     {
-        spTrackEntry* entry = spAnimationState_getCurrent(_state, trackIndex);
-        const char* animationName = (entry && entry->animation) ? entry->animation->name : nullptr;
+        _eventCallback = eventCallback;
+    }
 
-        switch (type)
+    void SkeletonNode::handleEvent(int trackIndex, spEventType type, spEvent* event, int loopCount)
+    {
+        if (_eventCallback)
         {
-            case SP_ANIMATION_START:
-                printf("%d start: %s\n", trackIndex, animationName);
-                break;
-            case SP_ANIMATION_END:
-                printf("%d end: %s\n", trackIndex, animationName);
-                break;
-            case SP_ANIMATION_COMPLETE:
-                printf("%d complete: %s, %d\n", trackIndex, animationName, loopCount);
-                break;
-            case SP_ANIMATION_EVENT:
-                printf("%d event: %s, %s: %d, %f, %s\n", trackIndex, animationName, event->data->name, event->intValue, event->floatValue,
-                       event->stringValue);
-                break;
+            _eventCallback(trackIndex, type, event, loopCount);
         }
     }
 }

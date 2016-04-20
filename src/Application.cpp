@@ -42,6 +42,28 @@ void Application::begin()
     witch->setAnimation(0, "witch_walk", true);
     witch->addAnimation(0, "witch_death", false, 2.0f);
 
+    witch->setEventCallback([witch](int trackIndex, spEventType type, spEvent* event, int loopCount) {
+        spTrackEntry* entry = spAnimationState_getCurrent(witch->getAnimationState(), trackIndex);
+        const char* animationName = (entry && entry->animation) ? entry->animation->name : nullptr;
+
+        switch (type)
+        {
+            case SP_ANIMATION_START:
+                printf("%d start: %s\n", trackIndex, animationName);
+                break;
+            case SP_ANIMATION_END:
+                printf("%d end: %s\n", trackIndex, animationName);
+                break;
+            case SP_ANIMATION_COMPLETE:
+                printf("%d complete: %s, %d\n", trackIndex, animationName, loopCount);
+                break;
+            case SP_ANIMATION_EVENT:
+                printf("%d event: %s, %s: %d, %f, %s\n", trackIndex, animationName, event->data->name, event->intValue, event->floatValue,
+                       event->stringValue);
+                break;
+        }
+    });
+
     //Slot* headSlot = Skeleton_findSlot(skeleton, "head");
 
     sharedEngine->getInput()->startGamepadDiscovery();

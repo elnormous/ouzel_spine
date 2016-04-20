@@ -31,15 +31,16 @@ namespace spine
 
         spSkeleton* getSkeleton() const { return _skeleton; }
         spAtlas* getAtlas() const { return _atlas; }
-        spAnimationState* getState() const { return _state; }
+        spAnimationState* getAnimationState() const { return _animationState; }
 
-        void callback(int trackIndex, spEventType type, spEvent* event, int loopCount);
+        void setEventCallback(const std::function<void(int, spEventType, spEvent*, int)>& eventCallback);
+        void handleEvent(int trackIndex, spEventType type, spEvent* event, int loopCount);
         
     private:
         spSkeleton* _skeleton = nullptr;
         spAtlas* _atlas = nullptr;
-        spAnimationState* _state = nullptr;
-        spAnimationStateData* _stateData = nullptr;
+        spAnimationState* _animationState = nullptr;
+        spAnimationStateData* _animationStateData = nullptr;
 
         float _timeScale = 1.0f;
         ouzel::graphics::MeshBufferPtr _meshBuffer;
@@ -50,5 +51,7 @@ namespace spine
         ouzel::graphics::BlendStatePtr _blendState;
 
         ouzel::UpdateCallbackPtr _updateCallback;
+
+        std::function<void(int, spEventType, spEvent*, int)> _eventCallback;
     };
 }
