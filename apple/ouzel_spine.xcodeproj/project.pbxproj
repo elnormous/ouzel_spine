@@ -48,15 +48,6 @@
 		30AFE1771CB7064700478AA2 /* SkeletonNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* SkeletonNode.cpp */; };
 		30AFE17B1CB7064800478AA2 /* SkeletonNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* SkeletonNode.cpp */; };
 		30AFE17C1CB7064800478AA2 /* SkeletonNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* SkeletonNode.cpp */; };
-		30AFE1861CB7301500478AA2 /* witch1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1831CB7301500478AA2 /* witch1.atlas */; };
-		30AFE1871CB7301500478AA2 /* witch1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1831CB7301500478AA2 /* witch1.atlas */; };
-		30AFE1881CB7301500478AA2 /* witch1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1831CB7301500478AA2 /* witch1.atlas */; };
-		30AFE1891CB7301500478AA2 /* witch1.json in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1841CB7301500478AA2 /* witch1.json */; };
-		30AFE18A1CB7301500478AA2 /* witch1.json in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1841CB7301500478AA2 /* witch1.json */; };
-		30AFE18B1CB7301500478AA2 /* witch1.json in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1841CB7301500478AA2 /* witch1.json */; };
-		30AFE18C1CB7301500478AA2 /* witch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1851CB7301500478AA2 /* witch1.png */; };
-		30AFE18D1CB7301500478AA2 /* witch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1851CB7301500478AA2 /* witch1.png */; };
-		30AFE18E1CB7301500478AA2 /* witch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 30AFE1851CB7301500478AA2 /* witch1.png */; };
 		30C56CC71CACA732007AEF8F /* libouzel_osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C56CC21CACA70E007AEF8F /* libouzel_osx.a */; };
 		30C56CC81CACA736007AEF8F /* libouzel_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C56CC41CACA70E007AEF8F /* libouzel_ios.a */; };
 		30C56CC91CACA73A007AEF8F /* libouzel_tvos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C56CC61CACA70E007AEF8F /* libouzel_tvos.a */; };
@@ -212,9 +203,6 @@
 		30AFE15D1CB6BD6500478AA2 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
 		30AFE1601CB6BD7000478AA2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
 		30AFE1611CB6BD7000478AA2 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
-		30AFE1831CB7301500478AA2 /* witch1.atlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = witch1.atlas; sourceTree = "<group>"; };
-		30AFE1841CB7301500478AA2 /* witch1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = witch1.json; sourceTree = "<group>"; };
-		30AFE1851CB7301500478AA2 /* witch1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = witch1.png; sourceTree = "<group>"; };
 		30C56CBB1CACA70E007AEF8F /* ouzel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ouzel.xcodeproj; path = ../external/ouzel/build/ouzel.xcodeproj; sourceTree = "<group>"; };
 		30C56CCB1CACA9A7007AEF8F /* Animation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Animation.c; sourceTree = "<group>"; };
 		30C56CCC1CACA9A7007AEF8F /* AnimationState.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AnimationState.c; sourceTree = "<group>"; };
@@ -390,9 +378,6 @@
 				3033C90E1CBBF415003307D1 /* witch.atlas */,
 				3033C90F1CBBF415003307D1 /* witch.json */,
 				3033C9101CBBF415003307D1 /* witch.png */,
-				30AFE1831CB7301500478AA2 /* witch1.atlas */,
-				30AFE1841CB7301500478AA2 /* witch1.json */,
-				30AFE1851CB7301500478AA2 /* witch1.png */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -582,13 +567,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30AFE18D1CB7301500478AA2 /* witch1.png in Resources */,
 				3033C9181CBBF415003307D1 /* witch.png in Resources */,
-				30AFE18A1CB7301500478AA2 /* witch1.json in Resources */,
 				3033C9121CBBF415003307D1 /* witch.atlas in Resources */,
 				3033C9151CBBF415003307D1 /* witch.json in Resources */,
 				303647A11C418E4C0024DB5B /* Assets.xcassets in Resources */,
-				30AFE1871CB7301500478AA2 /* witch1.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,13 +578,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30AFE18E1CB7301500478AA2 /* witch1.png in Resources */,
 				3033C9191CBBF415003307D1 /* witch.png in Resources */,
-				30AFE18B1CB7301500478AA2 /* witch1.json in Resources */,
 				3033C9131CBBF415003307D1 /* witch.atlas in Resources */,
 				3033C9161CBBF415003307D1 /* witch.json in Resources */,
 				303647A31C418E7C0024DB5B /* Assets.xcassets in Resources */,
-				30AFE1881CB7301500478AA2 /* witch1.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,13 +589,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30AFE18C1CB7301500478AA2 /* witch1.png in Resources */,
 				3033C9171CBBF415003307D1 /* witch.png in Resources */,
-				30AFE1891CB7301500478AA2 /* witch1.json in Resources */,
 				3033C9111CBBF415003307D1 /* witch.atlas in Resources */,
 				3033C9141CBBF415003307D1 /* witch.json in Resources */,
 				303647A21C418E790024DB5B /* Assets.xcassets in Resources */,
-				30AFE1861CB7301500478AA2 /* witch1.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
