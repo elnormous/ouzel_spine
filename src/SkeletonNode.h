@@ -41,6 +41,7 @@ namespace spine
         spAtlas* _atlas = nullptr;
         spAnimationState* _animationState = nullptr;
         spAnimationStateData* _animationStateData = nullptr;
+        spSkeletonBounds* _bounds = nullptr;
 
         float _timeScale = 1.0f;
         ouzel::graphics::MeshBufferPtr _meshBuffer;

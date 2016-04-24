@@ -54,7 +54,7 @@ namespace spine
         }
         spSkeletonJson_dispose(json);
 
-        //spSkeletonBounds* bounds = spSkeletonBounds_create();
+        _bounds = spSkeletonBounds_create();
 
         _skeleton = spSkeleton_create(skeletonData);
 
@@ -72,8 +72,6 @@ namespace spine
         //_skeleton->y = -200;
         //spSkeleton_updateWorldTransform(_skeleton);
 
-        //spSkeletonBounds_update(bounds, _skeleton, true);
-
         _meshBuffer = ouzel::sharedEngine->getRenderer()->createMeshBuffer();
         _meshBuffer->setIndexSize(sizeof(uint16_t));
         _meshBuffer->setVertexAttributes(ouzel::graphics::VertexPCT::ATTRIBUTES);
@@ -88,6 +86,11 @@ namespace spine
 
     SkeletonNode::~SkeletonNode()
     {
+        if (_bounds)
+        {
+            spSkeletonBounds_dispose(_bounds);
+        }
+
         if (_atlas)
         {
             spAtlas_dispose(_atlas);
@@ -114,6 +117,11 @@ namespace spine
         spAnimationState_update(_animationState, delta * _timeScale);
         spAnimationState_apply(_animationState, _skeleton);
         spSkeleton_updateWorldTransform(_skeleton);
+
+        spSkeletonBounds_update(_bounds, _skeleton, true);
+
+        _boundingBox.set(ouzel::Vector2(_bounds->minX, _bounds->minY),
+                         ouzel::Vector2(_bounds->maxX, _bounds->maxY));
     }
 
     void SkeletonNode::draw()
