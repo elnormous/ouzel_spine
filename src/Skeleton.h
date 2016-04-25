@@ -12,14 +12,14 @@
 
 namespace spine
 {
-    class SkeletonNode: public ouzel::scene::Node
+    class Skeleton: public ouzel::scene::Drawable
     {
     public:
-        SkeletonNode(const std::string& atlasFile, const std::string& skeletonFile);
-        ~SkeletonNode();
+        Skeleton(const std::string& atlasFile, const std::string& skeletonFile);
+        ~Skeleton();
 
         void update(float delta);
-        virtual void draw() override;
+        virtual void draw(const ouzel::Matrix4& projection, const ouzel::Matrix4& transform) override;
 
         float getTimeScale() const { return _timeScale; }
         void setTimeScale(float timeScale) { _timeScale = timeScale; }
