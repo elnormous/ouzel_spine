@@ -19,7 +19,7 @@ namespace spine
         ~Skeleton();
 
         void update(float delta);
-        virtual void draw(const ouzel::Matrix4& projection, const ouzel::Matrix4& transform) override;
+        virtual void draw(const ouzel::Matrix4& projection, const ouzel::Matrix4& transform, const ouzel::graphics::Color& color) override;
 
         float getTimeScale() const { return _timeScale; }
         void setTimeScale(float timeScale) { _timeScale = timeScale; }
