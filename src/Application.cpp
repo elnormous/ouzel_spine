@@ -9,20 +9,20 @@ using namespace ouzel;
 
 Application::~Application()
 {
-    sharedEngine->getEventDispatcher()->removeEventHandler(_eventHandler);
+    sharedEngine->getEventDispatcher()->removeEventHandler(eventHandler);
 }
 
 void Application::begin()
 {
-    _eventHandler = make_shared<EventHandler>();
+    eventHandler = make_shared<EventHandler>();
 
-    _eventHandler->keyboardHandler = std::bind(&Application::handleKeyboard, this, std::placeholders::_1, std::placeholders::_2);
-    _eventHandler->mouseHandler = std::bind(&Application::handleMouse, this, std::placeholders::_1, std::placeholders::_2);
-    _eventHandler->touchHandler = std::bind(&Application::handleTouch, this, std::placeholders::_1, std::placeholders::_2);
-    _eventHandler->gamepadHandler = std::bind(&Application::handleGamepad, this, std::placeholders::_1, std::placeholders::_2);
-    _eventHandler->uiHandler = std::bind(&Application::handleUI, this, std::placeholders::_1, std::placeholders::_2);
+    eventHandler->keyboardHandler = std::bind(&Application::handleKeyboard, this, std::placeholders::_1, std::placeholders::_2);
+    eventHandler->mouseHandler = std::bind(&Application::handleMouse, this, std::placeholders::_1, std::placeholders::_2);
+    eventHandler->touchHandler = std::bind(&Application::handleTouch, this, std::placeholders::_1, std::placeholders::_2);
+    eventHandler->gamepadHandler = std::bind(&Application::handleGamepad, this, std::placeholders::_1, std::placeholders::_2);
+    eventHandler->uiHandler = std::bind(&Application::handleUI, this, std::placeholders::_1, std::placeholders::_2);
 
-    sharedEngine->getEventDispatcher()->addEventHandler(_eventHandler);
+    sharedEngine->getEventDispatcher()->addEventHandler(eventHandler);
 
     sharedEngine->getRenderer()->setClearColor(graphics::Color(64, 0, 0));
     sharedEngine->getWindow()->setTitle("Spine import");
@@ -30,17 +30,17 @@ void Application::begin()
     scene::ScenePtr scene = make_shared<scene::Scene>();
     sharedEngine->getSceneManager()->setScene(scene);
 
-    _layer = std::make_shared<scene::Layer>();
+    layer = std::make_shared<scene::Layer>();
 
     ouzel::scene::CameraPtr camera = std::make_shared<scene::Camera>();
-    _layer->setCamera(camera);
-    scene->addLayer(_layer);
+    layer->setCamera(camera);
+    scene->addLayer(layer);
 
     std::shared_ptr<spine::Skeleton> witch = std::make_shared<spine::Skeleton>("witch.atlas", "witch.json");
 
     ouzel::scene::NodePtr witchNode = std::make_shared<ouzel::scene::Node>();
     witchNode->addDrawable(witch);
-    _layer->addChild(witchNode);
+    layer->addChild(witchNode);
 
     witch->setAnimation(0, "witch_walk", true);
     witch->addAnimation(0, "witch_death", false, 2.0f);
@@ -75,7 +75,7 @@ bool Application::handleKeyboard(const KeyboardEventPtr& event, const VoidPtr& s
 {
     if (event->type == ouzel::Event::Type::KEY_DOWN)
     {
-        Vector2 position = _layer->getCamera()->getPosition();
+        Vector2 position = layer->getCamera()->getPosition();
 
         switch (event->key)
         {
@@ -98,7 +98,7 @@ bool Application::handleKeyboard(const KeyboardEventPtr& event, const VoidPtr& s
                 break;
         }
 
-        _layer->getCamera()->setPosition(position);
+        layer->getCamera()->setPosition(position);
     }
 
     return true;

@@ -16,7 +16,7 @@ public:
     bool handleUI(const ouzel::UIEventPtr& event, const ouzel::VoidPtr& sender) const;
 
 protected:
-    ouzel::scene::LayerPtr _layer;
+    ouzel::scene::LayerPtr layer;
 
-    ouzel::EventHandlerPtr _eventHandler;
+    ouzel::EventHandlerPtr eventHandler;
 };
