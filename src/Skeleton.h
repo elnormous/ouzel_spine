@@ -21,38 +21,38 @@ namespace spine
         void update(float delta);
         virtual void draw(const ouzel::Matrix4& projection, const ouzel::Matrix4& transform, const ouzel::graphics::Color& color) override;
 
-        float getTimeScale() const { return _timeScale; }
-        void setTimeScale(float timeScale) { _timeScale = timeScale; }
+        float getTimeScale() const { return timeScale; }
+        void setTimeScale(float newTimeScale) { timeScale = newTimeScale; }
 
         void setAnimation(int trackIndex, const std::string& animationName, bool loop);
         void addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay);
 
         void setAnimationMix(const std::string& from, const std::string& to, float duration);
 
-        spSkeleton* getSkeleton() const { return _skeleton; }
-        spAtlas* getAtlas() const { return _atlas; }
-        spAnimationState* getAnimationState() const { return _animationState; }
+        spSkeleton* getSkeleton() const { return skeleton; }
+        spAtlas* getAtlas() const { return atlas; }
+        spAnimationState* getAnimationState() const { return animationState; }
 
-        void setEventCallback(const std::function<void(int, spEventType, spEvent*, int)>& eventCallback);
+        void setEventCallback(const std::function<void(int, spEventType, spEvent*, int)>& newEventCallback);
         void handleEvent(int trackIndex, spEventType type, spEvent* event, int loopCount);
         
     private:
-        spSkeleton* _skeleton = nullptr;
-        spAtlas* _atlas = nullptr;
-        spAnimationState* _animationState = nullptr;
-        spAnimationStateData* _animationStateData = nullptr;
-        spSkeletonBounds* _bounds = nullptr;
+        spSkeleton* skeleton = nullptr;
+        spAtlas* atlas = nullptr;
+        spAnimationState* animationState = nullptr;
+        spAnimationStateData* animationStateData = nullptr;
+        spSkeletonBounds* bounds = nullptr;
 
-        float _timeScale = 1.0f;
-        ouzel::graphics::MeshBufferPtr _meshBuffer;
+        float timeScale = 1.0f;
+        ouzel::graphics::MeshBufferPtr meshBuffer;
 
-        float _worldVertices[SPINE_MESH_VERTEX_COUNT_MAX / sizeof(float)];
+        float worldVertices[SPINE_MESH_VERTEX_COUNT_MAX / sizeof(float)];
         
-        ouzel::graphics::ShaderPtr _shader;
-        ouzel::graphics::BlendStatePtr _blendState;
+        ouzel::graphics::ShaderPtr shader;
+        ouzel::graphics::BlendStatePtr blendState;
 
-        ouzel::UpdateCallbackPtr _updateCallback;
+        ouzel::UpdateCallbackPtr updateCallback;
 
-        std::function<void(int, spEventType, spEvent*, int)> _eventCallback;
+        std::function<void(int, spEventType, spEvent*, int)> eventCallback;
     };
 }
