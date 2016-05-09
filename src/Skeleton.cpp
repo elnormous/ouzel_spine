@@ -198,7 +198,7 @@ namespace spine
                 vertex.position.x = worldVertices[SP_VERTEX_X1];
                 vertex.position.y = worldVertices[SP_VERTEX_Y1];
                 vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X1];
-                vertex.texCoord.y = 1.0f - regionAttachment->uvs[SP_VERTEX_Y1];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y1];
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
@@ -208,7 +208,7 @@ namespace spine
                 vertex.position.x = worldVertices[SP_VERTEX_X2];
                 vertex.position.y = worldVertices[SP_VERTEX_Y2];
                 vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X2];
-                vertex.texCoord.y = 1.0f - regionAttachment->uvs[SP_VERTEX_Y2];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y2];
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
@@ -218,7 +218,7 @@ namespace spine
                 vertex.position.x = worldVertices[SP_VERTEX_X3];
                 vertex.position.y = worldVertices[SP_VERTEX_Y3];
                 vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X3];
-                vertex.texCoord.y = 1.0f - regionAttachment->uvs[SP_VERTEX_Y3];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y3];
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
@@ -228,7 +228,7 @@ namespace spine
                 vertex.position.x = worldVertices[SP_VERTEX_X4];
                 vertex.position.y = worldVertices[SP_VERTEX_Y4];
                 vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X4];
-                vertex.texCoord.y = 1.0f - regionAttachment->uvs[SP_VERTEX_Y4];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y4];
                 vertices.push_back(vertex);
 
                 indices.push_back(currentVertexIndex + 0);
@@ -262,7 +262,7 @@ namespace spine
                     vertex.position.x = worldVertices[index];
                     vertex.position.y = worldVertices[index + 1];
                     vertex.texCoord.x = mesh->uvs[index];
-                    vertex.texCoord.y = 1.0f - mesh->uvs[index + 1];
+                    vertex.texCoord.y = mesh->uvs[index + 1];
 
                     indices.push_back(currentVertexIndex);
                     currentVertexIndex++;
@@ -292,7 +292,7 @@ namespace spine
                     vertex.position.x = worldVertices[index];
                     vertex.position.y = worldVertices[index + 1];
                     vertex.texCoord.x = mesh->uvs[index];
-                    vertex.texCoord.y = 1.0f - mesh->uvs[index + 1];
+                    vertex.texCoord.y = mesh->uvs[index + 1];
 
                     indices.push_back(currentVertexIndex);
                     currentVertexIndex++;
