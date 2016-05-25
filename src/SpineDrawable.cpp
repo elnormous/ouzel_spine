@@ -1,7 +1,7 @@
 // Copyright (C) 2015 Elviss Strazdins
 
 #include <fstream>
-#include "Skeleton.h"
+#include "SpineDrawable.h"
 
 struct SpineTexture
 {
@@ -30,12 +30,12 @@ char* _spUtil_readFile(const char* path, int* length)
 
 static void listener(spAnimationState* state, int trackIndex, spEventType type, spEvent* event, int loopCount)
 {
-    static_cast<spine::Skeleton*>(state->rendererObject)->handleEvent(trackIndex, type, event, loopCount);
+    static_cast<spine::SpineDrawable*>(state->rendererObject)->handleEvent(trackIndex, type, event, loopCount);
 }
 
 namespace spine
 {
-    Skeleton::Skeleton(const std::string& atlasFile, const std::string& skeletonFile)
+    SpineDrawable::SpineDrawable(const std::string& atlasFile, const std::string& skeletonFile)
     {
         atlas = spAtlas_createFromFile(atlasFile.c_str(), 0);
         if (!atlas)
@@ -80,11 +80,11 @@ namespace spine
         shader = ouzel::sharedEngine->getCache()->getShader(ouzel::graphics::SHADER_TEXTURE);
 
         updateCallback = std::make_shared<ouzel::UpdateCallback>();
-        updateCallback->callback = std::bind(&Skeleton::update, this, std::placeholders::_1);
+        updateCallback->callback = std::bind(&SpineDrawable::update, this, std::placeholders::_1);
         ouzel::sharedEngine->scheduleUpdate(updateCallback);
     }
 
-    Skeleton::~Skeleton()
+    SpineDrawable::~SpineDrawable()
     {
         if (bounds)
         {
@@ -111,7 +111,7 @@ namespace spine
         ouzel::sharedEngine->unscheduleUpdate(updateCallback);
     }
 
-    void Skeleton::update(float delta)
+    void SpineDrawable::update(float delta)
     {
         spSkeleton_update(skeleton, delta);
         spAnimationState_update(animationState, delta * timeScale);
@@ -124,7 +124,7 @@ namespace spine
                         ouzel::Vector2(bounds->maxX, bounds->maxY));
     }
 
-    void Skeleton::draw(const ouzel::Matrix4& projection, const ouzel::Matrix4& transform, const ouzel::graphics::Color& color)
+    void SpineDrawable::draw(const ouzel::Matrix4& projection, const ouzel::Matrix4& transform, const ouzel::graphics::Color& color)
     {
         Drawable::draw(projection, transform, color);
 
@@ -314,28 +314,28 @@ namespace spine
         }
     }
 
-    void Skeleton::setAnimation(int trackIndex, const std::string& animationName, bool loop)
+    void SpineDrawable::setAnimation(int trackIndex, const std::string& animationName, bool loop)
     {
         spAnimationState_setAnimationByName(animationState, trackIndex, animationName.c_str(), loop ? 1 : 0);
     }
 
-    void Skeleton::addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay)
+    void SpineDrawable::addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay)
     {
         spAnimationState_addAnimationByName(animationState, trackIndex, animationName.c_str(), loop ? 1 : 0, delay);
     }
 
-    void Skeleton::setAnimationMix(const std::string& from, const std::string& to, float duration)
+    void SpineDrawable::setAnimationMix(const std::string& from, const std::string& to, float duration)
     {
         // Configure mixing
         spAnimationStateData_setMixByName(animationStateData, from.c_str(), to.c_str(), duration);
     }
 
-    void Skeleton::setEventCallback(const std::function<void(int, spEventType, spEvent*, int)>& newEventCallback)
+    void SpineDrawable::setEventCallback(const std::function<void(int, spEventType, spEvent*, int)>& newEventCallback)
     {
         eventCallback = newEventCallback;
     }
 
-    void Skeleton::handleEvent(int trackIndex, spEventType type, spEvent* event, int loopCount)
+    void SpineDrawable::handleEvent(int trackIndex, spEventType type, spEvent* event, int loopCount)
     {
         if (eventCallback)
         {

@@ -2,7 +2,7 @@
 
 #include <cmath>
 #include "Application.h"
-#include "Skeleton.h"
+#include "SpineDrawable.h"
 
 using namespace std;
 using namespace ouzel;
@@ -36,7 +36,7 @@ void Application::begin()
     layer->setCamera(camera);
     scene->addLayer(layer);
 
-    std::shared_ptr<spine::Skeleton> witch = std::make_shared<spine::Skeleton>("witch.atlas", "witch.json");
+    std::shared_ptr<spine::SpineDrawable> witch = std::make_shared<spine::SpineDrawable>("witch.atlas", "witch.json");
 
     ouzel::scene::NodePtr witchNode = std::make_shared<ouzel::scene::Node>();
     witchNode->addDrawable(witch);
