@@ -124,9 +124,9 @@ namespace spine
                         ouzel::Vector2(bounds->maxX, bounds->maxY));
     }
 
-    void SpineDrawable::draw(const ouzel::Matrix4& projection, const ouzel::Matrix4& transform, const ouzel::graphics::Color& color)
+    void SpineDrawable::draw(const ouzel::Matrix4& projection, const ouzel::Matrix4& transform, const ouzel::graphics::Color& color, const ouzel::scene::NodePtr& currentNode)
     {
-        Drawable::draw(projection, transform, color);
+        Drawable::draw(projection, transform, color, currentNode);
 
         ouzel::sharedEngine->getRenderer()->activateBlendState(blendState);
         ouzel::sharedEngine->getRenderer()->activateShader(shader);
