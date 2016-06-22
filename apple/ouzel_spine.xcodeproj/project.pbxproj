@@ -34,6 +34,11 @@
 		303B76A81C355AFA00FEDE92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B76A71C355AF900FEDE92 /* Foundation.framework */; };
 		303B76C81C35695900FEDE92 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B76C71C35695900FEDE92 /* QuartzCore.framework */; };
 		303B76CA1C35696200FEDE92 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B76C91C35696200FEDE92 /* QuartzCore.framework */; };
+		30419E421D1A1A6A00A63759 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E411D1A1A6A00A63759 /* CoreAudio.framework */; };
+		30419E471D1A1A7500A63759 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E461D1A1A7500A63759 /* CoreAudio.framework */; };
+		30419E491D1A1A7F00A63759 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E481D1A1A7F00A63759 /* CoreAudio.framework */; };
+		30419E4B1D1A1A8E00A63759 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E4A1D1A1A8E00A63759 /* AudioToolbox.framework */; };
+		30419E4D1D1A1A9600A63759 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E4C1D1A1A9600A63759 /* AudioToolbox.framework */; };
 		304A8EAA1C27429A008B1151 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304A8EA81C27429A008B1151 /* Application.cpp */; };
 		30575AE81C3C98F50009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AE71C3C98F50009C8A7 /* GameController.framework */; };
 		30575AEA1C3C99010009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AE91C3C99010009C8A7 /* GameController.framework */; };
@@ -185,6 +190,11 @@
 		303B76A71C355AF900FEDE92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		303B76C71C35695900FEDE92 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		303B76C91C35696200FEDE92 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		30419E411D1A1A6A00A63759 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		30419E461D1A1A7500A63759 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
+		30419E481D1A1A7F00A63759 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
+		30419E4A1D1A1A8E00A63759 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		30419E4C1D1A1A9600A63759 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		304A8E0A1C237B95008B1151 /* ouzel_spine_osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ouzel_spine_osx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		304A8E161C237B96008B1151 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		304A8E1B1C237B96008B1151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -241,6 +251,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				30C56CC81CACA736007AEF8F /* libouzel_ios.a in Frameworks */,
+				30419E4B1D1A1A8E00A63759 /* AudioToolbox.framework in Frameworks */,
+				30419E471D1A1A7500A63759 /* CoreAudio.framework in Frameworks */,
 				30575AEA1C3C99010009C8A7 /* GameController.framework in Frameworks */,
 				303B76291C34D15300FEDE92 /* Foundation.framework in Frameworks */,
 				303B76231C34D0A900FEDE92 /* OpenGLES.framework in Frameworks */,
@@ -256,6 +268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				30C56CC91CACA73A007AEF8F /* libouzel_tvos.a in Frameworks */,
+				30419E4D1D1A1A9600A63759 /* AudioToolbox.framework in Frameworks */,
+				30419E491D1A1A7F00A63759 /* CoreAudio.framework in Frameworks */,
 				303B76A81C355AFA00FEDE92 /* Foundation.framework in Frameworks */,
 				30575AEC1C3C990B0009C8A7 /* GameController.framework in Frameworks */,
 				303B76A61C355AE900FEDE92 /* OpenGLES.framework in Frameworks */,
@@ -271,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30C56CC71CACA732007AEF8F /* libouzel_osx.a in Frameworks */,
+				30419E421D1A1A6A00A63759 /* CoreAudio.framework in Frameworks */,
 				305F6DBB1C66C50000B76A03 /* CoreVideo.framework in Frameworks */,
 				303B74F31C27F6EB00FEDE92 /* Cocoa.framework in Frameworks */,
 				303B74EE1C27F6A100FEDE92 /* OpenGL.framework in Frameworks */,
@@ -299,6 +314,11 @@
 		303B74EF1C27F6B000FEDE92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30419E4C1D1A1A9600A63759 /* AudioToolbox.framework */,
+				30419E4A1D1A1A8E00A63759 /* AudioToolbox.framework */,
+				30419E481D1A1A7F00A63759 /* CoreAudio.framework */,
+				30419E461D1A1A7500A63759 /* CoreAudio.framework */,
+				30419E411D1A1A6A00A63759 /* CoreAudio.framework */,
 				30AFE1601CB6BD7000478AA2 /* Metal.framework */,
 				30AFE1611CB6BD7000478AA2 /* MetalKit.framework */,
 				30AFE15C1CB6BD6500478AA2 /* Metal.framework */,
