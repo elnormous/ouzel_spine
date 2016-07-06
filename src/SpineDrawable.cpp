@@ -243,7 +243,7 @@ namespace spine
             else if (attachment->type == SP_ATTACHMENT_MESH)
             {
                 spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
-                if (mesh->verticesCount > SPINE_MESH_VERTEX_COUNT_MAX) continue;
+                if (mesh->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
                 texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(mesh->rendererObject))->page->rendererObject);
                 spMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
 
@@ -270,34 +270,9 @@ namespace spine
                 }
                 
             }
-            else if (attachment->type == SP_ATTACHMENT_WEIGHTED_MESH)
+            else
             {
-                spWeightedMeshAttachment* mesh = reinterpret_cast<spWeightedMeshAttachment*>(attachment);
-                if (mesh->uvsCount > SPINE_MESH_VERTEX_COUNT_MAX) continue;
-                texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(mesh->rendererObject))->page->rendererObject);
-                spWeightedMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
-                
-                uint8_t r = static_cast<uint8_t>(skeleton->r * slot->r * 255);
-                uint8_t g = static_cast<uint8_t>(skeleton->g * slot->g * 255);
-                uint8_t b = static_cast<uint8_t>(skeleton->b * slot->b * 255);
-                uint8_t a = static_cast<uint8_t>(skeleton->a * slot->a * 255);
-                vertex.color.r = r;
-                vertex.color.g = g;
-                vertex.color.b = b;
-                vertex.color.a = a;
-
-                for (int t = 0; t < mesh->trianglesCount; ++t)
-                {
-                    int index = mesh->triangles[t] << 1;
-                    vertex.position.x = worldVertices[index];
-                    vertex.position.y = worldVertices[index + 1];
-                    vertex.texCoord.x = mesh->uvs[index];
-                    vertex.texCoord.y = mesh->uvs[index + 1];
-
-                    indices.push_back(currentVertexIndex);
-                    currentVertexIndex++;
-                    vertices.push_back(vertex);
-                }
+                continue;
             }
 
             if (texture && texture->texture)
