@@ -44,7 +44,6 @@ void Application::begin()
 
     witch->setAnimation(0, "walk", true);
     witch->addAnimation(0, "death", false, 2.0f);
-    witchNode->setScale(Vector2(0.5f, 0.5f));
 
     witch->setEventCallback([witch](int trackIndex, spEventType type, spEvent* event, int loopCount) {
         spTrackEntry* entry = spAnimationState_getCurrent(witch->getAnimationState(), trackIndex);
