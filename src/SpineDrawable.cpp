@@ -73,6 +73,7 @@ namespace spine
         //spSkeleton_updateWorldTransform(_skeleton);
 
         meshBuffer = ouzel::sharedEngine->getRenderer()->createMeshBuffer();
+        meshBuffer->init();
         meshBuffer->setIndexSize(sizeof(uint16_t));
         meshBuffer->setVertexAttributes(ouzel::graphics::VertexPCT::ATTRIBUTES);
 
