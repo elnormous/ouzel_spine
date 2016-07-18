@@ -18,5 +18,5 @@ public:
 protected:
     ouzel::scene::LayerPtr layer;
 
-    ouzel::EventHandlerPtr eventHandler;
+    ouzel::EventHandler eventHandler;
 };

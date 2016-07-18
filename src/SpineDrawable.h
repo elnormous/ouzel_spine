@@ -51,7 +51,7 @@ namespace spine
         ouzel::graphics::ShaderPtr shader;
         ouzel::graphics::BlendStatePtr blendState;
 
-        ouzel::UpdateCallbackPtr updateCallback;
+        ouzel::UpdateCallback updateCallback;
 
         std::function<void(int, spEventType, spEvent*, int)> eventCallback;
     };

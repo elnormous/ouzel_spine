@@ -80,8 +80,7 @@ namespace spine
         blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
         shader = ouzel::sharedEngine->getCache()->getShader(ouzel::graphics::SHADER_TEXTURE);
 
-        updateCallback = std::make_shared<ouzel::UpdateCallback>();
-        updateCallback->callback = std::bind(&SpineDrawable::update, this, std::placeholders::_1);
+        updateCallback.callback = std::bind(&SpineDrawable::update, this, std::placeholders::_1);
         ouzel::sharedEngine->scheduleUpdate(updateCallback);
     }
 

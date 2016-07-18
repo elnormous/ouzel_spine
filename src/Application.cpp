@@ -14,13 +14,11 @@ Application::~Application()
 
 void Application::begin()
 {
-    eventHandler = make_shared<EventHandler>();
-
-    eventHandler->keyboardHandler = std::bind(&Application::handleKeyboard, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-    eventHandler->mouseHandler = std::bind(&Application::handleMouse, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-    eventHandler->touchHandler = std::bind(&Application::handleTouch, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-    eventHandler->gamepadHandler = std::bind(&Application::handleGamepad, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-    eventHandler->uiHandler = std::bind(&Application::handleUI, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+    eventHandler.keyboardHandler = std::bind(&Application::handleKeyboard, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+    eventHandler.mouseHandler = std::bind(&Application::handleMouse, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+    eventHandler.touchHandler = std::bind(&Application::handleTouch, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+    eventHandler.gamepadHandler = std::bind(&Application::handleGamepad, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+    eventHandler.uiHandler = std::bind(&Application::handleUI, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 
     sharedEngine->getEventDispatcher()->addEventHandler(eventHandler);
 
