@@ -1,24 +1,24 @@
 // Copyright (C) 2016 Elviss Strazdins
 
 #include <cmath>
-#include "Application.h"
+#include "SpineSample.h"
 #include "SpineDrawable.h"
 
 using namespace std;
 using namespace ouzel;
 
-Application::~Application()
+SpineSample::~SpineSample()
 {
     sharedEngine->getEventDispatcher()->removeEventHandler(eventHandler);
 }
 
-void Application::begin()
+void SpineSample::run()
 {
-    eventHandler.keyboardHandler = std::bind(&Application::handleKeyboard, this, std::placeholders::_1, std::placeholders::_2);
-    eventHandler.mouseHandler = std::bind(&Application::handleMouse, this, std::placeholders::_1, std::placeholders::_2);
-    eventHandler.touchHandler = std::bind(&Application::handleTouch, this, std::placeholders::_1, std::placeholders::_2);
-    eventHandler.gamepadHandler = std::bind(&Application::handleGamepad, this, std::placeholders::_1, std::placeholders::_2);
-    eventHandler.uiHandler = std::bind(&Application::handleUI, this, std::placeholders::_1, std::placeholders::_2);
+    eventHandler.keyboardHandler = std::bind(&SpineSample::handleKeyboard, this, std::placeholders::_1, std::placeholders::_2);
+    eventHandler.mouseHandler = std::bind(&SpineSample::handleMouse, this, std::placeholders::_1, std::placeholders::_2);
+    eventHandler.touchHandler = std::bind(&SpineSample::handleTouch, this, std::placeholders::_1, std::placeholders::_2);
+    eventHandler.gamepadHandler = std::bind(&SpineSample::handleGamepad, this, std::placeholders::_1, std::placeholders::_2);
+    eventHandler.uiHandler = std::bind(&SpineSample::handleUI, this, std::placeholders::_1, std::placeholders::_2);
 
     sharedEngine->getEventDispatcher()->addEventHandler(eventHandler);
 
@@ -69,7 +69,7 @@ void Application::begin()
     sharedEngine->getInput()->startGamepadDiscovery();
 }
 
-bool Application::handleKeyboard(Event::Type type, const KeyboardEvent& event) const
+bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event) const
 {
     if (type == ouzel::Event::Type::KEY_DOWN)
     {
@@ -102,7 +102,7 @@ bool Application::handleKeyboard(Event::Type type, const KeyboardEvent& event) c
     return true;
 }
 
-bool Application::handleMouse(Event::Type type, const MouseEvent& event) const
+bool SpineSample::handleMouse(Event::Type type, const MouseEvent& event) const
 {
     switch (type)
     {
@@ -121,12 +121,12 @@ bool Application::handleMouse(Event::Type type, const MouseEvent& event) const
     return true;
 }
 
-bool Application::handleTouch(Event::Type type, const TouchEvent& event) const
+bool SpineSample::handleTouch(Event::Type type, const TouchEvent& event) const
 {
     return true;
 }
 
-bool Application::handleGamepad(Event::Type type, const GamepadEvent& event) const
+bool SpineSample::handleGamepad(Event::Type type, const GamepadEvent& event) const
 {
     if (type == ouzel::Event::Type::GAMEPAD_BUTTON_CHANGE)
     {
@@ -136,7 +136,7 @@ bool Application::handleGamepad(Event::Type type, const GamepadEvent& event) con
     return true;
 }
 
-bool Application::handleUI(Event::Type type, const UIEvent& event) const
+bool SpineSample::handleUI(Event::Type type, const UIEvent& event) const
 {
     return true;
 }

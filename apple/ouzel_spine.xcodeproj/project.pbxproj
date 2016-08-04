@@ -22,12 +22,12 @@
 		303B74EE1C27F6A100FEDE92 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B74ED1C27F6A100FEDE92 /* OpenGL.framework */; };
 		303B74F31C27F6EB00FEDE92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B74F21C27F6EB00FEDE92 /* Cocoa.framework */; };
 		303B751A1C29ED4200FEDE92 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 303B75181C29EB8400FEDE92 /* main.cpp */; };
-		303B760E1C34CFE300FEDE92 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304A8EA81C27429A008B1151 /* Application.cpp */; };
+		303B760E1C34CFE300FEDE92 /* SpineSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304A8EA81C27429A008B1151 /* SpineSample.cpp */; };
 		303B760F1C34CFE300FEDE92 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 303B75181C29EB8400FEDE92 /* main.cpp */; };
 		303B76231C34D0A900FEDE92 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B76221C34D0A900FEDE92 /* OpenGLES.framework */; };
 		303B76281C34D11500FEDE92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B76271C34D11400FEDE92 /* UIKit.framework */; };
 		303B76291C34D15300FEDE92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B76251C34D10200FEDE92 /* Foundation.framework */; };
-		303B768D1C355AA400FEDE92 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304A8EA81C27429A008B1151 /* Application.cpp */; };
+		303B768D1C355AA400FEDE92 /* SpineSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304A8EA81C27429A008B1151 /* SpineSample.cpp */; };
 		303B768E1C355AA400FEDE92 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 303B75181C29EB8400FEDE92 /* main.cpp */; };
 		303B76A41C355ADC00FEDE92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B76A31C355ADC00FEDE92 /* UIKit.framework */; };
 		303B76A61C355AE900FEDE92 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B76A51C355AE900FEDE92 /* OpenGLES.framework */; };
@@ -41,7 +41,7 @@
 		30419E901D2038CD00A63759 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E8F1D2038CD00A63759 /* OpenAL.framework */; };
 		30419E921D2038D400A63759 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E911D2038D400A63759 /* OpenAL.framework */; };
 		30419E941D2038DB00A63759 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E931D2038DB00A63759 /* OpenAL.framework */; };
-		304A8EAA1C27429A008B1151 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304A8EA81C27429A008B1151 /* Application.cpp */; };
+		304A8EAA1C27429A008B1151 /* SpineSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304A8EA81C27429A008B1151 /* SpineSample.cpp */; };
 		30575AE81C3C98F50009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AE71C3C98F50009C8A7 /* GameController.framework */; };
 		30575AEA1C3C99010009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AE91C3C99010009C8A7 /* GameController.framework */; };
 		30575AEC1C3C990B0009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AEB1C3C990B0009C8A7 /* GameController.framework */; };
@@ -212,8 +212,8 @@
 		304A8E0A1C237B95008B1151 /* ouzel_spine_osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ouzel_spine_osx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		304A8E161C237B96008B1151 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		304A8E1B1C237B96008B1151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		304A8EA81C27429A008B1151 /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
-		304A8EA91C27429A008B1151 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		304A8EA81C27429A008B1151 /* SpineSample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpineSample.cpp; sourceTree = "<group>"; };
+		304A8EA91C27429A008B1151 /* SpineSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpineSample.h; sourceTree = "<group>"; };
 		304A8EAB1C2742D9008B1151 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		30575A961C38C90F0009C8A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30575A971C38C90F0009C8A7 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
@@ -322,8 +322,8 @@
 			children = (
 				30324DAE1CAFB8CA00601A64 /* SpineDrawable.cpp */,
 				30324DAF1CAFB8CA00601A64 /* SpineDrawable.h */,
-				304A8EA81C27429A008B1151 /* Application.cpp */,
-				304A8EA91C27429A008B1151 /* Application.h */,
+				304A8EA81C27429A008B1151 /* SpineSample.cpp */,
+				304A8EA91C27429A008B1151 /* SpineSample.h */,
 				303B75181C29EB8400FEDE92 /* main.cpp */,
 			);
 			name = src;
@@ -663,7 +663,7 @@
 				30FC9D1A1D2D8E3B00AA00EB /* Event.c in Sources */,
 				30FC9D051D2D8E3B00AA00EB /* Atlas.c in Sources */,
 				30FC9D351D2D8E3B00AA00EB /* PathConstraintData.c in Sources */,
-				303B760E1C34CFE300FEDE92 /* Application.cpp in Sources */,
+				303B760E1C34CFE300FEDE92 /* SpineSample.cpp in Sources */,
 				30FC9D141D2D8E3B00AA00EB /* BoneData.c in Sources */,
 				30FC9D021D2D8E3B00AA00EB /* AnimationStateData.c in Sources */,
 				30FC9D201D2D8E3B00AA00EB /* extension.c in Sources */,
@@ -704,7 +704,7 @@
 				30FC9D1B1D2D8E3B00AA00EB /* Event.c in Sources */,
 				30FC9D061D2D8E3B00AA00EB /* Atlas.c in Sources */,
 				30FC9D361D2D8E3B00AA00EB /* PathConstraintData.c in Sources */,
-				303B768D1C355AA400FEDE92 /* Application.cpp in Sources */,
+				303B768D1C355AA400FEDE92 /* SpineSample.cpp in Sources */,
 				30FC9D151D2D8E3B00AA00EB /* BoneData.c in Sources */,
 				30FC9D031D2D8E3B00AA00EB /* AnimationStateData.c in Sources */,
 				30FC9D211D2D8E3B00AA00EB /* extension.c in Sources */,
@@ -745,7 +745,7 @@
 				30FC9D191D2D8E3B00AA00EB /* Event.c in Sources */,
 				30FC9D041D2D8E3B00AA00EB /* Atlas.c in Sources */,
 				30FC9D341D2D8E3B00AA00EB /* PathConstraintData.c in Sources */,
-				304A8EAA1C27429A008B1151 /* Application.cpp in Sources */,
+				304A8EAA1C27429A008B1151 /* SpineSample.cpp in Sources */,
 				30FC9D131D2D8E3B00AA00EB /* BoneData.c in Sources */,
 				30FC9D011D2D8E3B00AA00EB /* AnimationStateData.c in Sources */,
 				30FC9D1F1D2D8E3B00AA00EB /* extension.c in Sources */,

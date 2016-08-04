@@ -128,14 +128,16 @@ namespace spine
     {
         Drawable::draw(projection, transform, color, currentNode);
 
-        ouzel::sharedEngine->getRenderer()->activateBlendState(blendState);
-        ouzel::sharedEngine->getRenderer()->activateShader(shader);
+        ouzel::graphics::TexturePtr currentTexture;
 
         ouzel::Matrix4 modelViewProj = projection * transform;
         float colorVector[] = { color.getR(), color.getG(), color.getB(), color.getA() };
 
-        shader->setVertexShaderConstant(0, sizeof(ouzel::Matrix4), 1, modelViewProj.m);
-        shader->setPixelShaderConstant(0, sizeof(colorVector), 1, colorVector);
+        std::vector<std::vector<float>> pixelShaderConstants(1);
+        pixelShaderConstants[0] = { std::begin(colorVector), std::end(colorVector) };
+
+        std::vector<std::vector<float>> vertexShaderConstants(1);
+        vertexShaderConstants[0] = { std::begin(modelViewProj.m), std::end(modelViewProj.m) };
 
         ouzel::graphics::VertexPCT vertex;
 
@@ -170,13 +172,18 @@ namespace spine
                 {
                     meshBuffer->uploadIndices(indices.data(), static_cast<uint32_t>(indices.size()));
                     meshBuffer->uploadVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
-                    ouzel::sharedEngine->getRenderer()->drawMeshBuffer(meshBuffer, offset);
+                    
+                    ouzel::sharedEngine->getRenderer()->addDrawCommand({ currentTexture },
+                                                                       shader,
+                                                                       pixelShaderConstants,
+                                                                       vertexShaderConstants,
+                                                                       blendState,
+                                                                       meshBuffer,
+                                                                       offset);
                 }
 
                 currentBlendState = blendState;
                 offset = static_cast<uint32_t>(indices.size());
-
-                ouzel::sharedEngine->getRenderer()->activateBlendState(blendState);
             }
 
             SpineTexture* texture = 0;
@@ -277,7 +284,7 @@ namespace spine
 
             if (texture && texture->texture)
             {
-                ouzel::sharedEngine->getRenderer()->activateTexture(texture->texture, 0);
+                currentTexture = texture->texture;
             }
         }
 
@@ -285,7 +292,14 @@ namespace spine
         {
             meshBuffer->uploadIndices(indices.data(), static_cast<uint32_t>(indices.size()));
             meshBuffer->uploadVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
-            ouzel::sharedEngine->getRenderer()->drawMeshBuffer(meshBuffer, offset);
+
+            ouzel::sharedEngine->getRenderer()->addDrawCommand({ currentTexture },
+                                                               shader,
+                                                               pixelShaderConstants,
+                                                               vertexShaderConstants,
+                                                               blendState,
+                                                               meshBuffer,
+                                                               offset);
         }
     }
 

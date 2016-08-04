@@ -2,12 +2,12 @@
 
 #pragma once
 
-class Application: public ouzel::Noncopyable
+class SpineSample: public ouzel::Noncopyable
 {
 public:
-    virtual ~Application();
+    virtual ~SpineSample();
 
-    void begin();
+    void run();
 
     bool handleKeyboard(ouzel::Event::Type type, const ouzel::KeyboardEvent& event) const;
     bool handleMouse(ouzel::Event::Type type, const ouzel::MouseEvent& event) const;

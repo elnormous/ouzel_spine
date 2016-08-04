@@ -1,9 +1,9 @@
 // Copyright (C) 2015 Elviss Strazdins
 
-#include "Application.h"
+#include "SpineSample.h"
 
 ouzel::Engine engine;
-Application application;
+SpineSample sample;
 
 void ouzelMain(const std::vector<std::string>& args)
 {
@@ -16,5 +16,5 @@ void ouzelMain(const std::vector<std::string>& args)
     settings.textureFiltering = ouzel::graphics::Renderer::TextureFiltering::TRILINEAR;
     engine.init(settings);
 
-    application.begin();
+    sample.run();
 }
