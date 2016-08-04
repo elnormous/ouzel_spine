@@ -124,9 +124,13 @@ namespace spine
                         ouzel::Vector2(bounds->maxX, bounds->maxY));
     }
 
-    void SpineDrawable::draw(const ouzel::Matrix4& projection, const ouzel::Matrix4& transform, const ouzel::graphics::Color& color, const ouzel::scene::NodePtr& currentNode)
+    void SpineDrawable::draw(const ouzel::Matrix4& projection,
+                             const ouzel::Matrix4& transform,
+                             const ouzel::graphics::Color& color,
+                             const ouzel::graphics::RenderTargetPtr& renderTarget,
+                             const ouzel::scene::NodePtr& currentNode)
     {
-        Drawable::draw(projection, transform, color, currentNode);
+        Drawable::draw(projection, transform, color, renderTarget, currentNode);
 
         ouzel::graphics::TexturePtr currentTexture;
 
@@ -179,7 +183,10 @@ namespace spine
                                                                        vertexShaderConstants,
                                                                        blendState,
                                                                        meshBuffer,
-                                                                       offset);
+                                                                       offset,
+                                                                       ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
+                                                                       0,
+                                                                       renderTarget);
                 }
 
                 currentBlendState = blendState;
