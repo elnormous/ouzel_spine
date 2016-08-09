@@ -28,6 +28,7 @@ namespace spine
         float getTimeScale() const { return timeScale; }
         void setTimeScale(float newTimeScale) { timeScale = newTimeScale; }
 
+        std::string getAnimation(int trackIndex) const;
         void setAnimation(int trackIndex, const std::string& animationName, bool loop);
         void addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay);
 

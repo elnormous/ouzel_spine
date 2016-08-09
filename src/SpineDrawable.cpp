@@ -310,6 +310,18 @@ namespace spine
         }
     }
 
+    std::string SpineDrawable::getAnimation(int trackIndex) const
+    {
+        spTrackEntry* track = spAnimationState_getCurrent(animationState, trackIndex);
+
+        if (track && track->animation)
+        {
+            return track->animation->name;
+        }
+
+        return "";
+    }
+
     void SpineDrawable::setAnimation(int trackIndex, const std::string& animationName, bool loop)
     {
         spAnimationState_setAnimationByName(animationState, trackIndex, animationName.c_str(), loop ? 1 : 0);
