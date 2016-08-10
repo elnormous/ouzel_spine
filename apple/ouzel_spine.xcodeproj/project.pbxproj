@@ -46,6 +46,8 @@
 		30575AEA1C3C99010009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AE91C3C99010009C8A7 /* GameController.framework */; };
 		30575AEC1C3C990B0009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AEB1C3C990B0009C8A7 /* GameController.framework */; };
 		305F6DBB1C66C50000B76A03 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305F6DBA1C66C50000B76A03 /* CoreVideo.framework */; };
+		30775BD01D5BEAD200394C9C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30775BCF1D5BEAD200394C9C /* AVFoundation.framework */; };
+		30775BD51D5BEAF200394C9C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30775BD41D5BEAF200394C9C /* AVFoundation.framework */; };
 		30AFE15A1CB6BD5900478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1581CB6BD5900478AA2 /* Metal.framework */; };
 		30AFE15B1CB6BD5900478AA2 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1591CB6BD5900478AA2 /* MetalKit.framework */; };
 		30AFE15E1CB6BD6500478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE15C1CB6BD6500478AA2 /* Metal.framework */; };
@@ -221,6 +223,8 @@
 		30575AE91C3C99010009C8A7 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
 		30575AEB1C3C990B0009C8A7 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
 		305F6DBA1C66C50000B76A03 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		30775BCF1D5BEAD200394C9C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		30775BD41D5BEAF200394C9C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		30AFE1581CB6BD5900478AA2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		30AFE1591CB6BD5900478AA2 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		30AFE15C1CB6BD6500478AA2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
@@ -267,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30775BD01D5BEAD200394C9C /* AVFoundation.framework in Frameworks */,
 				30C56CC81CACA736007AEF8F /* libouzel_ios.a in Frameworks */,
 				30419E4B1D1A1A8E00A63759 /* AudioToolbox.framework in Frameworks */,
 				30419E471D1A1A7500A63759 /* CoreAudio.framework in Frameworks */,
@@ -285,6 +290,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30775BD51D5BEAF200394C9C /* AVFoundation.framework in Frameworks */,
 				30C56CC91CACA73A007AEF8F /* libouzel_tvos.a in Frameworks */,
 				30419E4D1D1A1A9600A63759 /* AudioToolbox.framework in Frameworks */,
 				30419E491D1A1A7F00A63759 /* CoreAudio.framework in Frameworks */,
@@ -333,6 +339,8 @@
 		303B74EF1C27F6B000FEDE92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30775BD41D5BEAF200394C9C /* AVFoundation.framework */,
+				30775BCF1D5BEAD200394C9C /* AVFoundation.framework */,
 				30419E931D2038DB00A63759 /* OpenAL.framework */,
 				30419E911D2038D400A63759 /* OpenAL.framework */,
 				30419E8F1D2038CD00A63759 /* OpenAL.framework */,
