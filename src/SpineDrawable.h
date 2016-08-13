@@ -28,7 +28,21 @@ namespace spine
         float getTimeScale() const { return timeScale; }
         void setTimeScale(float newTimeScale) { timeScale = newTimeScale; }
 
+        void reset();
+
         std::string getAnimation(int trackIndex) const;
+        void clearTracks();
+        void clearTrack(int trackIndex);
+
+        void setOffset(const ouzel::Vector2& offset);
+        ouzel::Vector2 getOffset();
+
+        void setFlipX(bool flipX);
+        bool getFlipX() const;
+
+        void setFlipY(bool flipY);
+        bool getFlipY() const;
+
         void setAnimation(int trackIndex, const std::string& animationName, bool loop);
         void addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay);
 

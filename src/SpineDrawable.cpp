@@ -64,13 +64,7 @@ namespace spine
         animationState->listener = listener;
         animationState->rendererObject = this;
 
-        skeleton->flipX = false;
-        skeleton->flipY = false;
         spSkeleton_setToSetupPose(skeleton);
-
-        //skeleton->x = 320;
-        //skeleton->y = -200;
-        //spSkeleton_updateWorldTransform(_skeleton);
 
         meshBuffer = ouzel::sharedEngine->getRenderer()->createMeshBuffer();
         meshBuffer->init();
@@ -310,6 +304,31 @@ namespace spine
         }
     }
 
+    void SpineDrawable::reset()
+    {
+        spSkeleton_setToSetupPose(skeleton);
+    }
+
+    void SpineDrawable::setFlipX(bool flipX)
+    {
+        skeleton->flipX = flipX;
+    }
+
+    bool SpineDrawable::getFlipX() const
+    {
+        return skeleton->flipX != 0;
+    }
+
+    void SpineDrawable::setFlipY(bool flipY)
+    {
+        skeleton->flipY = flipY;
+    }
+
+    bool SpineDrawable::getFlipY() const
+    {
+        return skeleton->flipY != 0;
+    }
+
     std::string SpineDrawable::getAnimation(int trackIndex) const
     {
         spTrackEntry* track = spAnimationState_getCurrent(animationState, trackIndex);
@@ -320,6 +339,29 @@ namespace spine
         }
 
         return "";
+    }
+
+    void SpineDrawable::setOffset(const ouzel::Vector2& offset)
+    {
+        skeleton->x = offset.x;
+        skeleton->y = offset.y;
+
+        spSkeleton_updateWorldTransform(skeleton);
+    }
+
+    ouzel::Vector2 SpineDrawable::getOffset()
+    {
+        return ouzel::Vector2(skeleton->x, skeleton->y);
+    }
+
+    void SpineDrawable::clearTracks()
+    {
+        spAnimationState_clearTracks(animationState);
+    }
+
+    void SpineDrawable::clearTrack(int trackIndex)
+    {
+        spAnimationState_clearTrack(animationState, trackIndex);
     }
 
     void SpineDrawable::setAnimation(int trackIndex, const std::string& animationName, bool loop)
