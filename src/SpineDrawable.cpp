@@ -304,11 +304,6 @@ namespace spine
         }
     }
 
-    void SpineDrawable::reset()
-    {
-        spSkeleton_setToSetupPose(skeleton);
-    }
-
     void SpineDrawable::setFlipX(bool flipX)
     {
         skeleton->flipX = flipX;
@@ -329,18 +324,6 @@ namespace spine
         return skeleton->flipY != 0;
     }
 
-    std::string SpineDrawable::getAnimation(int trackIndex) const
-    {
-        spTrackEntry* track = spAnimationState_getCurrent(animationState, trackIndex);
-
-        if (track && track->animation)
-        {
-            return track->animation->name;
-        }
-
-        return "";
-    }
-
     void SpineDrawable::setOffset(const ouzel::Vector2& offset)
     {
         skeleton->x = offset.x;
@@ -354,6 +337,11 @@ namespace spine
         return ouzel::Vector2(skeleton->x, skeleton->y);
     }
 
+    void SpineDrawable::reset()
+    {
+        spSkeleton_setToSetupPose(skeleton);
+    }
+
     void SpineDrawable::clearTracks()
     {
         spAnimationState_clearTracks(animationState);
@@ -364,20 +352,72 @@ namespace spine
         spAnimationState_clearTrack(animationState, trackIndex);
     }
 
-    void SpineDrawable::setAnimation(int trackIndex, const std::string& animationName, bool loop)
+    bool SpineDrawable::hasAnimation(const std::string& animationName)
     {
-        spAnimationState_setAnimationByName(animationState, trackIndex, animationName.c_str(), loop ? 1 : 0);
+        spAnimation* animation = spSkeletonData_findAnimation(animationState->data->skeletonData, animationName.c_str());
+
+        return animation != nullptr;
     }
 
-    void SpineDrawable::addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay)
+    std::string SpineDrawable::getAnimation(int trackIndex) const
     {
-        spAnimationState_addAnimationByName(animationState, trackIndex, animationName.c_str(), loop ? 1 : 0, delay);
+        spTrackEntry* track = spAnimationState_getCurrent(animationState, trackIndex);
+
+        if (track && track->animation)
+        {
+            return track->animation->name;
+        }
+
+        return "";
     }
 
-    void SpineDrawable::setAnimationMix(const std::string& from, const std::string& to, float duration)
+    bool SpineDrawable::setAnimation(int trackIndex, const std::string& animationName, bool loop)
     {
-        // Configure mixing
-        spAnimationStateData_setMixByName(animationStateData, from.c_str(), to.c_str(), duration);
+        spAnimation* animation = spSkeletonData_findAnimation(animationState->data->skeletonData, animationName.c_str());
+
+        if (!animation)
+        {
+            return false;
+        }
+
+        spAnimationState_setAnimation(animationState, trackIndex, animation, loop ? 1 : 0);
+
+        return true;
+    }
+
+    bool SpineDrawable::addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay)
+    {
+        spAnimation* animation = spSkeletonData_findAnimation(animationState->data->skeletonData, animationName.c_str());
+
+        if (!animation)
+        {
+            return false;
+        }
+
+        spAnimationState_addAnimation(animationState, trackIndex, animation, loop ? 1 : 0, delay);
+
+        return true;
+    }
+
+    bool SpineDrawable::setAnimationMix(const std::string& from, const std::string& to, float duration)
+    {
+        spAnimation* animationFrom = spSkeletonData_findAnimation(animationState->data->skeletonData, from.c_str());
+
+        if (!animationFrom)
+        {
+            return false;
+        }
+
+        spAnimation* animationTo = spSkeletonData_findAnimation(animationState->data->skeletonData, to.c_str());
+
+        if (!animationTo)
+        {
+            return false;
+        }
+
+        spAnimationStateData_setMix(animationStateData, animationFrom, animationTo, duration);
+
+        return true;
     }
 
     void SpineDrawable::setEventCallback(const std::function<void(int, spEventType, spEvent*, int)>& newEventCallback)
