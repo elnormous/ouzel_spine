@@ -108,7 +108,7 @@ namespace spine
     void SpineDrawable::update(float delta)
     {
         spSkeleton_update(skeleton, delta);
-        spAnimationState_update(animationState, delta * timeScale);
+        spAnimationState_update(animationState, delta);
         spAnimationState_apply(animationState, skeleton);
         spSkeleton_updateWorldTransform(skeleton);
 
@@ -302,6 +302,16 @@ namespace spine
                                                                meshBuffer,
                                                                offset);
         }
+    }
+
+    float SpineDrawable::getTimeScale() const
+    {
+        return animationState->timeScale;
+    }
+
+    void SpineDrawable::setTimeScale(float newTimeScale)
+    {
+        animationState->timeScale = newTimeScale;
     }
 
     void SpineDrawable::setFlipX(bool flipX)

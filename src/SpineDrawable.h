@@ -25,8 +25,8 @@ namespace spine
                           const ouzel::graphics::RenderTargetPtr& renderTarget,
                           const ouzel::scene::NodePtr& currentNode) override;
 
-        float getTimeScale() const { return timeScale; }
-        void setTimeScale(float newTimeScale) { timeScale = newTimeScale; }
+        float getTimeScale() const;
+        void setTimeScale(float newTimeScale);
 
         void setOffset(const ouzel::Vector2& offset);
         ouzel::Vector2 getOffset();
@@ -63,7 +63,6 @@ namespace spine
         spAnimationStateData* animationStateData = nullptr;
         spSkeletonBounds* bounds = nullptr;
 
-        float timeScale = 1.0f;
         ouzel::graphics::MeshBufferPtr meshBuffer;
 
         float worldVertices[SPINE_MESH_VERTEX_COUNT_MAX / sizeof(float)];
