@@ -48,6 +48,8 @@ namespace spine
         bool addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay);
 
         bool setAnimationMix(const std::string& from, const std::string& to, float duration);
+        bool setAnimationProgress(int trackIndex, float progress);
+        float getAnimationProgress(int trackIndex) const;
 
         spSkeleton* getSkeleton() const { return skeleton; }
         spAtlas* getAtlas() const { return atlas; }

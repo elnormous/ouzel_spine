@@ -430,6 +430,28 @@ namespace spine
         return true;
     }
 
+    bool SpineDrawable::setAnimationProgress(int trackIndex, float progress)
+    {
+        if (spTrackEntry* current = spAnimationState_getCurrent(animationState, trackIndex))
+        {
+            current->time = current->endTime * progress;
+            
+            spAnimationState_apply(animationState, skeleton);
+        }
+
+        return true;
+    }
+
+    float SpineDrawable::getAnimationProgress(int trackIndex) const
+    {
+        if (spTrackEntry* current = spAnimationState_getCurrent(animationState, trackIndex))
+        {
+            return (current->endTime != 0.0f) ? current->time / current->endTime : 0.0f;
+        }
+
+        return 0.0f;
+    }
+
     void SpineDrawable::setEventCallback(const std::function<void(int, spEventType, spEvent*, int)>& newEventCallback)
     {
         eventCallback = newEventCallback;
