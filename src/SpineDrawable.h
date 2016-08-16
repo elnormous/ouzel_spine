@@ -12,7 +12,7 @@
 
 namespace spine
 {
-    class SpineDrawable: public ouzel::scene::Drawable
+    class SpineDrawable: public ouzel::scene::Component
     {
     public:
         SpineDrawable(const std::string& atlasFile, const std::string& skeletonFile);

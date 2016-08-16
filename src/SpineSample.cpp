@@ -37,7 +37,7 @@ void SpineSample::run()
     std::shared_ptr<spine::SpineDrawable> witch = std::make_shared<spine::SpineDrawable>("witch.atlas", "witch.json");
 
     ouzel::scene::NodePtr witchNode = std::make_shared<ouzel::scene::Node>();
-    witchNode->addDrawable(witch);
+    witchNode->addComponent(witch);
     layer->addChild(witchNode);
 
     witch->setAnimation(0, "walk", true);

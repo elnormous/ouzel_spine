@@ -124,7 +124,7 @@ namespace spine
                              const ouzel::graphics::RenderTargetPtr& renderTarget,
                              const ouzel::scene::NodePtr& currentNode)
     {
-        Drawable::draw(projection, transform, color, renderTarget, currentNode);
+        Component::draw(projection, transform, color, renderTarget, currentNode);
 
         ouzel::graphics::TexturePtr currentTexture;
 
@@ -437,6 +437,12 @@ namespace spine
             current->time = current->endTime * progress;
             
             spAnimationState_apply(animationState, skeleton);
+            spSkeleton_updateWorldTransform(skeleton);
+
+            spSkeletonBounds_update(bounds, skeleton, true);
+
+            boundingBox.set(ouzel::Vector2(bounds->minX, bounds->minY),
+                            ouzel::Vector2(bounds->maxX, bounds->maxY));
         }
 
         return true;
