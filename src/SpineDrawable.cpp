@@ -107,7 +107,6 @@ namespace spine
 
     void SpineDrawable::update(float delta)
     {
-        spSkeleton_update(skeleton, delta);
         spAnimationState_update(animationState, delta);
         spAnimationState_apply(animationState, skeleton);
         spSkeleton_updateWorldTransform(skeleton);
