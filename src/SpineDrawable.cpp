@@ -140,8 +140,8 @@ namespace spine
         ouzel::graphics::VertexPCT vertex;
 
         uint16_t currentVertexIndex = 0;
-        std::vector<uint16_t> indices;
-        std::vector<ouzel::graphics::VertexPCT> vertices;
+        indices.clear();
+        vertices.clear();
 
         ouzel::graphics::BlendStatePtr currentBlendState = blendState;
         uint32_t offset = 0;

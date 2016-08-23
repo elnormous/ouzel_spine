@@ -65,6 +65,9 @@ namespace spine
         spAnimationStateData* animationStateData = nullptr;
         spSkeletonBounds* bounds = nullptr;
 
+        std::vector<uint16_t> indices;
+        std::vector<ouzel::graphics::VertexPCT> vertices;
+
         ouzel::graphics::MeshBufferPtr meshBuffer;
 
         float worldVertices[SPINE_MESH_VERTEX_COUNT_MAX / sizeof(float)];
