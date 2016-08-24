@@ -158,10 +158,9 @@ namespace spine
     void SpineDrawable::draw(const ouzel::Matrix4& projection,
                              const ouzel::Matrix4& transform,
                              const ouzel::graphics::Color& color,
-                             const ouzel::graphics::RenderTargetPtr& renderTarget,
-                             const ouzel::scene::NodePtr& currentNode)
+                             const ouzel::graphics::RenderTargetPtr& renderTarget)
     {
-        Component::draw(projection, transform, color, renderTarget, currentNode);
+        Component::draw(projection, transform, color, renderTarget);
 
         ouzel::graphics::TexturePtr currentTexture;
 
