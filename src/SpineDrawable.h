@@ -58,6 +58,8 @@ namespace spine
         void handleEvent(int trackIndex, spEventType type, spEvent* event, int loopCount);
         
     private:
+        void updateBounds();
+
         spSkeleton* skeleton = nullptr;
         spAtlas* atlas = nullptr;
         spAnimationState* animationState = nullptr;
