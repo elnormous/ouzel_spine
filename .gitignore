@@ -2,3 +2,8 @@ android
 ouzel_spine.xcodeproj/project.xcworkspace
 ouzel_spine.xcodeproj/xcuserdata
 win
+ouzel_spine.opensdf
+x64/
+ouzel_spine.sdf
+Release/
+Debug/
