@@ -167,8 +167,8 @@ namespace spine
             {
                 if (indices.size() - offset > 0)
                 {
-                    meshBuffer->uploadIndices(indices.data(), static_cast<uint32_t>(indices.size()));
-                    meshBuffer->uploadVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
+                    meshBuffer->setIndices(indices.data(), static_cast<uint32_t>(indices.size()));
+                    meshBuffer->setVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
                     
                     ouzel::sharedEngine->getRenderer()->addDrawCommand({ currentTexture },
                                                                        shader,
@@ -285,8 +285,8 @@ namespace spine
 
         if (indices.size() - offset > 0)
         {
-            meshBuffer->uploadIndices(indices.data(), static_cast<uint32_t>(indices.size()));
-            meshBuffer->uploadVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
+            meshBuffer->setIndices(indices.data(), static_cast<uint32_t>(indices.size()));
+            meshBuffer->setVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
 
             ouzel::sharedEngine->getRenderer()->addDrawCommand({ currentTexture },
                                                                shader,
