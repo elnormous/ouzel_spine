@@ -1,6 +1,5 @@
 // Copyright (C) 2015 Elviss Strazdins
 
-#include <fstream>
 #include "SpineDrawable.h"
 
 struct SpineTexture
@@ -25,7 +24,16 @@ void _spAtlasPage_disposeTexture(spAtlasPage* self)
 
 char* _spUtil_readFile(const char* path, int* length)
 {
-    return _readFile(ouzel::sharedEngine->getFileSystem()->getPath(path).c_str(), length);
+    char* result;
+    std::vector<uint8_t> data;
+
+    ouzel::sharedEngine->getFileSystem()->loadFile(path, data);
+    *length = static_cast<int>(data.size());
+
+    result = MALLOC(char, data.size());
+    memcpy(result, data.data(), data.size());
+
+    return result;
 }
 
 static void listener(spAnimationState* state, int trackIndex, spEventType type, spEvent* event, int loopCount)
