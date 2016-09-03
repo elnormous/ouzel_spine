@@ -24,6 +24,11 @@ namespace spine
                           const ouzel::graphics::Color& color,
                           const ouzel::graphics::RenderTargetPtr& renderTarget) override;
 
+        virtual void drawWireframe(const ouzel::Matrix4& projection,
+                                   const ouzel::Matrix4& transform,
+                                   const ouzel::graphics::Color& color,
+                                   const ouzel::graphics::RenderTargetPtr& renderTarget) override;
+
         float getTimeScale() const;
         void setTimeScale(float newTimeScale);
 
@@ -75,6 +80,7 @@ namespace spine
         
         ouzel::graphics::ShaderPtr shader;
         ouzel::graphics::BlendStatePtr blendState;
+        ouzel::graphics::TexturePtr whitePixelTexture;
 
         ouzel::UpdateCallback updateCallback;
 

@@ -84,6 +84,7 @@ namespace spine
 
         blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
         shader = ouzel::sharedEngine->getCache()->getShader(ouzel::graphics::SHADER_TEXTURE);
+        whitePixelTexture = ouzel::sharedEngine->getCache()->getTexture(ouzel::graphics::TEXTURE_WHITE_PIXEL);
 
         updateCallback.callback = std::bind(&SpineDrawable::update, this, std::placeholders::_1);
         ouzel::sharedEngine->scheduleUpdate(updateCallback);
@@ -302,7 +303,41 @@ namespace spine
                                                                vertexShaderConstants,
                                                                blendState,
                                                                meshBuffer,
-                                                               offset);
+                                                               offset,
+                                                               ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
+                                                               0,
+                                                               renderTarget);
+        }
+    }
+
+    void SpineDrawable::drawWireframe(const ouzel::Matrix4& projection,
+                                      const ouzel::Matrix4& transform,
+                                      const ouzel::graphics::Color& color,
+                                      const ouzel::graphics::RenderTargetPtr& renderTarget)
+    {
+        Component::drawWireframe(projection, transform, color, renderTarget);
+
+        if (!indices.empty())
+        {
+            ouzel::Matrix4 modelViewProj = projection * transform;
+            float colorVector[] = { color.getR(), color.getG(), color.getB(), color.getA() };
+
+            std::vector<std::vector<float>> pixelShaderConstants(1);
+            pixelShaderConstants[0] = { std::begin(colorVector), std::end(colorVector) };
+
+            std::vector<std::vector<float>> vertexShaderConstants(1);
+            vertexShaderConstants[0] = { std::begin(modelViewProj.m), std::end(modelViewProj.m) };
+
+            ouzel::sharedEngine->getRenderer()->addDrawCommand({ whitePixelTexture },
+                                                               shader,
+                                                               pixelShaderConstants,
+                                                               vertexShaderConstants,
+                                                               blendState,
+                                                               meshBuffer,
+                                                               0,
+                                                               ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
+                                                               0,
+                                                               renderTarget);
         }
     }
 
