@@ -337,7 +337,8 @@ namespace spine
                                                                0,
                                                                ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
                                                                0,
-                                                               renderTarget);
+                                                               renderTarget,
+                                                               true);
         }
     }
 
