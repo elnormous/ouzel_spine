@@ -98,6 +98,9 @@
     <ClCompile Include="external\spine-runtimes\spine-c\src\spine\SlotData.c">
       <Filter>spine</Filter>
     </ClCompile>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\SpineDrawable.cpp" />
+    <ClCompile Include="src\SpineSample.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="win\stdafx.h" />
@@ -107,6 +110,8 @@
     <ClInclude Include="external\spine-runtimes\spine-c\src\spine\kvec.h">
       <Filter>spine</Filter>
     </ClInclude>
+    <ClInclude Include="src\SpineDrawable.h" />
+    <ClInclude Include="src\SpineSample.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="spine">
