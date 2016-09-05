@@ -14,5 +14,7 @@ void ouzelMain(const std::vector<std::string>& args)
     settings.resizable = true;
     settings.sampleCount = 4;
     settings.textureFiltering = ouzel::graphics::Renderer::TextureFiltering::TRILINEAR;
-    engine.init(settings, std::bind(&SpineSample::run, &sample));
+    engine.init(settings);
+
+    sample.run();
 }
