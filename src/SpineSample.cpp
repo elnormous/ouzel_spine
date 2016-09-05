@@ -15,11 +15,11 @@ SpineSample::~SpineSample()
 void SpineSample::run()
 {
 #if OUZEL_PLATFORM_LINUX
-    sharedEngine->getFileSystem()->addResourcePath("Resources");
+    sharedApplication->getFileSystem()->addResourcePath("Resources");
 #elif OUZEL_PLATFORM_WINDOWS
-    sharedEngine->getFileSystem()->addResourcePath("Resources");
-    sharedEngine->getFileSystem()->addResourcePath("../Resources");
-    sharedEngine->getFileSystem()->addResourcePath("../../Resources");
+    sharedApplication->getFileSystem()->addResourcePath("Resources");
+    sharedApplication->getFileSystem()->addResourcePath("../Resources");
+    sharedApplication->getFileSystem()->addResourcePath("../../Resources");
 #endif
 
     eventHandler.keyboardHandler = std::bind(&SpineSample::handleKeyboard, this, std::placeholders::_1, std::placeholders::_2);

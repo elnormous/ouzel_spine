@@ -27,7 +27,7 @@ char* _spUtil_readFile(const char* path, int* length)
     char* result;
     std::vector<uint8_t> data;
 
-    ouzel::sharedEngine->getFileSystem()->loadFile(path, data);
+    ouzel::sharedApplication->getFileSystem()->loadFile(path, data);
     *length = static_cast<int>(data.size());
 
     result = MALLOC(char, data.size());
