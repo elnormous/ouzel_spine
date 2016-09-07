@@ -48,7 +48,7 @@ namespace spine
         atlas = spAtlas_createFromFile(atlasFile.c_str(), 0);
         if (!atlas)
         {
-            ouzel::log("Failed to load atlas");
+            ouzel::log(ouzel::LOG_LEVEL_ERROR, "Failed to load atlas");
             return;
         }
 
@@ -57,7 +57,7 @@ namespace spine
         spSkeletonData* skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonFile.c_str());
         if (!skeletonData)
         {
-            ouzel::log("Failed to load skeleton: %s", json->error);
+            ouzel::log(ouzel::LOG_LEVEL_ERROR, "Failed to load skeleton: %s", json->error);
             return;
         }
         spSkeletonJson_dispose(json);
@@ -176,18 +176,15 @@ namespace spine
             {
                 if (indices.size() - offset > 0)
                 {
-                    meshBuffer->setIndices(indices.data(), static_cast<uint32_t>(indices.size()));
-                    meshBuffer->setVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
-                    
                     ouzel::sharedEngine->getRenderer()->addDrawCommand({ currentTexture },
                                                                        shader,
                                                                        pixelShaderConstants,
                                                                        vertexShaderConstants,
                                                                        blendState,
                                                                        meshBuffer,
-                                                                       offset,
+                                                                       static_cast<uint32_t>(indices.size()) - offset,
                                                                        ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
-                                                                       0,
+                                                                       offset,
                                                                        renderTarget);
                 }
 
@@ -294,20 +291,21 @@ namespace spine
 
         if (indices.size() - offset > 0)
         {
-            meshBuffer->setIndices(indices.data(), static_cast<uint32_t>(indices.size()));
-            meshBuffer->setVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
-
             ouzel::sharedEngine->getRenderer()->addDrawCommand({ currentTexture },
                                                                shader,
                                                                pixelShaderConstants,
                                                                vertexShaderConstants,
                                                                blendState,
                                                                meshBuffer,
-                                                               offset,
+                                                               static_cast<uint32_t>(indices.size()) - offset,
                                                                ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
-                                                               0,
+                                                               offset,
                                                                renderTarget);
         }
+
+
+        meshBuffer->setIndices(indices.data(), static_cast<uint32_t>(indices.size()));
+        meshBuffer->setVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
     }
 
     void SpineDrawable::drawWireframe(const ouzel::Matrix4& projection,

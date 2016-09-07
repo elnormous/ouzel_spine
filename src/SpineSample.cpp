@@ -58,16 +58,16 @@ void SpineSample::run()
         switch (type)
         {
             case SP_ANIMATION_START:
-                log("%d start: %s", trackIndex, animationName);
+                log(ouzel::LOG_LEVEL_INFO, "%d start: %s", trackIndex, animationName);
                 break;
             case SP_ANIMATION_END:
-                log("%d end: %s", trackIndex, animationName);
+                log(ouzel::LOG_LEVEL_INFO, "%d end: %s", trackIndex, animationName);
                 break;
             case SP_ANIMATION_COMPLETE:
-                log("%d complete: %s, %d", trackIndex, animationName, loopCount);
+                log(ouzel::LOG_LEVEL_INFO, "%d complete: %s, %d", trackIndex, animationName, loopCount);
                 break;
             case SP_ANIMATION_EVENT:
-                log("%d event: %s, %s: %d, %f, %s", trackIndex, animationName, event->data->name, event->intValue, event->floatValue, event->stringValue);
+                log(ouzel::LOG_LEVEL_INFO, "%d event: %s, %s: %d, %f, %s", trackIndex, animationName, event->data->name, event->intValue, event->floatValue, event->stringValue);
                 break;
         }
     });
