@@ -75,6 +75,8 @@ namespace spine
         std::vector<ouzel::graphics::VertexPCT> vertices;
 
         ouzel::graphics::MeshBufferPtr meshBuffer;
+        ouzel::graphics::IndexBufferPtr indexBuffer;
+        ouzel::graphics::VertexBufferPtr vertexBuffer;
 
         float worldVertices[SPINE_MESH_VERTEX_COUNT_MAX / sizeof(float)];
         

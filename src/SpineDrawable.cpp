@@ -77,10 +77,16 @@ namespace spine
 
         updateBounds();
 
+        indexBuffer = ouzel::sharedEngine->getRenderer()->createIndexBuffer();
+        indexBuffer->init(true);
+        indexBuffer->setIndexSize(sizeof(uint16_t));
+
+        vertexBuffer = ouzel::sharedEngine->getRenderer()->createVertexBuffer();
+        vertexBuffer->init(true);
+        vertexBuffer->setVertexAttributes(ouzel::graphics::VertexPCT::ATTRIBUTES);
+
         meshBuffer = ouzel::sharedEngine->getRenderer()->createMeshBuffer();
-        meshBuffer->init();
-        meshBuffer->setIndexSize(sizeof(uint16_t));
-        meshBuffer->setVertexAttributes(ouzel::graphics::VertexPCT::ATTRIBUTES);
+        meshBuffer->init(indexBuffer, vertexBuffer);
 
         blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
         shader = ouzel::sharedEngine->getCache()->getShader(ouzel::graphics::SHADER_TEXTURE);
@@ -304,8 +310,8 @@ namespace spine
         }
 
 
-        meshBuffer->setIndices(indices.data(), static_cast<uint32_t>(indices.size()));
-        meshBuffer->setVertices(vertices.data(), static_cast<uint32_t>(vertices.size()));
+        indexBuffer->setData(indices.data(), static_cast<uint32_t>(indices.size()));
+        vertexBuffer->setData(vertices.data(), static_cast<uint32_t>(vertices.size()));
     }
 
     void SpineDrawable::drawWireframe(const ouzel::Matrix4& projection,
