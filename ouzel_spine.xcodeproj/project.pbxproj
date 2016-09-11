@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		30224CE41D7241A50067DE35 /* libouzel_tvos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30224CE31D7240D50067DE35 /* libouzel_tvos.a */; };
 		30224CE51D7241A90067DE35 /* libouzel_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30224CE11D7240D50067DE35 /* libouzel_ios.a */; };
-		30224CE61D7241AD0067DE35 /* libouzel_osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30224CDF1D7240D50067DE35 /* libouzel_osx.a */; };
+		30224CE61D7241AD0067DE35 /* libouzel_macos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30224CDF1D7240D50067DE35 /* libouzel_macos.a */; };
 		3033C9111CBBF415003307D1 /* witch.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3033C90E1CBBF415003307D1 /* witch.atlas */; };
 		3033C9121CBBF415003307D1 /* witch.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3033C90E1CBBF415003307D1 /* witch.atlas */; };
 		3033C9131CBBF415003307D1 /* witch.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3033C90E1CBBF415003307D1 /* witch.atlas */; };
@@ -22,6 +22,9 @@
 		303647A11C418E4C0024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3036479F1C414EF50024DB5B /* Assets.xcassets */; };
 		303647A21C418E790024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 304A8E161C237B96008B1151 /* Assets.xcassets */; };
 		303647A31C418E7C0024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303647A01C414F120024DB5B /* Assets.xcassets */; };
+		303822431D8601FA00677CAB /* SkeletonBinary.c in Sources */ = {isa = PBXBuildFile; fileRef = 303822421D8601FA00677CAB /* SkeletonBinary.c */; };
+		303822441D8601FA00677CAB /* SkeletonBinary.c in Sources */ = {isa = PBXBuildFile; fileRef = 303822421D8601FA00677CAB /* SkeletonBinary.c */; };
+		303822451D8601FA00677CAB /* SkeletonBinary.c in Sources */ = {isa = PBXBuildFile; fileRef = 303822421D8601FA00677CAB /* SkeletonBinary.c */; };
 		303B74EE1C27F6A100FEDE92 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B74ED1C27F6A100FEDE92 /* OpenGL.framework */; };
 		303B74F31C27F6EB00FEDE92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303B74F21C27F6EB00FEDE92 /* Cocoa.framework */; };
 		303B751A1C29ED4200FEDE92 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 303B75181C29EB8400FEDE92 /* main.cpp */; };
@@ -187,6 +190,8 @@
 		3033C9101CBBF415003307D1 /* witch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = witch.png; sourceTree = "<group>"; };
 		3036479F1C414EF50024DB5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		303647A01C414F120024DB5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		303822411D8601FA00677CAB /* kvec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kvec.h; path = "../../../../../../BearSlayer/external/spine-runtimes/spine-c/src/spine/kvec.h"; sourceTree = "<group>"; };
+		303822421D8601FA00677CAB /* SkeletonBinary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SkeletonBinary.c; path = "../../../../../../BearSlayer/external/spine-runtimes/spine-c/src/spine/SkeletonBinary.c"; sourceTree = "<group>"; };
 		303B74ED1C27F6A100FEDE92 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		303B74F01C27F6DD00FEDE92 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		303B74F21C27F6EB00FEDE92 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -309,7 +314,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30224CE61D7241AD0067DE35 /* libouzel_osx.a in Frameworks */,
+				30224CE61D7241AD0067DE35 /* libouzel_macos.a in Frameworks */,
 				305F6DBB1C66C50000B76A03 /* CoreVideo.framework in Frameworks */,
 				303B74F31C27F6EB00FEDE92 /* Cocoa.framework in Frameworks */,
 				303B74EE1C27F6A100FEDE92 /* OpenGL.framework in Frameworks */,
@@ -326,8 +331,8 @@
 		30224CD91D7240D50067DE35 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				30224CDF1D7240D50067DE35 /* libouzel_osx.a */,
 				30224CE11D7240D50067DE35 /* libouzel_ios.a */,
+				30224CDF1D7240D50067DE35 /* libouzel_macos.a */,
 				30224CE31D7240D50067DE35 /* libouzel_tvos.a */,
 			);
 			name = Products;
@@ -469,12 +474,14 @@
 				30FC9CE91D2D8E3B00AA00EB /* IkConstraintData.c */,
 				30FC9CEA1D2D8E3B00AA00EB /* Json.c */,
 				30FC9CEB1D2D8E3B00AA00EB /* Json.h */,
+				303822411D8601FA00677CAB /* kvec.h */,
 				30FC9CEC1D2D8E3B00AA00EB /* MeshAttachment.c */,
 				30FC9CED1D2D8E3B00AA00EB /* PathAttachment.c */,
 				30FC9CEE1D2D8E3B00AA00EB /* PathConstraint.c */,
 				30FC9CEF1D2D8E3B00AA00EB /* PathConstraintData.c */,
 				30FC9CF01D2D8E3B00AA00EB /* RegionAttachment.c */,
 				30FC9CF11D2D8E3B00AA00EB /* Skeleton.c */,
+				303822421D8601FA00677CAB /* SkeletonBinary.c */,
 				30FC9CF21D2D8E3B00AA00EB /* SkeletonBounds.c */,
 				30FC9CF31D2D8E3B00AA00EB /* SkeletonData.c */,
 				30FC9CF41D2D8E3B00AA00EB /* SkeletonJson.c */,
@@ -587,10 +594,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		30224CDF1D7240D50067DE35 /* libouzel_osx.a */ = {
+		30224CDF1D7240D50067DE35 /* libouzel_macos.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libouzel_osx.a;
+			path = libouzel_macos.a;
 			remoteRef = 30224CDE1D7240D50067DE35 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -654,6 +661,7 @@
 				30FC9D3B1D2D8E3B00AA00EB /* Skeleton.c in Sources */,
 				30FC9D231D2D8E3B00AA00EB /* IkConstraint.c in Sources */,
 				30FC9D561D2D8E3B00AA00EB /* VertexAttachment.c in Sources */,
+				303822441D8601FA00677CAB /* SkeletonBinary.c in Sources */,
 				30FC9D0B1D2D8E3B00AA00EB /* Attachment.c in Sources */,
 				30FC9D171D2D8E3B00AA00EB /* BoundingBoxAttachment.c in Sources */,
 				30FC9D4D1D2D8E3B00AA00EB /* SlotData.c in Sources */,
@@ -695,6 +703,7 @@
 				30FC9D3C1D2D8E3B00AA00EB /* Skeleton.c in Sources */,
 				30FC9D241D2D8E3B00AA00EB /* IkConstraint.c in Sources */,
 				30FC9D571D2D8E3B00AA00EB /* VertexAttachment.c in Sources */,
+				303822451D8601FA00677CAB /* SkeletonBinary.c in Sources */,
 				30FC9D0C1D2D8E3B00AA00EB /* Attachment.c in Sources */,
 				30FC9D181D2D8E3B00AA00EB /* BoundingBoxAttachment.c in Sources */,
 				30FC9D4E1D2D8E3B00AA00EB /* SlotData.c in Sources */,
@@ -736,6 +745,7 @@
 				30FC9D3A1D2D8E3B00AA00EB /* Skeleton.c in Sources */,
 				30FC9D221D2D8E3B00AA00EB /* IkConstraint.c in Sources */,
 				30FC9D551D2D8E3B00AA00EB /* VertexAttachment.c in Sources */,
+				303822431D8601FA00677CAB /* SkeletonBinary.c in Sources */,
 				30FC9D0A1D2D8E3B00AA00EB /* Attachment.c in Sources */,
 				30FC9D161D2D8E3B00AA00EB /* BoundingBoxAttachment.c in Sources */,
 				30FC9D4C1D2D8E3B00AA00EB /* SlotData.c in Sources */,
