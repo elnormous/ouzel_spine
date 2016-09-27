@@ -129,19 +129,19 @@ namespace spine
         spAnimationState_apply(animationState, skeleton);
     }
 
-    void SpineDrawable::draw(const ouzel::Matrix4& projection,
-                             const ouzel::Matrix4& transform,
+    void SpineDrawable::draw(const ouzel::Matrix4& viewProjectionMatrix,
+                             const ouzel::Matrix4& transformMatrix,
                              const ouzel::graphics::Color& color,
                              const ouzel::graphics::RenderTargetPtr& renderTarget)
     {
-        Component::draw(projection, transform, color, renderTarget);
+        Component::draw(viewProjectionMatrix, transformMatrix, color, renderTarget);
 
         spSkeleton_updateWorldTransform(skeleton);
         updateBounds();
 
         ouzel::graphics::TexturePtr currentTexture;
 
-        ouzel::Matrix4 modelViewProj = projection * transform;
+        ouzel::Matrix4 modelViewProj = viewProjectionMatrix * transformMatrix;
         float colorVector[] = { color.getR(), color.getG(), color.getB(), color.getA() };
 
         std::vector<std::vector<float>> pixelShaderConstants(1);
@@ -314,16 +314,16 @@ namespace spine
         vertexBuffer->setData(vertices.data(), static_cast<uint32_t>(vertices.size()));
     }
 
-    void SpineDrawable::drawWireframe(const ouzel::Matrix4& projection,
-                                      const ouzel::Matrix4& transform,
+    void SpineDrawable::drawWireframe(const ouzel::Matrix4& viewProjectionMatrix,
+                                      const ouzel::Matrix4& transformMatrix,
                                       const ouzel::graphics::Color& color,
                                       const ouzel::graphics::RenderTargetPtr& renderTarget)
     {
-        Component::drawWireframe(projection, transform, color, renderTarget);
+        Component::drawWireframe(viewProjectionMatrix, transformMatrix, color, renderTarget);
 
         if (!indices.empty())
         {
-            ouzel::Matrix4 modelViewProj = projection * transform;
+            ouzel::Matrix4 modelViewProj = viewProjectionMatrix * transformMatrix;
             float colorVector[] = { color.getR(), color.getG(), color.getB(), color.getA() };
 
             std::vector<std::vector<float>> pixelShaderConstants(1);
