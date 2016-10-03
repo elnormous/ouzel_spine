@@ -38,8 +38,8 @@ void SpineSample::run()
 
     layer = std::make_shared<scene::Layer>();
 
-    ouzel::scene::CameraPtr camera = std::make_shared<scene::Camera>();
-    layer->setCamera(camera);
+    camera = std::make_shared<scene::Camera>();
+    layer->addCamera(camera);
     scene->addLayer(layer);
 
     std::shared_ptr<spine::SpineDrawable> witch = std::make_shared<spine::SpineDrawable>("witch.atlas", "witch.json");
@@ -81,7 +81,7 @@ bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event) c
 {
     if (type == ouzel::Event::Type::KEY_DOWN)
     {
-        Vector2 position = layer->getCamera()->getPosition();
+        Vector2 position = camera->getPosition();
 
         switch (event.key)
         {
@@ -104,7 +104,7 @@ bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event) c
                 break;
         }
 
-        layer->getCamera()->setPosition(position);
+        camera->setPosition(position);
     }
 
     return true;

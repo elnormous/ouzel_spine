@@ -129,19 +129,18 @@ namespace spine
         spAnimationState_apply(animationState, skeleton);
     }
 
-    void SpineDrawable::draw(const ouzel::Matrix4& viewProjectionMatrix,
-                             const ouzel::Matrix4& transformMatrix,
+    void SpineDrawable::draw(const ouzel::Matrix4& transformMatrix,
                              const ouzel::graphics::Color& color,
-                             const ouzel::graphics::RenderTargetPtr& renderTarget)
+                             const ouzel::scene::CameraPtr& camera)
     {
-        Component::draw(viewProjectionMatrix, transformMatrix, color, renderTarget);
+        Component::draw(transformMatrix, color, camera);
 
         spSkeleton_updateWorldTransform(skeleton);
         updateBounds();
 
         ouzel::graphics::TexturePtr currentTexture;
 
-        ouzel::Matrix4 modelViewProj = viewProjectionMatrix * transformMatrix;
+        ouzel::Matrix4 modelViewProj = camera->getViewProjection() * transformMatrix;
         float colorVector[] = { color.getR(), color.getG(), color.getB(), color.getA() };
 
         std::vector<std::vector<float>> pixelShaderConstants(1);
@@ -191,7 +190,8 @@ namespace spine
                                                                        static_cast<uint32_t>(indices.size()) - offset,
                                                                        ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
                                                                        offset,
-                                                                       renderTarget);
+                                                                       camera->getRenderTarget(),
+                                                                       camera->getRenderViewport());
                 }
 
                 currentBlendState = blendState;
@@ -306,7 +306,8 @@ namespace spine
                                                                static_cast<uint32_t>(indices.size()) - offset,
                                                                ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
                                                                offset,
-                                                               renderTarget);
+                                                               camera->getRenderTarget(),
+                                                               camera->getRenderViewport());
         }
 
 
@@ -314,16 +315,15 @@ namespace spine
         vertexBuffer->setData(vertices.data(), static_cast<uint32_t>(vertices.size()));
     }
 
-    void SpineDrawable::drawWireframe(const ouzel::Matrix4& viewProjectionMatrix,
-                                      const ouzel::Matrix4& transformMatrix,
+    void SpineDrawable::drawWireframe(const ouzel::Matrix4& transformMatrix,
                                       const ouzel::graphics::Color& color,
-                                      const ouzel::graphics::RenderTargetPtr& renderTarget)
+                                      const ouzel::scene::CameraPtr& camera)
     {
-        Component::drawWireframe(viewProjectionMatrix, transformMatrix, color, renderTarget);
+        Component::drawWireframe(transformMatrix, color, camera);
 
         if (!indices.empty())
         {
-            ouzel::Matrix4 modelViewProj = viewProjectionMatrix * transformMatrix;
+            ouzel::Matrix4 modelViewProj = camera->getViewProjection() * transformMatrix;
             float colorVector[] = { color.getR(), color.getG(), color.getB(), color.getA() };
 
             std::vector<std::vector<float>> pixelShaderConstants(1);
@@ -341,7 +341,8 @@ namespace spine
                                                                0,
                                                                ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
                                                                0,
-                                                               renderTarget,
+                                                               camera->getRenderTarget(),
+                                                               camera->getRenderViewport(),
                                                                true);
         }
     }

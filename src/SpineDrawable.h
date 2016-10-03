@@ -19,15 +19,13 @@ namespace spine
         virtual ~SpineDrawable();
 
         void update(float delta);
-        virtual void draw(const ouzel::Matrix4& viewProjectionMatrix,
-                          const ouzel::Matrix4& transformMatrix,
+        virtual void draw(const ouzel::Matrix4& transformMatrix,
                           const ouzel::graphics::Color& color,
-                          const ouzel::graphics::RenderTargetPtr& renderTarget) override;
+                          const ouzel::scene::CameraPtr& camera) override;
 
-        virtual void drawWireframe(const ouzel::Matrix4& viewProjectionMatrix,
-                                   const ouzel::Matrix4& transformMatrix,
+        virtual void drawWireframe(const ouzel::Matrix4& transformMatrix,
                                    const ouzel::graphics::Color& color,
-                                   const ouzel::graphics::RenderTargetPtr& renderTarget) override;
+                                   const ouzel::scene::CameraPtr& camera) override;
 
         float getTimeScale() const;
         void setTimeScale(float newTimeScale);

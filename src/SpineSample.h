@@ -17,6 +17,7 @@ public:
 
 protected:
     ouzel::scene::LayerPtr layer;
+    ouzel::scene::CameraPtr camera;
 
     ouzel::EventHandler eventHandler;
 };
