@@ -54,7 +54,7 @@ namespace spine
 
         spSkeletonJson* json = spSkeletonJson_create(atlas);
         //json->scale = 0.6f;
-        spSkeletonData* skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonFile.c_str());
+        skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonFile.c_str());
         if (!skeletonData)
         {
             ouzel::log(ouzel::LOG_LEVEL_ERROR, "Failed to load skeleton: %s", json->error);
@@ -98,27 +98,12 @@ namespace spine
 
     SpineDrawable::~SpineDrawable()
     {
-        if (bounds)
-        {
-            spSkeletonBounds_dispose(bounds);
-        }
-
-        if (atlas)
-        {
-            spAtlas_dispose(atlas);
-        }
-
-        if (animationState)
-        {
-            spAnimationState_dispose(animationState);
-        }
-
-        if (animationStateData)
-        {
-            spAnimationStateData_dispose(animationStateData);
-        }
-
+        if (bounds) spSkeletonBounds_dispose(bounds);
+        if (atlas) spAtlas_dispose(atlas);
+        if (animationState) spAnimationState_dispose(animationState);
+        if (animationStateData) spAnimationStateData_dispose(animationStateData);
         if (skeleton) spSkeleton_dispose(skeleton);
+        if (skeletonData) spSkeletonData_dispose(skeletonData);
 
         ouzel::sharedEngine->unscheduleUpdate(updateCallback);
     }
@@ -545,5 +530,11 @@ namespace spine
                 continue;
             }
         }
+    }
+
+    void SpineDrawable::setSkin(const std::string& skinName)
+    {
+        spSkin* skin = spSkeletonData_findSkin(skeletonData, skinName.c_str());
+        spSkeleton_setSkin(skeleton, skin);
     }
 }

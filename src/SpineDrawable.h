@@ -59,10 +59,13 @@ namespace spine
 
         void setEventCallback(const std::function<void(int, spEventType, spEvent*, int)>& newEventCallback);
         void handleEvent(int trackIndex, spEventType type, spEvent* event, int loopCount);
-        
+
+        void setSkin(const std::string& skinName);
+
     private:
         void updateBounds();
 
+        spSkeletonData* skeletonData = nullptr;
         spSkeleton* skeleton = nullptr;
         spAtlas* atlas = nullptr;
         spAnimationState* animationState = nullptr;
