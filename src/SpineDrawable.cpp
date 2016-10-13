@@ -48,7 +48,7 @@ namespace spine
         atlas = spAtlas_createFromFile(atlasFile.c_str(), 0);
         if (!atlas)
         {
-            ouzel::log(ouzel::LOG_LEVEL_ERROR, "Failed to load atlas");
+            ouzel::Log(ouzel::Log::Level::ERR) << "Failed to load atlas";
             return;
         }
 
@@ -57,7 +57,7 @@ namespace spine
         skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonFile.c_str());
         if (!skeletonData)
         {
-            ouzel::log(ouzel::LOG_LEVEL_ERROR, "Failed to load skeleton: %s", json->error);
+            ouzel::Log(ouzel::Log::Level::ERR) << "Failed to load skeleton: " << json->error;
             return;
         }
         spSkeletonJson_dispose(json);
