@@ -93,7 +93,7 @@ namespace spine
         whitePixelTexture = ouzel::sharedEngine->getCache()->getTexture(ouzel::graphics::TEXTURE_WHITE_PIXEL);
 
         updateCallback.callback = std::bind(&SpineDrawable::update, this, std::placeholders::_1);
-        ouzel::sharedEngine->scheduleUpdate(updateCallback);
+        ouzel::sharedEngine->scheduleUpdate(&updateCallback);
     }
 
     SpineDrawable::~SpineDrawable()
@@ -104,8 +104,6 @@ namespace spine
         if (animationStateData) spAnimationStateData_dispose(animationStateData);
         if (skeleton) spSkeleton_dispose(skeleton);
         if (skeletonData) spSkeletonData_dispose(skeletonData);
-
-        ouzel::sharedEngine->unscheduleUpdate(updateCallback);
     }
 
     void SpineDrawable::update(float delta)
@@ -116,7 +114,7 @@ namespace spine
 
     void SpineDrawable::draw(const ouzel::Matrix4& transformMatrix,
                              const ouzel::graphics::Color& color,
-                             const ouzel::scene::CameraPtr& camera)
+                             ouzel::scene::Camera* camera)
     {
         Component::draw(transformMatrix, color, camera);
 
@@ -302,7 +300,7 @@ namespace spine
 
     void SpineDrawable::drawWireframe(const ouzel::Matrix4& transformMatrix,
                                       const ouzel::graphics::Color& color,
-                                      const ouzel::scene::CameraPtr& camera)
+                                      ouzel::scene::Camera* camera)
     {
         Component::drawWireframe(transformMatrix, color, camera);
 
