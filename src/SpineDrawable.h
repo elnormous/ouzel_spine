@@ -84,7 +84,7 @@ namespace spine
         spAnimationState* getAnimationState() const { return animationState; }
 
         void setEventCallback(const std::function<void(int32_t, const Event&, int32_t)>& newEventCallback);
-        void handleEvent(int32_t trackIndex, int32_t type, spEvent* event, int32_t loopCount);
+        void handleEvent(int trackIndex, int type, spEvent* event, int loopCount);
 
         void setSkin(const std::string& skinName);
 

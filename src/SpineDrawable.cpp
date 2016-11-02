@@ -385,7 +385,7 @@ namespace spine
         spAnimationState_clearTracks(animationState);
     }
 
-    void SpineDrawable::clearTrack(int trackIndex)
+    void SpineDrawable::clearTrack(int32_t trackIndex)
     {
         spAnimationState_clearTrack(animationState, trackIndex);
     }
@@ -397,7 +397,7 @@ namespace spine
         return animation != nullptr;
     }
 
-    std::string SpineDrawable::getAnimation(int trackIndex) const
+    std::string SpineDrawable::getAnimation(int32_t trackIndex) const
     {
         spTrackEntry* track = spAnimationState_getCurrent(animationState, trackIndex);
 
@@ -409,7 +409,7 @@ namespace spine
         return "";
     }
 
-    bool SpineDrawable::setAnimation(int trackIndex, const std::string& animationName, bool loop)
+    bool SpineDrawable::setAnimation(int32_t trackIndex, const std::string& animationName, bool loop)
     {
         spAnimation* animation = spSkeletonData_findAnimation(animationState->data->skeletonData, animationName.c_str());
 
@@ -423,7 +423,7 @@ namespace spine
         return true;
     }
 
-    bool SpineDrawable::addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay)
+    bool SpineDrawable::addAnimation(int32_t trackIndex, const std::string& animationName, bool loop, float delay)
     {
         spAnimation* animation = spSkeletonData_findAnimation(animationState->data->skeletonData, animationName.c_str());
 
@@ -458,7 +458,7 @@ namespace spine
         return true;
     }
 
-    bool SpineDrawable::setAnimationProgress(int trackIndex, float progress)
+    bool SpineDrawable::setAnimationProgress(int32_t trackIndex, float progress)
     {
         if (spTrackEntry* current = spAnimationState_getCurrent(animationState, trackIndex))
         {
@@ -470,7 +470,7 @@ namespace spine
         return true;
     }
 
-    float SpineDrawable::getAnimationProgress(int trackIndex) const
+    float SpineDrawable::getAnimationProgress(int32_t trackIndex) const
     {
         if (spTrackEntry* current = spAnimationState_getCurrent(animationState, trackIndex))
         {
