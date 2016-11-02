@@ -3,18 +3,43 @@
 #pragma once
 
 #include <ouzel.h>
-#include <spine/spine.h>
-#include <spine/extension.h>
 
 #ifndef SPINE_MESH_VERTEX_COUNT_MAX
 #define SPINE_MESH_VERTEX_COUNT_MAX 1000
 #endif
+
+struct spSkeletonData;
+struct spSkeleton;
+struct spAtlas;
+struct spAnimationState;
+struct spAnimationStateData;
+struct spSkeletonBounds;
+struct spEvent;
 
 namespace spine
 {
     class SpineDrawable: public ouzel::scene::Component
     {
     public:
+        struct Event
+        {
+            enum class Type
+            {
+                NONE,
+                START,
+                END,
+                COMPLETE,
+                EVENT
+            };
+
+            Type type = Event::Type::NONE;
+            std::string name;
+            float time = 0.0f;
+            int32_t intValue = 0;
+            float floatValue = 0.0f;
+            std::string stringValue;
+        };
+
         SpineDrawable(const std::string& atlasFile, const std::string& skeletonFile);
         virtual ~SpineDrawable();
 
@@ -42,23 +67,24 @@ namespace spine
         void reset();
 
         void clearTracks();
-        void clearTrack(int trackIndex);
+        void clearTrack(int32_t trackIndex);
 
         bool hasAnimation(const std::string& animationName);
-        std::string getAnimation(int trackIndex) const;
-        bool setAnimation(int trackIndex, const std::string& animationName, bool loop);
-        bool addAnimation(int trackIndex, const std::string& animationName, bool loop, float delay);
+        std::string getAnimation(int32_t trackIndex) const;
+        bool setAnimation(int32_t trackIndex, const std::string& animationName, bool loop);
+        bool addAnimation(int32_t trackIndex, const std::string& animationName, bool loop, float delay);
 
         bool setAnimationMix(const std::string& from, const std::string& to, float duration);
-        bool setAnimationProgress(int trackIndex, float progress);
-        float getAnimationProgress(int trackIndex) const;
+        bool setAnimationProgress(int32_t trackIndex, float progress);
+        float getAnimationProgress(int32_t trackIndex) const;
+        std::string getAnimationName(int32_t trackIndex) const;
 
         spSkeleton* getSkeleton() const { return skeleton; }
         spAtlas* getAtlas() const { return atlas; }
         spAnimationState* getAnimationState() const { return animationState; }
 
-        void setEventCallback(const std::function<void(int, spEventType, spEvent*, int)>& newEventCallback);
-        void handleEvent(int trackIndex, spEventType type, spEvent* event, int loopCount);
+        void setEventCallback(const std::function<void(int32_t, const Event&, int32_t)>& newEventCallback);
+        void handleEvent(int32_t trackIndex, int32_t type, spEvent* event, int32_t loopCount);
 
         void setSkin(const std::string& skinName);
 
@@ -87,6 +113,6 @@ namespace spine
 
         ouzel::UpdateCallback updateCallback;
 
-        std::function<void(int, spEventType, spEvent*, int)> eventCallback;
+        std::function<void(int32_t, const Event&, int32_t)> eventCallback;
     };
 }

@@ -1,5 +1,7 @@
 // Copyright (C) 2015 Elviss Strazdins
 
+#include <spine/spine.h>
+#include <spine/extension.h>
 #include "SpineDrawable.h"
 
 struct SpineTexture
@@ -478,16 +480,52 @@ namespace spine
         return 0.0f;
     }
 
-    void SpineDrawable::setEventCallback(const std::function<void(int, spEventType, spEvent*, int)>& newEventCallback)
+    std::string SpineDrawable::getAnimationName(int32_t trackIndex) const
+    {
+        if (spTrackEntry* current = spAnimationState_getCurrent(animationState, trackIndex))
+        {
+            if (current->animation) return current->animation->name;
+        }
+
+        return std::string();
+    }
+
+    void SpineDrawable::setEventCallback(const std::function<void(int32_t, const Event&, int32_t)>& newEventCallback)
     {
         eventCallback = newEventCallback;
     }
 
-    void SpineDrawable::handleEvent(int trackIndex, spEventType type, spEvent* event, int loopCount)
+    void SpineDrawable::handleEvent(int32_t trackIndex, int32_t type, spEvent* event, int32_t loopCount)
     {
         if (eventCallback)
         {
-            eventCallback(trackIndex, type, event, loopCount);
+            Event e;
+
+            switch (type)
+            {
+                case SP_ANIMATION_START:
+                    e.type = Event::Type::START;
+                    break;
+                case SP_ANIMATION_END:
+                    e.type = Event::Type::END;
+                    break;
+                case SP_ANIMATION_COMPLETE:
+                    e.type = Event::Type::COMPLETE;
+                    break;
+                case SP_ANIMATION_EVENT:
+                    e.type = Event::Type::EVENT;
+                    if (event)
+                    {
+                        e.name = event->data->name;
+                        e.time = event->time;
+                        e.intValue = event->intValue;
+                        e.floatValue = event->floatValue;
+                        e.stringValue = event->stringValue;
+                    }
+                    break;
+            }
+
+            eventCallback(trackIndex, e, loopCount);
         }
     }
 

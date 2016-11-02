@@ -38,23 +38,22 @@ void SpineSample::run()
     witch->setAnimation(0, "walk", true);
     witch->addAnimation(0, "death", false, 2.0f);
 
-    witch->setEventCallback([this](int trackIndex, spEventType type, spEvent* event, int loopCount) {
-        spTrackEntry* entry = spAnimationState_getCurrent(witch->getAnimationState(), trackIndex);
-        const char* animationName = (entry && entry->animation) ? entry->animation->name : nullptr;
-
-        switch (type)
+    witch->setEventCallback([this](int32_t trackIndex, const spine::SpineDrawable::Event& event, int32_t loopCount) {
+        switch (event.type)
         {
-            case SP_ANIMATION_START:
-                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " start: " << animationName;
+            case spine::SpineDrawable::Event::Type::START:
+                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " start: " << witch->getAnimationName(trackIndex);
                 break;
-            case SP_ANIMATION_END:
-                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " end: " << animationName;
+            case spine::SpineDrawable::Event::Type::END:
+                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " end: " << witch->getAnimationName(trackIndex);
                 break;
-            case SP_ANIMATION_COMPLETE:
-                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " complete: " << animationName << ", " << loopCount;
+            case spine::SpineDrawable::Event::Type::COMPLETE:
+                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " complete: " << witch->getAnimationName(trackIndex) << ", " << loopCount;
                 break;
-            case SP_ANIMATION_EVENT:
-                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " event: " << animationName << ", " << event->data->name << ": " << event->intValue << ", " << event->floatValue << ", " << event->stringValue;
+            case spine::SpineDrawable::Event::Type::EVENT:
+                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " event: " << witch->getAnimationName(trackIndex) << ", " << event.name << ": " << event.intValue << ", " << event.floatValue << ", " << event.stringValue;
+                break;
+            default:
                 break;
         }
     });
