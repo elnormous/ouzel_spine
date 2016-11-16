@@ -38,9 +38,9 @@ char* _spUtil_readFile(const char* path, int* length)
     return result;
 }
 
-static void listener(spAnimationState* state, int trackIndex, spEventType type, spEvent* event, int loopCount)
+static void listener(spAnimationState* state, spEventType type, spTrackEntry* entry, spEvent* event)
 {
-    static_cast<spine::SpineDrawable*>(state->rendererObject)->handleEvent(trackIndex, type, event, loopCount);
+    static_cast<spine::SpineDrawable*>(state->rendererObject)->handleEvent(type, entry, event);
 }
 
 namespace spine
@@ -462,7 +462,7 @@ namespace spine
     {
         if (spTrackEntry* current = spAnimationState_getCurrent(animationState, trackIndex))
         {
-            current->time = current->endTime * progress;
+            current->trackTime = current->trackEnd * progress;
 
             spAnimationState_apply(animationState, skeleton);
         }
@@ -474,7 +474,7 @@ namespace spine
     {
         if (spTrackEntry* current = spAnimationState_getCurrent(animationState, trackIndex))
         {
-            return (current->endTime != 0.0f) ? current->time / current->endTime : 0.0f;
+            return (current->trackEnd != 0.0f) ? current->trackTime / current->trackEnd : 0.0f;
         }
 
         return 0.0f;
@@ -490,12 +490,12 @@ namespace spine
         return std::string();
     }
 
-    void SpineDrawable::setEventCallback(const std::function<void(int32_t, const Event&, int32_t)>& newEventCallback)
+    void SpineDrawable::setEventCallback(const std::function<void(int32_t, const Event&)>& newEventCallback)
     {
         eventCallback = newEventCallback;
     }
 
-    void SpineDrawable::handleEvent(int32_t trackIndex, int32_t type, spEvent* event, int32_t loopCount)
+    void SpineDrawable::handleEvent(int type, spTrackEntry* entry, spEvent* event)
     {
         if (eventCallback)
         {
@@ -525,7 +525,7 @@ namespace spine
                     break;
             }
 
-            eventCallback(trackIndex, e, loopCount);
+            eventCallback(entry->trackIndex, e);
         }
     }
 

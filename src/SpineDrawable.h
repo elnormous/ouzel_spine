@@ -15,6 +15,7 @@ struct spAnimationState;
 struct spAnimationStateData;
 struct spSkeletonBounds;
 struct spEvent;
+struct spTrackEntry;
 
 namespace spine
 {
@@ -83,8 +84,8 @@ namespace spine
         spAtlas* getAtlas() const { return atlas; }
         spAnimationState* getAnimationState() const { return animationState; }
 
-        void setEventCallback(const std::function<void(int32_t, const Event&, int32_t)>& newEventCallback);
-        void handleEvent(int trackIndex, int type, spEvent* event, int loopCount);
+        void setEventCallback(const std::function<void(int32_t, const Event&)>& newEventCallback);
+        void handleEvent(int type, spTrackEntry* entry, spEvent* event);
 
         void setSkin(const std::string& skinName);
 
@@ -113,6 +114,6 @@ namespace spine
 
         ouzel::UpdateCallback updateCallback;
 
-        std::function<void(int32_t, const Event&, int32_t)> eventCallback;
+        std::function<void(int32_t, const Event&)> eventCallback;
     };
 }

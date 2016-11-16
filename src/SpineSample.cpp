@@ -38,7 +38,7 @@ void SpineSample::run()
     witch->setAnimation(0, "walk", true);
     witch->addAnimation(0, "death", false, 2.0f);
 
-    witch->setEventCallback([this](int32_t trackIndex, const spine::SpineDrawable::Event& event, int32_t loopCount) {
+    witch->setEventCallback([this](int32_t trackIndex, const spine::SpineDrawable::Event& event) {
         switch (event.type)
         {
             case spine::SpineDrawable::Event::Type::START:
@@ -48,7 +48,7 @@ void SpineSample::run()
                 ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " end: " << witch->getAnimationName(trackIndex);
                 break;
             case spine::SpineDrawable::Event::Type::COMPLETE:
-                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " complete: " << witch->getAnimationName(trackIndex) << ", " << loopCount;
+                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " complete: " << witch->getAnimationName(trackIndex) << ", ";
                 break;
             case spine::SpineDrawable::Event::Type::EVENT:
                 ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " event: " << witch->getAnimationName(trackIndex) << ", " << event.name << ": " << event.intValue << ", " << event.floatValue << ", " << event.stringValue;
