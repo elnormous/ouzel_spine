@@ -24,7 +24,7 @@ void SpineSample::run()
 
     sharedEngine->getEventDispatcher()->addEventHandler(&eventHandler);
 
-    sharedEngine->getRenderer()->setClearColor(graphics::Color(64, 0, 0));
+    sharedEngine->getRenderer()->setClearColor(Color(64, 0, 0));
 
     sharedEngine->getSceneManager()->setScene(&scene);
     layer.addCamera(&camera);

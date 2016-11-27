@@ -46,11 +46,11 @@ namespace spine
 
         void update(float delta);
         virtual void draw(const ouzel::Matrix4& transformMatrix,
-                          const ouzel::graphics::Color& color,
+                          const ouzel::Color& color,
                           ouzel::scene::Camera* camera) override;
 
         virtual void drawWireframe(const ouzel::Matrix4& transformMatrix,
-                                   const ouzel::graphics::Color& color,
+                                   const ouzel::Color& color,
                                    ouzel::scene::Camera* camera) override;
 
         float getTimeScale() const;

@@ -115,7 +115,7 @@ namespace spine
     }
 
     void SpineDrawable::draw(const ouzel::Matrix4& transformMatrix,
-                             const ouzel::graphics::Color& color,
+                             const ouzel::Color& color,
                              ouzel::scene::Camera* camera)
     {
         Component::draw(transformMatrix, color, camera);
@@ -301,7 +301,7 @@ namespace spine
     }
 
     void SpineDrawable::drawWireframe(const ouzel::Matrix4& transformMatrix,
-                                      const ouzel::graphics::Color& color,
+                                      const ouzel::Color& color,
                                       ouzel::scene::Camera* camera)
     {
         Component::drawWireframe(transformMatrix, color, camera);
