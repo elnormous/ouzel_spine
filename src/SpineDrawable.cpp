@@ -125,7 +125,7 @@ namespace spine
 
         ouzel::graphics::TexturePtr currentTexture;
 
-        ouzel::Matrix4 modelViewProj = camera->getViewProjection() * transformMatrix;
+        ouzel::Matrix4 modelViewProj = camera->getRenderViewProjection() * transformMatrix;
         float colorVector[] = { color.getR(), color.getG(), color.getB(), color.getA() };
 
         std::vector<std::vector<float>> pixelShaderConstants(1);
@@ -308,7 +308,7 @@ namespace spine
 
         if (!indices.empty())
         {
-            ouzel::Matrix4 modelViewProj = camera->getViewProjection() * transformMatrix;
+            ouzel::Matrix4 modelViewProj = camera->getRenderViewProjection() * transformMatrix;
             float colorVector[] = { color.getR(), color.getG(), color.getB(), color.getA() };
 
             std::vector<std::vector<float>> pixelShaderConstants(1);
