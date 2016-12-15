@@ -90,8 +90,6 @@ namespace spine
         void setSkin(const std::string& skinName);
 
     private:
-        void updateBounds();
-
         spSkeletonData* skeletonData = nullptr;
         spSkeleton* skeleton = nullptr;
         spAtlas* atlas = nullptr;

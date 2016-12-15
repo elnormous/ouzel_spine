@@ -77,7 +77,41 @@ namespace spine
         spSkeleton_setToSetupPose(skeleton);
         spSkeleton_updateWorldTransform(skeleton);
 
-        updateBounds();
+        for (int i = 0; i < skeleton->slotsCount; ++i)
+        {
+            spSlot* slot = skeleton->drawOrder[i];
+            spAttachment* attachment = slot->attachment;
+            if (!attachment) continue;
+
+            if (attachment->type == SP_ATTACHMENT_REGION)
+            {
+                spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
+                spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices);
+
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X1], worldVertices[SP_VERTEX_Y1]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X2], worldVertices[SP_VERTEX_Y2]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X3], worldVertices[SP_VERTEX_Y3]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X4], worldVertices[SP_VERTEX_Y4]));
+            }
+            else if (attachment->type == SP_ATTACHMENT_MESH)
+            {
+                spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
+                if (mesh->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
+                spMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
+
+                for (int t = 0; t < mesh->trianglesCount; ++t)
+                {
+                    int index = mesh->triangles[t] << 1;
+
+                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[index], worldVertices[index + 1]));
+                }
+
+            }
+            else
+            {
+                continue;
+            }
+        }
 
         indexBuffer = ouzel::sharedEngine->getRenderer()->createIndexBuffer();
         indexBuffer->init(true);
@@ -121,7 +155,6 @@ namespace spine
         Component::draw(transformMatrix, color, camera);
 
         spSkeleton_updateWorldTransform(skeleton);
-        updateBounds();
 
         ouzel::graphics::TexturePtr currentTexture;
 
@@ -142,6 +175,8 @@ namespace spine
 
         ouzel::graphics::BlendStatePtr currentBlendState = blendState;
         uint32_t offset = 0;
+
+        boundingBox.reset();
 
         for (int i = 0; i < skeleton->slotsCount; ++i)
         {
@@ -243,6 +278,11 @@ namespace spine
                 indices.push_back(currentVertexIndex + 3);
 
                 currentVertexIndex += 4;
+
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X1], worldVertices[SP_VERTEX_Y1]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X2], worldVertices[SP_VERTEX_Y2]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X3], worldVertices[SP_VERTEX_Y3]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X4], worldVertices[SP_VERTEX_Y4]));
             }
             else if (attachment->type == SP_ATTACHMENT_MESH)
             {
@@ -267,6 +307,8 @@ namespace spine
                     indices.push_back(currentVertexIndex);
                     currentVertexIndex++;
                     vertices.push_back(vertex);
+
+                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[index], worldVertices[index + 1]));
                 }
             }
             else
@@ -526,45 +568,6 @@ namespace spine
             }
 
             eventCallback(entry->trackIndex, e);
-        }
-    }
-
-    void SpineDrawable::updateBounds()
-    {
-        for (int i = 0; i < skeleton->slotsCount; ++i)
-        {
-            spSlot* slot = skeleton->drawOrder[i];
-            spAttachment* attachment = slot->attachment;
-            if (!attachment) continue;
-
-            if (attachment->type == SP_ATTACHMENT_REGION)
-            {
-                spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
-                spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices);
-
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X1], worldVertices[SP_VERTEX_Y1]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X2], worldVertices[SP_VERTEX_Y2]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X3], worldVertices[SP_VERTEX_Y3]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X4], worldVertices[SP_VERTEX_Y4]));
-            }
-            else if (attachment->type == SP_ATTACHMENT_MESH)
-            {
-                spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
-                if (mesh->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
-                spMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
-
-                for (int t = 0; t < mesh->trianglesCount; ++t)
-                {
-                    int index = mesh->triangles[t] << 1;
-
-                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[index], worldVertices[index + 1]));
-                }
-
-            }
-            else
-            {
-                continue;
-            }
         }
     }
 
