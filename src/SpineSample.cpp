@@ -72,16 +72,16 @@ bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event)
         switch (event.key)
         {
             case input::KeyboardKey::UP:
-                position.y += 10.0f;
+                position.y() += 10.0f;
                 break;
             case input::KeyboardKey::DOWN:
-                position.y -= 10.0f;
+                position.y() -= 10.0f;
                 break;
             case input::KeyboardKey::LEFT:
-                position.x -= 10.0f;
+                position.x() -= 10.0f;
                 break;
             case input::KeyboardKey::RIGHT:
-                position.x += 10.0f;
+                position.x() += 10.0f;
                 break;
             case input::KeyboardKey::RETURN:
                 sharedEngine->getWindow()->setSize(Size2(640.0f, 480.0f));
