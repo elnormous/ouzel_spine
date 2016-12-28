@@ -528,7 +528,7 @@ namespace spine
                         e.time = event->time;
                         e.intValue = event->intValue;
                         e.floatValue = event->floatValue;
-                        e.stringValue = event->stringValue;
+                        if (event->stringValue) e.stringValue = event->stringValue;
                     }
                     break;
             }
