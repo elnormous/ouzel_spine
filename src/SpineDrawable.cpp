@@ -300,7 +300,9 @@ namespace spine
                                                                ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
                                                                offset,
                                                                camera->getRenderTarget(),
-                                                               camera->getRenderViewport());
+                                                               camera->getRenderViewport(),
+                                                               camera->getDepthWrite(),
+                                                               camera->getDepthTest());
         }
 
 
@@ -336,8 +338,8 @@ namespace spine
                                                                0,
                                                                camera->getRenderTarget(),
                                                                camera->getRenderViewport(),
-                                                               false,
-                                                               false,
+                                                               camera->getDepthWrite(),
+                                                               camera->getDepthTest(),
                                                                true);
         }
     }
