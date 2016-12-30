@@ -125,13 +125,13 @@ namespace spine
         ouzel::graphics::TexturePtr currentTexture;
 
         ouzel::Matrix4 modelViewProj = camera->getRenderViewProjection() * transformMatrix;
-        float colorVector[] = { color.normR(), color.normG(), color.normB(), color.normA() };
+        float colorVector[] = {color.normR(), color.normG(), color.normB(), color.normA()};
 
         std::vector<std::vector<float>> pixelShaderConstants(1);
-        pixelShaderConstants[0] = { std::begin(colorVector), std::end(colorVector) };
+        pixelShaderConstants[0] = {std::begin(colorVector), std::end(colorVector)};
 
         std::vector<std::vector<float>> vertexShaderConstants(1);
-        vertexShaderConstants[0] = { std::begin(modelViewProj.m), std::end(modelViewProj.m) };
+        vertexShaderConstants[0] = {std::begin(modelViewProj.m), std::end(modelViewProj.m)};
 
         ouzel::graphics::VertexPCT vertex;
 
@@ -167,7 +167,7 @@ namespace spine
             {
                 if (indices.size() - offset > 0)
                 {
-                    ouzel::sharedEngine->getRenderer()->addDrawCommand({ currentTexture },
+                    ouzel::sharedEngine->getRenderer()->addDrawCommand({currentTexture},
                                                                        shader,
                                                                        pixelShaderConstants,
                                                                        vertexShaderConstants,
@@ -290,7 +290,7 @@ namespace spine
 
         if (indices.size() - offset > 0)
         {
-            ouzel::sharedEngine->getRenderer()->addDrawCommand({ currentTexture },
+            ouzel::sharedEngine->getRenderer()->addDrawCommand({currentTexture},
                                                                shader,
                                                                pixelShaderConstants,
                                                                vertexShaderConstants,
@@ -319,15 +319,15 @@ namespace spine
         if (!indices.empty())
         {
             ouzel::Matrix4 modelViewProj = camera->getRenderViewProjection() * transformMatrix;
-            float colorVector[] = { color.normR(), color.normG(), color.normB(), color.normA() };
+            float colorVector[] = {color.normR(), color.normG(), color.normB(), color.normA()};
 
             std::vector<std::vector<float>> pixelShaderConstants(1);
-            pixelShaderConstants[0] = { std::begin(colorVector), std::end(colorVector) };
+            pixelShaderConstants[0] = {std::begin(colorVector), std::end(colorVector)};
 
             std::vector<std::vector<float>> vertexShaderConstants(1);
-            vertexShaderConstants[0] = { std::begin(modelViewProj.m), std::end(modelViewProj.m) };
+            vertexShaderConstants[0] = {std::begin(modelViewProj.m), std::end(modelViewProj.m)};
 
-            ouzel::sharedEngine->getRenderer()->addDrawCommand({ whitePixelTexture },
+            ouzel::sharedEngine->getRenderer()->addDrawCommand({whitePixelTexture},
                                                                shader,
                                                                pixelShaderConstants,
                                                                vertexShaderConstants,
