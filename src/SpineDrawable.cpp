@@ -431,6 +431,7 @@ namespace spine
         }
 
         spAnimationState_setAnimation(animationState, trackIndex, animation, loop ? 1 : 0);
+        spAnimationState_apply(animationState, skeleton);
 
         return true;
     }
@@ -445,6 +446,7 @@ namespace spine
         }
 
         spAnimationState_addAnimation(animationState, trackIndex, animation, loop ? 1 : 0, delay);
+        spAnimationState_apply(animationState, skeleton);
 
         return true;
     }
