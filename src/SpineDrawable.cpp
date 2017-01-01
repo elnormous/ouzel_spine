@@ -111,7 +111,6 @@ namespace spine
     void SpineDrawable::update(float delta)
     {
         spAnimationState_update(animationState, delta);
-        spAnimationState_apply(animationState, skeleton);
     }
 
     void SpineDrawable::draw(const ouzel::Matrix4& transformMatrix,
@@ -120,6 +119,7 @@ namespace spine
     {
         Component::draw(transformMatrix, color, camera);
 
+        spAnimationState_apply(animationState, skeleton);
         spSkeleton_updateWorldTransform(skeleton);
 
         ouzel::graphics::TexturePtr currentTexture;
@@ -431,7 +431,6 @@ namespace spine
         }
 
         spAnimationState_setAnimation(animationState, trackIndex, animation, loop ? 1 : 0);
-        spAnimationState_apply(animationState, skeleton);
 
         return true;
     }
@@ -446,7 +445,6 @@ namespace spine
         }
 
         spAnimationState_addAnimation(animationState, trackIndex, animation, loop ? 1 : 0, delay);
-        spAnimationState_apply(animationState, skeleton);
 
         return true;
     }
@@ -477,8 +475,6 @@ namespace spine
         if (spTrackEntry* current = spAnimationState_getCurrent(animationState, trackIndex))
         {
             current->trackTime = current->trackEnd * progress;
-
-            spAnimationState_apply(animationState, skeleton);
         }
 
         return true;
