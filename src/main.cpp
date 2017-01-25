@@ -13,7 +13,7 @@ void ouzelMain(const std::vector<std::string>& args)
     settings.size = ouzel::Size2(800.0f, 600.0f);
     settings.resizable = true;
     settings.sampleCount = 4;
-    settings.textureFilter = ouzel::graphics::TextureFilter::TRILINEAR;
+    settings.textureFilter = ouzel::graphics::Texture::Filter::TRILINEAR;
     settings.title = "Spine import";
     engine.init(settings);
 

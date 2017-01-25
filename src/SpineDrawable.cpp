@@ -79,16 +79,14 @@ namespace spine
 
         updateBoundingBox();
 
-        indexBuffer = ouzel::sharedEngine->getRenderer()->createIndexBuffer();
-        indexBuffer->init(true);
-        indexBuffer->setIndexSize(sizeof(uint16_t));
+        indexBuffer = std::make_shared<ouzel::graphics::Buffer>();
+        indexBuffer->init(ouzel::graphics::Buffer::Usage::INDEX, true);
 
-        vertexBuffer = ouzel::sharedEngine->getRenderer()->createVertexBuffer();
-        vertexBuffer->init(true);
-        vertexBuffer->setVertexAttributes(ouzel::graphics::VertexPCT::ATTRIBUTES);
+        vertexBuffer = std::make_shared<ouzel::graphics::Buffer>();
+        vertexBuffer->init(ouzel::graphics::Buffer::Usage::VERTEX, true);
 
-        meshBuffer = ouzel::sharedEngine->getRenderer()->createMeshBuffer();
-        meshBuffer->init(indexBuffer, vertexBuffer);
+        meshBuffer = std::make_shared<ouzel::graphics::MeshBuffer>();
+        meshBuffer->init(sizeof(uint16_t), indexBuffer, ouzel::graphics::VertexPCT::ATTRIBUTES, vertexBuffer);
 
         blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
         shader = ouzel::sharedEngine->getCache()->getShader(ouzel::graphics::SHADER_TEXTURE);
@@ -122,7 +120,7 @@ namespace spine
         spAnimationState_apply(animationState, skeleton);
         spSkeleton_updateWorldTransform(skeleton);
 
-        ouzel::graphics::TexturePtr currentTexture;
+        std::shared_ptr<ouzel::graphics::Texture> currentTexture;
 
         ouzel::Matrix4 modelViewProj = camera->getRenderViewProjection() * transformMatrix;
         float colorVector[] = {color.normR(), color.normG(), color.normB(), color.normA()};
@@ -139,7 +137,7 @@ namespace spine
         indices.clear();
         vertices.clear();
 
-        ouzel::graphics::BlendStatePtr currentBlendState = blendState;
+        std::shared_ptr<ouzel::graphics::BlendState> currentBlendState = blendState;
         uint32_t offset = 0;
 
         boundingBox.reset();
@@ -306,8 +304,8 @@ namespace spine
         }
 
 
-        indexBuffer->setData(indices.data(), static_cast<uint32_t>(indices.size()));
-        vertexBuffer->setData(vertices.data(), static_cast<uint32_t>(vertices.size()));
+        indexBuffer->setData(indices.data(), static_cast<uint32_t>(ouzel::getVectorSize(indices)));
+        vertexBuffer->setData(vertices.data(), static_cast<uint32_t>(ouzel::getVectorSize(vertices)));
     }
 
     void SpineDrawable::drawWireframe(const ouzel::Matrix4& transformMatrix,
