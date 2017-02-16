@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Elviss Strazdins
+// Copyright (C) 2017 Elviss Strazdins
 
 #include "spine/spine.h"
 #include "spine/extension.h"
