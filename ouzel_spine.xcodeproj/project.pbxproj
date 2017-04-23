@@ -45,21 +45,19 @@
 		30419E921D2038D400A63759 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E911D2038D400A63759 /* OpenAL.framework */; };
 		30419E941D2038DB00A63759 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E931D2038DB00A63759 /* OpenAL.framework */; };
 		304A8EAA1C27429A008B1151 /* SpineSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304A8EA81C27429A008B1151 /* SpineSample.cpp */; };
-		30575AE81C3C98F50009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AE71C3C98F50009C8A7 /* GameController.framework */; };
 		30575AEA1C3C99010009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AE91C3C99010009C8A7 /* GameController.framework */; };
 		30575AEC1C3C990B0009C8A7 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AEB1C3C990B0009C8A7 /* GameController.framework */; };
 		305F6DBB1C66C50000B76A03 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305F6DBA1C66C50000B76A03 /* CoreVideo.framework */; };
 		30775BD01D5BEAD200394C9C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30775BCF1D5BEAD200394C9C /* AVFoundation.framework */; };
 		30775BD51D5BEAF200394C9C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30775BD41D5BEAF200394C9C /* AVFoundation.framework */; };
 		30AFE15A1CB6BD5900478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1581CB6BD5900478AA2 /* Metal.framework */; };
-		30AFE15B1CB6BD5900478AA2 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1591CB6BD5900478AA2 /* MetalKit.framework */; };
 		30AFE15E1CB6BD6500478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE15C1CB6BD6500478AA2 /* Metal.framework */; };
-		30AFE15F1CB6BD6500478AA2 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE15D1CB6BD6500478AA2 /* MetalKit.framework */; };
 		30AFE1621CB6BD7000478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1601CB6BD7000478AA2 /* Metal.framework */; };
-		30AFE1631CB6BD7000478AA2 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1611CB6BD7000478AA2 /* MetalKit.framework */; };
 		30AFE1771CB7064700478AA2 /* SpineDrawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* SpineDrawable.cpp */; };
 		30AFE17B1CB7064800478AA2 /* SpineDrawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* SpineDrawable.cpp */; };
 		30AFE17C1CB7064800478AA2 /* SpineDrawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30324DAE1CAFB8CA00601A64 /* SpineDrawable.cpp */; };
+		30DD170F1EAD6BE6004CAD77 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DD170E1EAD6BE6004CAD77 /* IOKit.framework */; };
+		30DD17111EAD6C31004CAD77 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DD17101EAD6C31004CAD77 /* QuartzCore.framework */; };
 		30FC86781DF3C1D2003E051B /* Animation.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FC86561DF3C1D2003E051B /* Animation.c */; };
 		30FC86791DF3C1D2003E051B /* Animation.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FC86561DF3C1D2003E051B /* Animation.c */; };
 		30FC867A1DF3C1D2003E051B /* Animation.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FC86561DF3C1D2003E051B /* Animation.c */; };
@@ -235,6 +233,8 @@
 		30AFE1601CB6BD7000478AA2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
 		30AFE1611CB6BD7000478AA2 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
 		30C56CBB1CACA70E007AEF8F /* ouzel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ouzel.xcodeproj; path = external/ouzel/build/ouzel.xcodeproj; sourceTree = "<group>"; };
+		30DD170E1EAD6BE6004CAD77 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		30DD17101EAD6C31004CAD77 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		30FC86561DF3C1D2003E051B /* Animation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Animation.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/Animation.c"; sourceTree = SOURCE_ROOT; };
 		30FC86571DF3C1D2003E051B /* AnimationState.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = AnimationState.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/AnimationState.c"; sourceTree = SOURCE_ROOT; };
 		30FC86581DF3C1D2003E051B /* AnimationStateData.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = AnimationStateData.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/AnimationStateData.c"; sourceTree = SOURCE_ROOT; };
@@ -286,7 +286,6 @@
 				303B76C81C35695900FEDE92 /* QuartzCore.framework in Frameworks */,
 				303B76281C34D11500FEDE92 /* UIKit.framework in Frameworks */,
 				30AFE15E1CB6BD6500478AA2 /* Metal.framework in Frameworks */,
-				30AFE15F1CB6BD6500478AA2 /* MetalKit.framework in Frameworks */,
 				30419E921D2038D400A63759 /* OpenAL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,7 +304,6 @@
 				303B76CA1C35696200FEDE92 /* QuartzCore.framework in Frameworks */,
 				303B76A41C355ADC00FEDE92 /* UIKit.framework in Frameworks */,
 				30AFE1621CB6BD7000478AA2 /* Metal.framework in Frameworks */,
-				30AFE1631CB6BD7000478AA2 /* MetalKit.framework in Frameworks */,
 				30419E941D2038DB00A63759 /* OpenAL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,13 +312,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30DD17111EAD6C31004CAD77 /* QuartzCore.framework in Frameworks */,
+				30DD170F1EAD6BE6004CAD77 /* IOKit.framework in Frameworks */,
 				30224CE61D7241AD0067DE35 /* libouzel_macos.a in Frameworks */,
 				305F6DBB1C66C50000B76A03 /* CoreVideo.framework in Frameworks */,
 				303B74F31C27F6EB00FEDE92 /* Cocoa.framework in Frameworks */,
 				303B74EE1C27F6A100FEDE92 /* OpenGL.framework in Frameworks */,
-				30575AE81C3C98F50009C8A7 /* GameController.framework in Frameworks */,
 				30AFE15A1CB6BD5900478AA2 /* Metal.framework in Frameworks */,
-				30AFE15B1CB6BD5900478AA2 /* MetalKit.framework in Frameworks */,
 				30419E901D2038CD00A63759 /* OpenAL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,6 +351,8 @@
 		303B74EF1C27F6B000FEDE92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30DD17101EAD6C31004CAD77 /* QuartzCore.framework */,
+				30DD170E1EAD6BE6004CAD77 /* IOKit.framework */,
 				30775BD41D5BEAF200394C9C /* AVFoundation.framework */,
 				30775BCF1D5BEAD200394C9C /* AVFoundation.framework */,
 				30419E931D2038DB00A63759 /* OpenAL.framework */,
