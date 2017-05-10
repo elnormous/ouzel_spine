@@ -182,7 +182,7 @@ namespace spine
             {
                 if (indices.size() - offset > 0)
                 {
-                    ouzel::sharedEngine->getRenderer()->addDrawCommand({currentTexture},
+                    ouzel::sharedEngine->getRenderer()->addDrawCommand({wireframe ? whitePixelTexture : currentTexture},
                                                                        shader,
                                                                        pixelShaderConstants,
                                                                        vertexShaderConstants,
@@ -310,7 +310,7 @@ namespace spine
 
         if (indices.size() - offset > 0)
         {
-            ouzel::sharedEngine->getRenderer()->addDrawCommand({currentTexture},
+            ouzel::sharedEngine->getRenderer()->addDrawCommand({wireframe ? whitePixelTexture : currentTexture},
                                                                shader,
                                                                pixelShaderConstants,
                                                                vertexShaderConstants,
