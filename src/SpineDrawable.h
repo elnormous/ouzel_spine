@@ -46,12 +46,15 @@ namespace spine
 
         void update(float delta);
         virtual void draw(const ouzel::Matrix4& transformMatrix,
-                          const ouzel::Color& color,
-                          ouzel::scene::Camera* camera) override;
-
-        virtual void drawWireframe(const ouzel::Matrix4& transformMatrix,
-                                   const ouzel::Color& color,
-                                   ouzel::scene::Camera* camera) override;
+                          const ouzel::Color& drawColor,
+                          const ouzel::Matrix4& renderViewProjection,
+                          const std::shared_ptr<ouzel::graphics::Texture>& renderTarget,
+                          const ouzel::Rectangle& renderViewport,
+                          bool depthWrite,
+                          bool depthTest,
+                          bool wireframe,
+                          bool scissorTest,
+                          const ouzel::Rectangle& scissorRectangle) override;
 
         float getTimeScale() const;
         void setTimeScale(float newTimeScale);

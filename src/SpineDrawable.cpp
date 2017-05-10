@@ -113,18 +113,34 @@ namespace spine
     }
 
     void SpineDrawable::draw(const ouzel::Matrix4& transformMatrix,
-                             const ouzel::Color& color,
-                             ouzel::scene::Camera* camera)
+                             const ouzel::Color& drawColor,
+                             const ouzel::Matrix4& renderViewProjection,
+                             const std::shared_ptr<ouzel::graphics::Texture>& renderTarget,
+                             const ouzel::Rectangle& renderViewport,
+                             bool depthWrite,
+                             bool depthTest,
+                             bool wireframe,
+                             bool scissorTest,
+                             const ouzel::Rectangle& scissorRectangle)
     {
-        Component::draw(transformMatrix, color, camera);
+        Component::draw(transformMatrix,
+                        drawColor,
+                        renderViewProjection,
+                        renderTarget,
+                        renderViewport,
+                        depthWrite,
+                        depthTest,
+                        wireframe,
+                        scissorTest,
+                        scissorRectangle);
 
         spAnimationState_apply(animationState, skeleton);
         spSkeleton_updateWorldTransform(skeleton);
 
         std::shared_ptr<ouzel::graphics::Texture> currentTexture;
 
-        ouzel::Matrix4 modelViewProj = camera->getRenderViewProjection() * transformMatrix;
-        float colorVector[] = {color.normR(), color.normG(), color.normB(), color.normA()};
+        ouzel::Matrix4 modelViewProj = renderViewProjection * transformMatrix;
+        float colorVector[] = {drawColor.normR(), drawColor.normG(), drawColor.normB(), drawColor.normA()};
 
         std::vector<std::vector<float>> pixelShaderConstants(1);
         pixelShaderConstants[0] = {std::begin(colorVector), std::end(colorVector)};
@@ -175,8 +191,13 @@ namespace spine
                                                                        static_cast<uint32_t>(indices.size()) - offset,
                                                                        ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
                                                                        offset,
-                                                                       camera->getRenderTarget(),
-                                                                       camera->getRenderViewport());
+                                                                       renderTarget,
+                                                                       renderViewport,
+                                                                       depthWrite,
+                                                                       depthTest,
+                                                                       wireframe,
+                                                                       scissorTest,
+                                                                       scissorRectangle);
                 }
 
                 currentBlendState = blendState;
@@ -298,49 +319,18 @@ namespace spine
                                                                static_cast<uint32_t>(indices.size()) - offset,
                                                                ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
                                                                offset,
-                                                               camera->getRenderTarget(),
-                                                               camera->getRenderViewport(),
-                                                               camera->getDepthWrite(),
-                                                               camera->getDepthTest());
+                                                               renderTarget,
+                                                               renderViewport,
+                                                               depthWrite,
+                                                               depthTest,
+                                                               wireframe,
+                                                               scissorTest,
+                                                               scissorRectangle);
         }
 
 
         indexBuffer->setData(indices.data(), static_cast<uint32_t>(ouzel::getVectorSize(indices)));
         vertexBuffer->setData(vertices.data(), static_cast<uint32_t>(ouzel::getVectorSize(vertices)));
-    }
-
-    void SpineDrawable::drawWireframe(const ouzel::Matrix4& transformMatrix,
-                                      const ouzel::Color& color,
-                                      ouzel::scene::Camera* camera)
-    {
-        Component::drawWireframe(transformMatrix, color, camera);
-
-        if (!indices.empty())
-        {
-            ouzel::Matrix4 modelViewProj = camera->getRenderViewProjection() * transformMatrix;
-            float colorVector[] = {color.normR(), color.normG(), color.normB(), color.normA()};
-
-            std::vector<std::vector<float>> pixelShaderConstants(1);
-            pixelShaderConstants[0] = {std::begin(colorVector), std::end(colorVector)};
-
-            std::vector<std::vector<float>> vertexShaderConstants(1);
-            vertexShaderConstants[0] = {std::begin(modelViewProj.m), std::end(modelViewProj.m)};
-
-            ouzel::sharedEngine->getRenderer()->addDrawCommand({whitePixelTexture},
-                                                               shader,
-                                                               pixelShaderConstants,
-                                                               vertexShaderConstants,
-                                                               blendState,
-                                                               meshBuffer,
-                                                               0,
-                                                               ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
-                                                               0,
-                                                               camera->getRenderTarget(),
-                                                               camera->getRenderViewport(),
-                                                               camera->getDepthWrite(),
-                                                               camera->getDepthTest(),
-                                                               true);
-        }
     }
 
     float SpineDrawable::getTimeScale() const

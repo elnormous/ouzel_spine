@@ -16,12 +16,12 @@ public:
     bool handleUI(ouzel::Event::Type type, const ouzel::UIEvent& event) const;
 
 protected:
-    std::shared_ptr<ouzel::scene::Layer> layer;
-    std::shared_ptr<ouzel::scene::Camera> camera;
-    std::shared_ptr<ouzel::scene::Scene> scene;
+    ouzel::scene::Layer layer;
+    ouzel::scene::Camera camera;
+    ouzel::scene::Scene scene;
 
-    std::shared_ptr<spine::SpineDrawable> witch;
-    std::shared_ptr<ouzel::scene::Node> witchNode;
+    std::unique_ptr<spine::SpineDrawable> witch;
+    ouzel::scene::Node witchNode;
 
     ouzel::EventHandler eventHandler;
 };

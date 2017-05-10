@@ -26,19 +26,15 @@ void SpineSample::run()
 
     sharedEngine->getRenderer()->setClearColor(Color(64, 0, 0));
 
-    scene = std::make_shared<scene::Scene>();
-    sharedEngine->getSceneManager()->setScene(scene);
+    sharedEngine->getSceneManager()->setScene(&scene);
 
-    layer = std::make_shared<scene::Layer>();
-    camera = std::make_shared<scene::Camera>();
-    layer->addCamera(camera);
-    scene->addLayer(layer);
+    layer.addChild(&camera);
+    scene.addLayer(&layer);
 
-    witch = std::make_shared<spine::SpineDrawable>("witch.atlas", "witch.json");
+    witch.reset(new spine::SpineDrawable("witch.atlas", "witch.json"));
 
-    witchNode = std::make_shared<scene::Node>();
-    witchNode->addComponent(witch);
-    layer->addChild(witchNode);
+    witchNode.addComponent(witch.get());
+    layer.addChild(&witchNode);
 
     witch->setAnimation(0, "walk", true);
     witch->addAnimation(0, "death", false, 2.0f);
@@ -72,7 +68,7 @@ bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event)
 {
     if (type == ouzel::Event::Type::KEY_DOWN)
     {
-        Vector2 position = camera->getPosition();
+        Vector2 position = camera.getPosition();
 
         switch (event.key)
         {
@@ -95,7 +91,7 @@ bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event)
                 break;
         }
 
-        camera->setPosition(position);
+        camera.setPosition(position);
     }
 
     return true;
