@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3011E1CF1F008BBE00CB1DDC /* settings.ini in Resources */ = {isa = PBXBuildFile; fileRef = 3011E1CE1F008BBE00CB1DDC /* settings.ini */; };
+		3011E1D01F008BBE00CB1DDC /* settings.ini in Resources */ = {isa = PBXBuildFile; fileRef = 3011E1CE1F008BBE00CB1DDC /* settings.ini */; };
+		3011E1D11F008BBE00CB1DDC /* settings.ini in Resources */ = {isa = PBXBuildFile; fileRef = 3011E1CE1F008BBE00CB1DDC /* settings.ini */; };
 		30224CE41D7241A50067DE35 /* libouzel_tvos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30224CE31D7240D50067DE35 /* libouzel_tvos.a */; };
 		30224CE51D7241A90067DE35 /* libouzel_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30224CE11D7240D50067DE35 /* libouzel_ios.a */; };
 		30224CE61D7241AD0067DE35 /* libouzel_macos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30224CDF1D7240D50067DE35 /* libouzel_macos.a */; };
@@ -181,6 +184,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3011E1CE1F008BBE00CB1DDC /* settings.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = settings.ini; sourceTree = SOURCE_ROOT; };
 		30324DAE1CAFB8CA00601A64 /* SpineDrawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpineDrawable.cpp; sourceTree = "<group>"; };
 		30324DAF1CAFB8CA00601A64 /* SpineDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpineDrawable.h; sourceTree = "<group>"; };
 		3033C90E1CBBF415003307D1 /* witch.atlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = witch.atlas; sourceTree = "<group>"; };
@@ -437,6 +441,7 @@
 		304A8EB21C2765C4008B1151 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3011E1CE1F008BBE00CB1DDC /* settings.ini */,
 				3033C90E1CBBF415003307D1 /* witch.atlas */,
 				3033C90F1CBBF415003307D1 /* witch.json */,
 				3033C9101CBBF415003307D1 /* witch.png */,
@@ -626,6 +631,7 @@
 				3033C9121CBBF415003307D1 /* witch.atlas in Resources */,
 				3033C9151CBBF415003307D1 /* witch.json in Resources */,
 				303647A11C418E4C0024DB5B /* Assets.xcassets in Resources */,
+				3011E1D01F008BBE00CB1DDC /* settings.ini in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +643,7 @@
 				3033C9131CBBF415003307D1 /* witch.atlas in Resources */,
 				3033C9161CBBF415003307D1 /* witch.json in Resources */,
 				303647A31C418E7C0024DB5B /* Assets.xcassets in Resources */,
+				3011E1D11F008BBE00CB1DDC /* settings.ini in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,6 +655,7 @@
 				3033C9111CBBF415003307D1 /* witch.atlas in Resources */,
 				3033C9141CBBF415003307D1 /* witch.json in Resources */,
 				303647A21C418E790024DB5B /* Assets.xcassets in Resources */,
+				3011E1CF1F008BBE00CB1DDC /* settings.ini in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

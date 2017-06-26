@@ -6,7 +6,7 @@
 using namespace std;
 using namespace ouzel;
 
-void SpineSample::run()
+SpineSample::SpineSample()
 {
 #if OUZEL_PLATFORM_LINUX
     sharedApplication->getFileSystem()->addResourcePath("Resources");

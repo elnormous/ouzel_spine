@@ -7,7 +7,7 @@
 class SpineSample: public ouzel::Noncopyable
 {
 public:
-    void run();
+    SpineSample();
 
     bool handleKeyboard(ouzel::Event::Type type, const ouzel::KeyboardEvent& event);
     bool handleMouse(ouzel::Event::Type type, const ouzel::MouseEvent& event) const;
