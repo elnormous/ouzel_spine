@@ -41,6 +41,8 @@ namespace spine
             std::string stringValue;
         };
 
+        static const uint32_t TYPE = 0x5350494e; // SPIN
+
         SpineDrawable(const std::string& atlasFile, const std::string& skeletonFile);
         virtual ~SpineDrawable();
 

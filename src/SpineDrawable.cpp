@@ -45,7 +45,8 @@ static void listener(spAnimationState* state, spEventType type, spTrackEntry* en
 
 namespace spine
 {
-    SpineDrawable::SpineDrawable(const std::string& atlasFile, const std::string& skeletonFile)
+    SpineDrawable::SpineDrawable(const std::string& atlasFile, const std::string& skeletonFile):
+        Component(TYPE)
     {
         atlas = spAtlas_createFromFile(atlasFile.c_str(), 0);
         if (!atlas)
