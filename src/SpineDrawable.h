@@ -56,7 +56,8 @@ namespace spine
                           bool depthTest,
                           bool wireframe,
                           bool scissorTest,
-                          const ouzel::Rectangle& scissorRectangle) override;
+                          const ouzel::Rectangle& scissorRectangle,
+                          ouzel::graphics::Renderer::CullMode cullMode) override;
 
         float getTimeScale() const;
         void setTimeScale(float newTimeScale);
