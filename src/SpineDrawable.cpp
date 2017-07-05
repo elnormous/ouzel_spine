@@ -122,8 +122,7 @@ namespace spine
                              bool depthTest,
                              bool wireframe,
                              bool scissorTest,
-                             const ouzel::Rectangle& scissorRectangle,
-                             ouzel::graphics::Renderer::CullMode cullMode)
+                             const ouzel::Rectangle& scissorRectangle)
     {
         Component::draw(transformMatrix,
                         drawColor,
@@ -134,8 +133,7 @@ namespace spine
                         depthTest,
                         wireframe,
                         scissorTest,
-                        scissorRectangle,
-                        cullMode);
+                        scissorRectangle);
 
         spAnimationState_apply(animationState, skeleton);
         spSkeleton_updateWorldTransform(skeleton);
@@ -201,7 +199,7 @@ namespace spine
                                                                        wireframe,
                                                                        scissorTest,
                                                                        scissorRectangle,
-                                                                       cullMode);
+                                                                       ouzel::graphics::Renderer::CullMode::NONE);
                 }
 
                 currentBlendState = blendState;
@@ -329,7 +327,8 @@ namespace spine
                                                                depthTest,
                                                                wireframe,
                                                                scissorTest,
-                                                               scissorRectangle);
+                                                               scissorRectangle,
+                                                               ouzel::graphics::Renderer::CullMode::NONE);
         }
 
 
