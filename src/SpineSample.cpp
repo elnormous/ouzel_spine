@@ -66,7 +66,7 @@ SpineSample::SpineSample()
 
 bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event)
 {
-    if (type == ouzel::Event::Type::KEY_DOWN)
+    if (type == ouzel::Event::Type::KEY_PRESS)
     {
         Vector2 position = camera.getPosition();
 
@@ -101,7 +101,7 @@ bool SpineSample::handleMouse(Event::Type type, const MouseEvent& event) const
 {
     switch (type)
     {
-        case ouzel::Event::Type::MOUSE_DOWN:
+        case ouzel::Event::Type::MOUSE_PRESS:
         {
             break;
         }

@@ -81,10 +81,10 @@ namespace spine
         updateBoundingBox();
 
         indexBuffer = std::make_shared<ouzel::graphics::Buffer>();
-        indexBuffer->init(ouzel::graphics::Buffer::Usage::INDEX, true);
+        indexBuffer->init(ouzel::graphics::Buffer::Usage::INDEX, ouzel::graphics::Buffer::DYNAMIC);
 
         vertexBuffer = std::make_shared<ouzel::graphics::Buffer>();
-        vertexBuffer->init(ouzel::graphics::Buffer::Usage::VERTEX, true);
+        vertexBuffer->init(ouzel::graphics::Buffer::Usage::VERTEX, ouzel::graphics::Buffer::DYNAMIC);
 
         meshBuffer = std::make_shared<ouzel::graphics::MeshBuffer>();
         meshBuffer->init(sizeof(uint16_t), indexBuffer, ouzel::graphics::VertexPCT::ATTRIBUTES, vertexBuffer);

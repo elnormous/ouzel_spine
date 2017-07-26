@@ -53,6 +53,9 @@
 		305F6DBB1C66C50000B76A03 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305F6DBA1C66C50000B76A03 /* CoreVideo.framework */; };
 		30775BD01D5BEAD200394C9C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30775BCF1D5BEAD200394C9C /* AVFoundation.framework */; };
 		30775BD51D5BEAF200394C9C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30775BD41D5BEAF200394C9C /* AVFoundation.framework */; };
+		308265CF1F291167009417DD /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308265CE1F291167009417DD /* AudioUnit.framework */; };
+		308265D51F291178009417DD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E411D1A1A6A00A63759 /* CoreAudio.framework */; };
+		308265D61F291195009417DD /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AE71C3C98F50009C8A7 /* GameController.framework */; };
 		30AFE15A1CB6BD5900478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1581CB6BD5900478AA2 /* Metal.framework */; };
 		30AFE15E1CB6BD6500478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE15C1CB6BD6500478AA2 /* Metal.framework */; };
 		30AFE1621CB6BD7000478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1601CB6BD7000478AA2 /* Metal.framework */; };
@@ -230,6 +233,8 @@
 		305F6DBA1C66C50000B76A03 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		30775BCF1D5BEAD200394C9C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		30775BD41D5BEAF200394C9C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		308265CE1F291167009417DD /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		308265D31F29116F009417DD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		30AFE1581CB6BD5900478AA2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		30AFE1591CB6BD5900478AA2 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		30AFE15C1CB6BD6500478AA2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
@@ -316,6 +321,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				308265D61F291195009417DD /* GameController.framework in Frameworks */,
+				308265D51F291178009417DD /* CoreAudio.framework in Frameworks */,
+				308265CF1F291167009417DD /* AudioUnit.framework in Frameworks */,
 				30DD17111EAD6C31004CAD77 /* QuartzCore.framework in Frameworks */,
 				30DD170F1EAD6BE6004CAD77 /* IOKit.framework in Frameworks */,
 				30224CE61D7241AD0067DE35 /* libouzel_macos.a in Frameworks */,
@@ -355,6 +363,8 @@
 		303B74EF1C27F6B000FEDE92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				308265D31F29116F009417DD /* AudioToolbox.framework */,
+				308265CE1F291167009417DD /* AudioUnit.framework */,
 				30DD17101EAD6C31004CAD77 /* QuartzCore.framework */,
 				30DD170E1EAD6BE6004CAD77 /* IOKit.framework */,
 				30775BD41D5BEAF200394C9C /* AVFoundation.framework */,
