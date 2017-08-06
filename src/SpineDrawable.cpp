@@ -2,7 +2,7 @@
 
 #include "spine/spine.h"
 #include "spine/extension.h"
-#include "SpineDrawable.h"
+#include "SpineDrawable.hpp"
 
 struct SpineTexture
 {

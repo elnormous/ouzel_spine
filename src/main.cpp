@@ -1,6 +1,6 @@
 // Copyright (C) 2017 Elviss Strazdins
 
-#include "SpineSample.h"
+#include "SpineSample.hpp"
 
 std::string DEVELOPER_NAME = "elnormous";
 std::string APPLICATION_NAME = "Spine sample";

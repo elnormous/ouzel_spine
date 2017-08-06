@@ -1,7 +1,7 @@
 // Copyright (C) 2017 Elviss Strazdins
 
 #include <cmath>
-#include "SpineSample.h"
+#include "SpineSample.hpp"
 
 using namespace std;
 using namespace ouzel;

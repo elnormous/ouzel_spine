@@ -189,7 +189,7 @@
 /* Begin PBXFileReference section */
 		3011E1CE1F008BBE00CB1DDC /* settings.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = settings.ini; sourceTree = SOURCE_ROOT; };
 		30324DAE1CAFB8CA00601A64 /* SpineDrawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpineDrawable.cpp; sourceTree = "<group>"; };
-		30324DAF1CAFB8CA00601A64 /* SpineDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpineDrawable.h; sourceTree = "<group>"; };
+		30324DAF1CAFB8CA00601A64 /* SpineDrawable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpineDrawable.hpp; sourceTree = "<group>"; };
 		3033C90E1CBBF415003307D1 /* witch.atlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = witch.atlas; sourceTree = "<group>"; };
 		3033C90F1CBBF415003307D1 /* witch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = witch.json; sourceTree = "<group>"; };
 		3033C9101CBBF415003307D1 /* witch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = witch.png; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		304A8E161C237B96008B1151 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		304A8E1B1C237B96008B1151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		304A8EA81C27429A008B1151 /* SpineSample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpineSample.cpp; sourceTree = "<group>"; };
-		304A8EA91C27429A008B1151 /* SpineSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpineSample.h; sourceTree = "<group>"; };
+		304A8EA91C27429A008B1151 /* SpineSample.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpineSample.hpp; sourceTree = "<group>"; };
 		304A8EAB1C2742D9008B1151 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		30575A961C38C90F0009C8A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30575A971C38C90F0009C8A7 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
@@ -352,9 +352,9 @@
 			isa = PBXGroup;
 			children = (
 				30324DAE1CAFB8CA00601A64 /* SpineDrawable.cpp */,
-				30324DAF1CAFB8CA00601A64 /* SpineDrawable.h */,
+				30324DAF1CAFB8CA00601A64 /* SpineDrawable.hpp */,
 				304A8EA81C27429A008B1151 /* SpineSample.cpp */,
-				304A8EA91C27429A008B1151 /* SpineSample.h */,
+				304A8EA91C27429A008B1151 /* SpineSample.hpp */,
 				303B75181C29EB8400FEDE92 /* main.cpp */,
 			);
 			path = src;

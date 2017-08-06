@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "SpineDrawable.h"
+#include "SpineDrawable.hpp"
 
 class SpineSample: public ouzel::Noncopyable
 {
