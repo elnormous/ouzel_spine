@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <ouzel.h>
+#include "ouzel.hpp"
 
 #ifndef SPINE_MESH_VERTEX_COUNT_MAX
 #define SPINE_MESH_VERTEX_COUNT_MAX 1000

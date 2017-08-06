@@ -7,5 +7,5 @@
 #endif
 
 #ifdef __cplusplus
-#include "ouzel.h"
+#include "ouzel.hpp"
 #endif
