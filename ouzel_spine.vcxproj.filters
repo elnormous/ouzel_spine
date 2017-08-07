@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="win\stdafx.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\SpineDrawable.cpp" />
     <ClCompile Include="src\SpineSample.cpp" />
@@ -103,7 +102,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="win\stdafx.h" />
     <ClInclude Include="src\SpineDrawable.h" />
     <ClInclude Include="src\SpineSample.h" />
     <ClInclude Include="external\spine-runtimes\spine-c\spine-c\src\spine\Json.h">

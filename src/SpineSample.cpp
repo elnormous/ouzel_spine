@@ -9,11 +9,9 @@ using namespace ouzel;
 SpineSample::SpineSample()
 {
 #if OUZEL_PLATFORM_LINUX
-    sharedApplication->getFileSystem()->addResourcePath("Resources");
+    sharedEngine->getFileSystem()->addResourcePath("Resources");
 #elif OUZEL_PLATFORM_WINDOWS
-    sharedApplication->getFileSystem()->addResourcePath("Resources");
-    sharedApplication->getFileSystem()->addResourcePath("../Resources");
-    sharedApplication->getFileSystem()->addResourcePath("../../Resources");
+    sharedEngine->getFileSystem()->addResourcePath("Resources");
 #endif
 
     eventHandler.keyboardHandler = std::bind(&SpineSample::handleKeyboard, this, std::placeholders::_1, std::placeholders::_2);
