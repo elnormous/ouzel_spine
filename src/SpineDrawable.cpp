@@ -1,8 +1,8 @@
 // Copyright (C) 2017 Elviss Strazdins
 
+#include "SpineDrawable.hpp"
 #include "spine/spine.h"
 #include "spine/extension.h"
-#include "SpineDrawable.hpp"
 
 struct SpineTexture
 {
