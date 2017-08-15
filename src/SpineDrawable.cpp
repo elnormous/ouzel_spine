@@ -535,8 +535,6 @@ namespace spine
     {
         spSkin* skin = spSkeletonData_findSkin(skeletonData, skinName.c_str());
         spSkeleton_setSkin(skeleton, skin);
-
-        updateBoundingBox();
     }
 
     void SpineDrawable::updateBoundingBox()
