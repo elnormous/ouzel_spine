@@ -174,7 +174,9 @@ namespace spine
                 case SP_BLEND_MODE_MULTIPLY:
                     blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_MULTIPLY);
                     break;
-                case SP_BLEND_MODE_SCREEN: // Unsupported, fall through.
+                case SP_BLEND_MODE_SCREEN:
+                    blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_SCREEN);
+                    break;
                 case SP_BLEND_MODE_NORMAL:
                 default:
                     blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
