@@ -48,7 +48,7 @@ namespace spine
 
         void update(float delta);
         virtual void draw(const ouzel::Matrix4& transformMatrix,
-                          const ouzel::Color& drawColor,
+                          float opacity,
                           const ouzel::Matrix4& renderViewProjection,
                           const std::shared_ptr<ouzel::graphics::Texture>& renderTarget,
                           const ouzel::Rectangle& renderViewport,

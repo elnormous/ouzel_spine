@@ -114,7 +114,7 @@ namespace spine
     }
 
     void SpineDrawable::draw(const ouzel::Matrix4& transformMatrix,
-                             const ouzel::Color& drawColor,
+                             float opacity,
                              const ouzel::Matrix4& renderViewProjection,
                              const std::shared_ptr<ouzel::graphics::Texture>& renderTarget,
                              const ouzel::Rectangle& renderViewport,
@@ -125,7 +125,7 @@ namespace spine
                              const ouzel::Rectangle& scissorRectangle)
     {
         Component::draw(transformMatrix,
-                        drawColor,
+                        opacity,
                         renderViewProjection,
                         renderTarget,
                         renderViewport,
@@ -141,7 +141,7 @@ namespace spine
         std::shared_ptr<ouzel::graphics::Texture> currentTexture;
 
         ouzel::Matrix4 modelViewProj = renderViewProjection * transformMatrix;
-        float colorVector[] = {drawColor.normR(), drawColor.normG(), drawColor.normB(), drawColor.normA()};
+        float colorVector[] = {1.0f, 1.0f, 1.0f, opacity};
 
         std::vector<std::vector<float>> pixelShaderConstants(1);
         pixelShaderConstants[0] = {std::begin(colorVector), std::end(colorVector)};
