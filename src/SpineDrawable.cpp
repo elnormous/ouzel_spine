@@ -179,6 +179,7 @@ namespace spine
                 default:
                     blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
             }
+
             if (currentBlendState != blendState)
             {
                 if (indices.size() - offset > 0)
@@ -304,10 +305,7 @@ namespace spine
                 continue;
             }
 
-            if (texture && texture->texture)
-            {
-                currentTexture = texture->texture;
-            }
+            currentTexture = texture ? texture->texture : nullptr;
         }
 
         if (indices.size() - offset > 0)
