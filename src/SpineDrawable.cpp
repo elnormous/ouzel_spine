@@ -207,7 +207,7 @@ namespace spine
                 offset = static_cast<uint32_t>(indices.size());
             }
 
-            SpineTexture* texture = 0;
+            SpineTexture* texture = nullptr;
             if (attachment->type == SP_ATTACHMENT_REGION)
             {
                 spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
