@@ -169,12 +169,9 @@ namespace spine
             spAttachment* attachment = slot->attachment;
             if (!attachment) continue;
 
-            SpineTexture* texture = nullptr;
-
             if (attachment->type == SP_ATTACHMENT_REGION)
             {
                 spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
-                texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(regionAttachment->rendererObject))->page->rendererObject);
                 spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices);
 
                 uint8_t r = static_cast<uint8_t>(skeleton->r * 255);
@@ -222,12 +219,13 @@ namespace spine
                 vertex.texCoord.v[1] = regionAttachment->uvs[SP_VERTEX_Y4];
                 vertices.push_back(vertex);
 
-                indices.push_back(currentVertexIndex + 0);
+                // reverse the index order
+                indices.push_back(currentVertexIndex + 2);
                 indices.push_back(currentVertexIndex + 1);
+                indices.push_back(currentVertexIndex + 0);
+                indices.push_back(currentVertexIndex + 3);
                 indices.push_back(currentVertexIndex + 2);
                 indices.push_back(currentVertexIndex + 0);
-                indices.push_back(currentVertexIndex + 2);
-                indices.push_back(currentVertexIndex + 3);
 
                 currentVertexIndex += 4;
 
@@ -240,7 +238,6 @@ namespace spine
             {
                 spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
                 if (mesh->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
-                texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(mesh->rendererObject))->page->rendererObject);
                 spMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
 
                 vertex.color.v[0] = static_cast<uint8_t>(skeleton->r * 255);
@@ -248,7 +245,8 @@ namespace spine
                 vertex.color.v[2] = static_cast<uint8_t>(skeleton->b * 255);
                 vertex.color.v[3] = static_cast<uint8_t>(skeleton->a * 255);
 
-                for (int t = 0; t < mesh->trianglesCount; ++t)
+                // reverse the index order
+                for (int t = mesh->trianglesCount - 1; t >= 0; --t)
                 {
                     int index = mesh->triangles[t] << 1;
                     vertex.position.v[0] = worldVertices[index];
@@ -286,7 +284,7 @@ namespace spine
                                                                    wireframe,
                                                                    scissorTest,
                                                                    scissorRectangle,
-                                                                   ouzel::graphics::Renderer::CullMode::NONE);
+                                                                   material->cullMode);
             }
 
             offset = static_cast<uint32_t>(indices.size());
