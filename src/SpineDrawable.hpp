@@ -2,6 +2,9 @@
 
 #pragma once
 
+#include <map>
+#include <memory>
+#include <vector>
 #include "ouzel.hpp"
 
 #ifndef SPINE_MESH_VERTEX_COUNT_MAX
@@ -94,8 +97,11 @@ namespace spine
 
         void setSkin(const std::string& skinName);
 
+        const std::vector<std::shared_ptr<ouzel::graphics::Material>>& getMaterials() const { return materials; }
+
     private:
         void updateBoundingBox();
+        void updateMaterials();
 
         spSkeletonData* skeletonData = nullptr;
         spSkeleton* skeleton = nullptr;
@@ -104,15 +110,15 @@ namespace spine
         spAnimationStateData* animationStateData = nullptr;
         spSkeletonBounds* bounds = nullptr;
 
+        std::vector<std::shared_ptr<ouzel::graphics::Material>> materials;
+
         std::vector<uint16_t> indices;
         std::vector<ouzel::graphics::VertexPCT> vertices;
 
         std::shared_ptr<ouzel::graphics::MeshBuffer> meshBuffer;
         std::shared_ptr<ouzel::graphics::Buffer> indexBuffer;
         std::shared_ptr<ouzel::graphics::Buffer> vertexBuffer;
-        
-        std::shared_ptr<ouzel::graphics::Shader> shader;
-        std::shared_ptr<ouzel::graphics::BlendState> blendState;
+
         std::shared_ptr<ouzel::graphics::Texture> whitePixelTexture;
 
         ouzel::UpdateCallback updateCallback;
