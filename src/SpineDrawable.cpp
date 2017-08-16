@@ -266,7 +266,11 @@ namespace spine
 
             if (indices.size() - offset > 0)
             {
-                ouzel::sharedEngine->getRenderer()->addDrawCommand({wireframe ? whitePixelTexture : material->texture},
+                std::vector<std::shared_ptr<ouzel::graphics::Texture>> textures;
+                if (wireframe) textures.push_back(whitePixelTexture);
+                else textures.assign(std::begin(material->textures), std::end(material->textures));
+
+                ouzel::sharedEngine->getRenderer()->addDrawCommand(textures,
                                                                    material->shader,
                                                                    pixelShaderConstants,
                                                                    vertexShaderConstants,
@@ -574,13 +578,13 @@ namespace spine
             {
                 spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
                 texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(regionAttachment->rendererObject))->page->rendererObject);
-                if (texture) material->texture = texture->texture;
+                if (texture) material->textures[0] = texture->texture;
             }
             else if (attachment->type == SP_ATTACHMENT_MESH)
             {
                 spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
                 texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(mesh->rendererObject))->page->rendererObject);
-                if (texture) material->texture = texture->texture;
+                if (texture) material->textures[0] = texture->texture;
             }
         }
 
