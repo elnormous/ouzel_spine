@@ -157,17 +157,17 @@ namespace spine
 
         for (int i = 0; i < skeleton->slotsCount; ++i)
         {
-            const std::shared_ptr<ouzel::graphics::Material>& material = materials[static_cast<size_t>(i)];
-
-            float colorVector[] = {material->diffuseColor.normR(),
-                material->diffuseColor.normG(),
-                material->diffuseColor.normB(),
-                material->diffuseColor.normA() * opacity};
-            pixelShaderConstants[0] = {std::begin(colorVector), std::end(colorVector)};
-
             spSlot* slot = skeleton->drawOrder[i];
             spAttachment* attachment = slot->attachment;
             if (!attachment) continue;
+
+            const std::shared_ptr<ouzel::graphics::Material>& material = materials[static_cast<size_t>(i)];
+
+            float colorVector[] = {slot->r * material->diffuseColor.normR(),
+                slot->g * material->diffuseColor.normG(),
+                slot->b * material->diffuseColor.normB(),
+                slot->a * material->diffuseColor.normA() * opacity};
+            pixelShaderConstants[0] = {std::begin(colorVector), std::end(colorVector)};
 
             if (attachment->type == SP_ATTACHMENT_REGION)
             {
@@ -219,13 +219,12 @@ namespace spine
                 vertex.texCoord.v[1] = regionAttachment->uvs[SP_VERTEX_Y4];
                 vertices.push_back(vertex);
 
-                // reverse the index order
-                indices.push_back(currentVertexIndex + 2);
+                indices.push_back(currentVertexIndex + 0);
                 indices.push_back(currentVertexIndex + 1);
-                indices.push_back(currentVertexIndex + 0);
-                indices.push_back(currentVertexIndex + 3);
                 indices.push_back(currentVertexIndex + 2);
                 indices.push_back(currentVertexIndex + 0);
+                indices.push_back(currentVertexIndex + 2);
+                indices.push_back(currentVertexIndex + 3);
 
                 currentVertexIndex += 4;
 
@@ -245,8 +244,7 @@ namespace spine
                 vertex.color.v[2] = static_cast<uint8_t>(skeleton->b * 255.0f);
                 vertex.color.v[3] = static_cast<uint8_t>(skeleton->a * 255.0f);
 
-                // reverse the index order
-                for (int t = mesh->trianglesCount - 1; t >= 0; --t)
+                for (int t = 0; t < mesh->trianglesCount; ++t)
                 {
                     int index = mesh->triangles[t] << 1;
                     vertex.position.v[0] = worldVertices[index];
@@ -548,6 +546,7 @@ namespace spine
             std::shared_ptr<ouzel::graphics::Material>& material = materials[static_cast<size_t>(i)];
             material = std::make_shared<ouzel::graphics::Material>();
             material->shader = ouzel::sharedEngine->getCache()->getShader(ouzel::graphics::SHADER_TEXTURE);
+            material->cullMode = ouzel::graphics::Renderer::CullMode::NONE;
 
             spSlot* slot = skeleton->drawOrder[i];
             spAttachment* attachment = slot->attachment;
@@ -575,28 +574,13 @@ namespace spine
             {
                 spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
                 texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(regionAttachment->rendererObject))->page->rendererObject);
-
                 if (texture) material->texture = texture->texture;
-
-                uint8_t r = static_cast<uint8_t>(slot->r * 255);
-                uint8_t g = static_cast<uint8_t>(slot->g * 255);
-                uint8_t b = static_cast<uint8_t>(slot->b * 255);
-                uint8_t a = static_cast<uint8_t>(slot->a * 255);
-
-                material->diffuseColor = ouzel::Color(r, g, b, a);
             }
             else if (attachment->type == SP_ATTACHMENT_MESH)
             {
                 spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
                 texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(mesh->rendererObject))->page->rendererObject);
                 if (texture) material->texture = texture->texture;
-
-                uint8_t r = static_cast<uint8_t>(slot->r * 255);
-                uint8_t g = static_cast<uint8_t>(slot->g * 255);
-                uint8_t b = static_cast<uint8_t>(slot->b * 255);
-                uint8_t a = static_cast<uint8_t>(slot->a * 255);
-
-                material->diffuseColor = ouzel::Color(r, g, b, a);
             }
         }
 
