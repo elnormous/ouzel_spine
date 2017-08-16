@@ -4,6 +4,8 @@
 #include "spine/spine.h"
 #include "spine/extension.h"
 
+static float worldVertices[SPINE_MESH_VERTEX_COUNT_MAX];
+
 struct SpineTexture
 {
     std::shared_ptr<ouzel::graphics::Texture> texture;
@@ -210,6 +212,7 @@ namespace spine
             }
 
             SpineTexture* texture = nullptr;
+
             if (attachment->type == SP_ATTACHMENT_REGION)
             {
                 spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);

@@ -110,8 +110,6 @@ namespace spine
         std::shared_ptr<ouzel::graphics::MeshBuffer> meshBuffer;
         std::shared_ptr<ouzel::graphics::Buffer> indexBuffer;
         std::shared_ptr<ouzel::graphics::Buffer> vertexBuffer;
-
-        float worldVertices[SPINE_MESH_VERTEX_COUNT_MAX / sizeof(float)];
         
         std::shared_ptr<ouzel::graphics::Shader> shader;
         std::shared_ptr<ouzel::graphics::BlendState> blendState;
