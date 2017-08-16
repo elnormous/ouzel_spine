@@ -174,10 +174,10 @@ namespace spine
                 spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
                 spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices);
 
-                uint8_t r = static_cast<uint8_t>(skeleton->r * 255);
-                uint8_t g = static_cast<uint8_t>(skeleton->g * 255);
-                uint8_t b = static_cast<uint8_t>(skeleton->b * 255);
-                uint8_t a = static_cast<uint8_t>(skeleton->a * 255);
+                uint8_t r = static_cast<uint8_t>(skeleton->r * 255.0f);
+                uint8_t g = static_cast<uint8_t>(skeleton->g * 255.0f);
+                uint8_t b = static_cast<uint8_t>(skeleton->b * 255.0f);
+                uint8_t a = static_cast<uint8_t>(skeleton->a * 255.0f);
 
                 vertex.color.v[0] = r;
                 vertex.color.v[1] = g;
@@ -240,10 +240,10 @@ namespace spine
                 if (mesh->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
                 spMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
 
-                vertex.color.v[0] = static_cast<uint8_t>(skeleton->r * 255);
-                vertex.color.v[1] = static_cast<uint8_t>(skeleton->g * 255);
-                vertex.color.v[2] = static_cast<uint8_t>(skeleton->b * 255);
-                vertex.color.v[3] = static_cast<uint8_t>(skeleton->a * 255);
+                vertex.color.v[0] = static_cast<uint8_t>(skeleton->r * 255.0f);
+                vertex.color.v[1] = static_cast<uint8_t>(skeleton->g * 255.0f);
+                vertex.color.v[2] = static_cast<uint8_t>(skeleton->b * 255.0f);
+                vertex.color.v[3] = static_cast<uint8_t>(skeleton->a * 255.0f);
 
                 // reverse the index order
                 for (int t = mesh->trianglesCount - 1; t >= 0; --t)
@@ -289,7 +289,6 @@ namespace spine
 
             offset = static_cast<uint32_t>(indices.size());
         }
-
 
         indexBuffer->setData(indices.data(), static_cast<uint32_t>(ouzel::getVectorSize(indices)));
         vertexBuffer->setData(vertices.data(), static_cast<uint32_t>(ouzel::getVectorSize(vertices)));
@@ -496,6 +495,7 @@ namespace spine
         spSkeleton_setSkin(skeleton, skin);
 
         updateMaterials();
+        updateBoundingBox();
     }
 
     void SpineDrawable::updateBoundingBox()
