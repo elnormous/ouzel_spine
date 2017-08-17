@@ -17,8 +17,8 @@ void _spAtlasPage_createTexture(spAtlasPage* self, const char* path)
 
     texture->texture = ouzel::sharedEngine->getCache()->getTexture(path);
     self->rendererObject = texture;
-    self->width = static_cast<int>(texture->texture->getSize().v[0]);
-    self->height = static_cast<int>(texture->texture->getSize().v[1]);
+    self->width = static_cast<int>(texture->texture->getSize().width);
+    self->height = static_cast<int>(texture->texture->getSize().height);
 }
 
 void _spAtlasPage_disposeTexture(spAtlasPage* self)
@@ -179,44 +179,44 @@ namespace spine
                 uint8_t b = static_cast<uint8_t>(skeleton->b * 255.0f);
                 uint8_t a = static_cast<uint8_t>(skeleton->a * 255.0f);
 
-                vertex.color.v[0] = r;
-                vertex.color.v[1] = g;
-                vertex.color.v[2] = b;
-                vertex.color.v[3] = a;
-                vertex.position.v[0] = worldVertices[SP_VERTEX_X1];
-                vertex.position.v[1] = worldVertices[SP_VERTEX_Y1];
-                vertex.texCoord.v[0] = regionAttachment->uvs[SP_VERTEX_X1];
-                vertex.texCoord.v[1] = regionAttachment->uvs[SP_VERTEX_Y1];
+                vertex.color.r = r;
+                vertex.color.g = g;
+                vertex.color.b = b;
+                vertex.color.a = a;
+                vertex.position.x = worldVertices[SP_VERTEX_X1];
+                vertex.position.y = worldVertices[SP_VERTEX_Y1];
+                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X1];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y1];
                 vertices.push_back(vertex);
 
-                vertex.color.v[0] = r;
-                vertex.color.v[1] = g;
-                vertex.color.v[2] = b;
-                vertex.color.v[3] = a;
-                vertex.position.v[0] = worldVertices[SP_VERTEX_X2];
-                vertex.position.v[1] = worldVertices[SP_VERTEX_Y2];
-                vertex.texCoord.v[0] = regionAttachment->uvs[SP_VERTEX_X2];
-                vertex.texCoord.v[1] = regionAttachment->uvs[SP_VERTEX_Y2];
+                vertex.color.r = r;
+                vertex.color.g = g;
+                vertex.color.b = b;
+                vertex.color.a = a;
+                vertex.position.x = worldVertices[SP_VERTEX_X2];
+                vertex.position.y = worldVertices[SP_VERTEX_Y2];
+                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X2];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y2];
                 vertices.push_back(vertex);
 
-                vertex.color.v[0] = r;
-                vertex.color.v[1] = g;
-                vertex.color.v[2] = b;
-                vertex.color.v[3] = a;
-                vertex.position.v[0] = worldVertices[SP_VERTEX_X3];
-                vertex.position.v[1] = worldVertices[SP_VERTEX_Y3];
-                vertex.texCoord.v[0] = regionAttachment->uvs[SP_VERTEX_X3];
-                vertex.texCoord.v[1] = regionAttachment->uvs[SP_VERTEX_Y3];
+                vertex.color.r = r;
+                vertex.color.g = g;
+                vertex.color.b = b;
+                vertex.color.a = a;
+                vertex.position.x = worldVertices[SP_VERTEX_X3];
+                vertex.position.y = worldVertices[SP_VERTEX_Y3];
+                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X3];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y3];
                 vertices.push_back(vertex);
 
-                vertex.color.v[0] = r;
-                vertex.color.v[1] = g;
-                vertex.color.v[2] = b;
-                vertex.color.v[3] = a;
-                vertex.position.v[0] = worldVertices[SP_VERTEX_X4];
-                vertex.position.v[1] = worldVertices[SP_VERTEX_Y4];
-                vertex.texCoord.v[0] = regionAttachment->uvs[SP_VERTEX_X4];
-                vertex.texCoord.v[1] = regionAttachment->uvs[SP_VERTEX_Y4];
+                vertex.color.r = r;
+                vertex.color.g = g;
+                vertex.color.b = b;
+                vertex.color.a = a;
+                vertex.position.x = worldVertices[SP_VERTEX_X4];
+                vertex.position.y = worldVertices[SP_VERTEX_Y4];
+                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X4];
+                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y4];
                 vertices.push_back(vertex);
 
                 indices.push_back(currentVertexIndex + 0);
@@ -239,18 +239,18 @@ namespace spine
                 if (mesh->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
                 spMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
 
-                vertex.color.v[0] = static_cast<uint8_t>(skeleton->r * 255.0f);
-                vertex.color.v[1] = static_cast<uint8_t>(skeleton->g * 255.0f);
-                vertex.color.v[2] = static_cast<uint8_t>(skeleton->b * 255.0f);
-                vertex.color.v[3] = static_cast<uint8_t>(skeleton->a * 255.0f);
+                vertex.color.r = static_cast<uint8_t>(skeleton->r * 255.0f);
+                vertex.color.g = static_cast<uint8_t>(skeleton->g * 255.0f);
+                vertex.color.b = static_cast<uint8_t>(skeleton->b * 255.0f);
+                vertex.color.a = static_cast<uint8_t>(skeleton->a * 255.0f);
 
                 for (int t = 0; t < mesh->trianglesCount; ++t)
                 {
                     int index = mesh->triangles[t] << 1;
-                    vertex.position.v[0] = worldVertices[index];
-                    vertex.position.v[1] = worldVertices[index + 1];
-                    vertex.texCoord.v[0] = mesh->uvs[index];
-                    vertex.texCoord.v[1] = mesh->uvs[index + 1];
+                    vertex.position.x = worldVertices[index];
+                    vertex.position.y = worldVertices[index + 1];
+                    vertex.texCoord.x = mesh->uvs[index];
+                    vertex.texCoord.y = mesh->uvs[index + 1];
 
                     indices.push_back(currentVertexIndex);
                     currentVertexIndex++;
@@ -328,8 +328,8 @@ namespace spine
 
     void SpineDrawable::setOffset(const ouzel::Vector2& offset)
     {
-        skeleton->x = offset.v[0];
-        skeleton->y = offset.v[1];
+        skeleton->x = offset.x;
+        skeleton->y = offset.y;
 
         spSkeleton_updateWorldTransform(skeleton);
     }
