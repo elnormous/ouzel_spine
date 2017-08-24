@@ -57,15 +57,29 @@ namespace spine
             return;
         }
 
-        spSkeletonJson* json = spSkeletonJson_create(atlas);
-        //json->scale = 0.6f;
-        skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonFile.c_str());
-        if (!skeletonData)
-        {
-            ouzel::Log(ouzel::Log::Level::ERR) << "Failed to load skeleton: " << json->error;
-            return;
+        if (skeletonFile.find(".json") != std::string::npos) {
+            // is json format
+            spSkeletonJson* json = spSkeletonJson_create(atlas);
+            skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonFile.c_str());
+            
+            if (!skeletonData)
+            {
+                ouzel::Log(ouzel::Log::Level::ERR) << "Failed to load skeleton: " << json->error;
+                return;
+            }
+            spSkeletonJson_dispose(json);
+        } else {
+            // binary format
+            spSkeletonBinary* binary = spSkeletonBinary_create(atlas);
+            skeletonData = spSkeletonBinary_readSkeletonDataFile(binary, skeletonFile.c_str());
+            
+            if (!skeletonData)
+            {
+                ouzel::Log(ouzel::Log::Level::ERR) << "Failed to load skeleton: " << binary->error;
+                return;
+            }
+            spSkeletonBinary_dispose(binary);
         }
-        spSkeletonJson_dispose(json);
 
         bounds = spSkeletonBounds_create();
 
@@ -163,60 +177,61 @@ namespace spine
 
             const std::shared_ptr<ouzel::graphics::Material>& material = materials[static_cast<size_t>(i)];
 
-            float colorVector[] = {slot->r * material->diffuseColor.normR(),
-                slot->g * material->diffuseColor.normG(),
-                slot->b * material->diffuseColor.normB(),
-                slot->a * material->diffuseColor.normA() * opacity};
+            float colorVector[] = {slot->color.r * material->diffuseColor.normR(),
+                slot->color.g * material->diffuseColor.normG(),
+                slot->color.b * material->diffuseColor.normB(),
+                slot->color.a * material->diffuseColor.normA() * opacity};
             pixelShaderConstants[0] = {std::begin(colorVector), std::end(colorVector)};
 
             if (attachment->type == SP_ATTACHMENT_REGION)
             {
                 spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
-                spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices);
 
-                uint8_t r = static_cast<uint8_t>(skeleton->r * 255.0f);
-                uint8_t g = static_cast<uint8_t>(skeleton->g * 255.0f);
-                uint8_t b = static_cast<uint8_t>(skeleton->b * 255.0f);
-                uint8_t a = static_cast<uint8_t>(skeleton->a * 255.0f);
+                spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices, 0, 2);
+
+                uint8_t r = static_cast<uint8_t>(skeleton->color.r * 255.0f);
+                uint8_t g = static_cast<uint8_t>(skeleton->color.g * 255.0f);
+                uint8_t b = static_cast<uint8_t>(skeleton->color.b * 255.0f);
+                uint8_t a = static_cast<uint8_t>(skeleton->color.a * 255.0f);
 
                 vertex.color.r = r;
                 vertex.color.g = g;
                 vertex.color.b = b;
                 vertex.color.a = a;
-                vertex.position.x = worldVertices[SP_VERTEX_X1];
-                vertex.position.y = worldVertices[SP_VERTEX_Y1];
-                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X1];
-                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y1];
+                vertex.position.x = worldVertices[0];
+                vertex.position.y = worldVertices[1];
+                vertex.texCoord.x = regionAttachment->uvs[0];
+                vertex.texCoord.y = regionAttachment->uvs[1];
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
                 vertex.color.g = g;
                 vertex.color.b = b;
                 vertex.color.a = a;
-                vertex.position.x = worldVertices[SP_VERTEX_X2];
-                vertex.position.y = worldVertices[SP_VERTEX_Y2];
-                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X2];
-                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y2];
+                vertex.position.x = worldVertices[2];
+                vertex.position.y = worldVertices[3];
+                vertex.texCoord.x = regionAttachment->uvs[2];
+                vertex.texCoord.y = regionAttachment->uvs[3];
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
                 vertex.color.g = g;
                 vertex.color.b = b;
                 vertex.color.a = a;
-                vertex.position.x = worldVertices[SP_VERTEX_X3];
-                vertex.position.y = worldVertices[SP_VERTEX_Y3];
-                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X3];
-                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y3];
+                vertex.position.x = worldVertices[4];
+                vertex.position.y = worldVertices[5];
+                vertex.texCoord.x = regionAttachment->uvs[4];
+                vertex.texCoord.y = regionAttachment->uvs[5];
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
                 vertex.color.g = g;
                 vertex.color.b = b;
                 vertex.color.a = a;
-                vertex.position.x = worldVertices[SP_VERTEX_X4];
-                vertex.position.y = worldVertices[SP_VERTEX_Y4];
-                vertex.texCoord.x = regionAttachment->uvs[SP_VERTEX_X4];
-                vertex.texCoord.y = regionAttachment->uvs[SP_VERTEX_Y4];
+                vertex.position.x = worldVertices[6];
+                vertex.position.y = worldVertices[7];
+                vertex.texCoord.x = regionAttachment->uvs[6];
+                vertex.texCoord.y = regionAttachment->uvs[7];
                 vertices.push_back(vertex);
 
                 indices.push_back(currentVertexIndex + 0);
@@ -228,21 +243,21 @@ namespace spine
 
                 currentVertexIndex += 4;
 
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X1], worldVertices[SP_VERTEX_Y1]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X2], worldVertices[SP_VERTEX_Y2]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X3], worldVertices[SP_VERTEX_Y3]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X4], worldVertices[SP_VERTEX_Y4]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[0], worldVertices[1]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[2], worldVertices[3]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[4], worldVertices[5]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[6], worldVertices[7]));
             }
             else if (attachment->type == SP_ATTACHMENT_MESH)
             {
                 spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
                 if (mesh->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
-                spMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
+                spVertexAttachment_computeWorldVertices(SUPER(mesh), slot, 0, mesh->super.worldVerticesLength, worldVertices, 0, 2);
 
-                vertex.color.r = static_cast<uint8_t>(skeleton->r * 255.0f);
-                vertex.color.g = static_cast<uint8_t>(skeleton->g * 255.0f);
-                vertex.color.b = static_cast<uint8_t>(skeleton->b * 255.0f);
-                vertex.color.a = static_cast<uint8_t>(skeleton->a * 255.0f);
+                vertex.color.r = static_cast<uint8_t>(skeleton->color.r * 255.0f);
+                vertex.color.g = static_cast<uint8_t>(skeleton->color.g * 255.0f);
+                vertex.color.b = static_cast<uint8_t>(skeleton->color.b * 255.0f);
+                vertex.color.a = static_cast<uint8_t>(skeleton->color.a * 255.0f);
 
                 for (int t = 0; t < mesh->trianglesCount; ++t)
                 {
@@ -513,18 +528,18 @@ namespace spine
             if (attachment->type == SP_ATTACHMENT_REGION)
             {
                 spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
-                spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices);
+                spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices, 0, 2);
 
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X1], worldVertices[SP_VERTEX_Y1]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X2], worldVertices[SP_VERTEX_Y2]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X3], worldVertices[SP_VERTEX_Y3]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[SP_VERTEX_X4], worldVertices[SP_VERTEX_Y4]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[0], worldVertices[1]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[2], worldVertices[3]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[4], worldVertices[5]));
+                boundingBox.insertPoint(ouzel::Vector2(worldVertices[6], worldVertices[7]));
             }
             else if (attachment->type == SP_ATTACHMENT_MESH)
             {
                 spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
                 if (mesh->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
-                spMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
+                spVertexAttachment_computeWorldVertices(SUPER(mesh), slot, 0, mesh->super.worldVerticesLength, worldVertices, 0, 2);
 
                 for (int t = 0; t < mesh->trianglesCount; ++t)
                 {

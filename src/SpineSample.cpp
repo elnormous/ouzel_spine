@@ -29,13 +29,14 @@ SpineSample::SpineSample()
     layer.addChild(&camera);
     scene.addLayer(&layer);
 
-    witch.reset(new spine::SpineDrawable("witch.atlas", "witch.json"));
+    witch.reset(new spine::SpineDrawable("spineboy.atlas", "spineboy.skel"));
 
     witchNode.addComponent(witch.get());
+    witchNode.setPosition({0, -100});
     layer.addChild(&witchNode);
 
-    witch->setAnimation(0, "walk", true);
-    witch->addAnimation(0, "death", false, 2.0f);
+    witch->setAnimation(0, "jump", true);
+    witch->addAnimation(0, "run", true, 2.0f);
 
     witch->setEventCallback([this](int32_t trackIndex, const spine::SpineDrawable::Event& event) {
         switch (event.type)
