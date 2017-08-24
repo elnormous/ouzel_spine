@@ -29,29 +29,30 @@ SpineSample::SpineSample()
     layer.addChild(&camera);
     scene.addLayer(&layer);
 
-    witch.reset(new spine::SpineDrawable("spineboy.atlas", "spineboy.skel"));
+    spineBoy.reset(new spine::SpineDrawable("spineboy.atlas", "spineboy.skel"));
 
-    witchNode.addComponent(witch.get());
-    witchNode.setPosition({0, -100});
-    layer.addChild(&witchNode);
+    spineBoyNode.addComponent(spineBoy.get());
+    spineBoyNode.setPosition({0, -100});
+    spineBoyNode.setScale(Vector2(0.4f, 0.4f));
+    layer.addChild(&spineBoyNode);
 
-    witch->setAnimation(0, "jump", true);
-    witch->addAnimation(0, "run", true, 2.0f);
+    spineBoy->setAnimation(0, "jump", false);
+    spineBoy->addAnimation(0, "run", true, 2.0f);
 
-    witch->setEventCallback([this](int32_t trackIndex, const spine::SpineDrawable::Event& event) {
+    spineBoy->setEventCallback([this](int32_t trackIndex, const spine::SpineDrawable::Event& event) {
         switch (event.type)
         {
             case spine::SpineDrawable::Event::Type::START:
-                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " start: " << witch->getAnimationName(trackIndex);
+                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " start: " << spineBoy->getAnimationName(trackIndex);
                 break;
             case spine::SpineDrawable::Event::Type::END:
-                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " end: " << witch->getAnimationName(trackIndex);
+                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " end: " << spineBoy->getAnimationName(trackIndex);
                 break;
             case spine::SpineDrawable::Event::Type::COMPLETE:
-                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " complete: " << witch->getAnimationName(trackIndex) << ", ";
+                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " complete: " << spineBoy->getAnimationName(trackIndex) << ", ";
                 break;
             case spine::SpineDrawable::Event::Type::EVENT:
-                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " event: " << witch->getAnimationName(trackIndex) << ", " << event.name << ": " << event.intValue << ", " << event.floatValue << ", " << event.stringValue;
+                ouzel::Log(ouzel::Log::Level::INFO) << trackIndex << " event: " << spineBoy->getAnimationName(trackIndex) << ", " << event.name << ": " << event.intValue << ", " << event.floatValue << ", " << event.stringValue;
                 break;
             default:
                 break;

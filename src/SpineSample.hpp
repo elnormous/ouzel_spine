@@ -20,8 +20,8 @@ protected:
     ouzel::scene::Camera camera;
     ouzel::scene::Scene scene;
 
-    std::unique_ptr<spine::SpineDrawable> witch;
-    ouzel::scene::Node witchNode;
+    std::unique_ptr<spine::SpineDrawable> spineBoy;
+    ouzel::scene::Node spineBoyNode;
 
     ouzel::EventHandler eventHandler;
 };

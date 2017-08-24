@@ -13,15 +13,6 @@
 		30224CE41D7241A50067DE35 /* libouzel_tvos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30224CE31D7240D50067DE35 /* libouzel_tvos.a */; };
 		30224CE51D7241A90067DE35 /* libouzel_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30224CE11D7240D50067DE35 /* libouzel_ios.a */; };
 		30224CE61D7241AD0067DE35 /* libouzel_macos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30224CDF1D7240D50067DE35 /* libouzel_macos.a */; };
-		3033C9111CBBF415003307D1 /* witch.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3033C90E1CBBF415003307D1 /* witch.atlas */; };
-		3033C9121CBBF415003307D1 /* witch.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3033C90E1CBBF415003307D1 /* witch.atlas */; };
-		3033C9131CBBF415003307D1 /* witch.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3033C90E1CBBF415003307D1 /* witch.atlas */; };
-		3033C9141CBBF415003307D1 /* witch.json in Resources */ = {isa = PBXBuildFile; fileRef = 3033C90F1CBBF415003307D1 /* witch.json */; };
-		3033C9151CBBF415003307D1 /* witch.json in Resources */ = {isa = PBXBuildFile; fileRef = 3033C90F1CBBF415003307D1 /* witch.json */; };
-		3033C9161CBBF415003307D1 /* witch.json in Resources */ = {isa = PBXBuildFile; fileRef = 3033C90F1CBBF415003307D1 /* witch.json */; };
-		3033C9171CBBF415003307D1 /* witch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3033C9101CBBF415003307D1 /* witch.png */; };
-		3033C9181CBBF415003307D1 /* witch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3033C9101CBBF415003307D1 /* witch.png */; };
-		3033C9191CBBF415003307D1 /* witch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3033C9101CBBF415003307D1 /* witch.png */; };
 		303647A11C418E4C0024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3036479F1C414EF50024DB5B /* Assets.xcassets */; };
 		303647A21C418E790024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 304A8E161C237B96008B1151 /* Assets.xcassets */; };
 		303647A31C418E7C0024DB5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303647A01C414F120024DB5B /* Assets.xcassets */; };
@@ -210,9 +201,6 @@
 		3011E1CE1F008BBE00CB1DDC /* settings.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = settings.ini; sourceTree = SOURCE_ROOT; };
 		30324DAE1CAFB8CA00601A64 /* SpineDrawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpineDrawable.cpp; sourceTree = "<group>"; };
 		30324DAF1CAFB8CA00601A64 /* SpineDrawable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpineDrawable.hpp; sourceTree = "<group>"; };
-		3033C90E1CBBF415003307D1 /* witch.atlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = witch.atlas; sourceTree = "<group>"; };
-		3033C90F1CBBF415003307D1 /* witch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = witch.json; sourceTree = "<group>"; };
-		3033C9101CBBF415003307D1 /* witch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = witch.png; sourceTree = "<group>"; };
 		3036479F1C414EF50024DB5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		303647A01C414F120024DB5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		303B74ED1C27F6A100FEDE92 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -480,9 +468,6 @@
 				52C9C9831F4ECF8400F5F87A /* spineboy.png */,
 				52C9C9841F4ECF8400F5F87A /* spineboy.skel */,
 				3011E1CE1F008BBE00CB1DDC /* settings.ini */,
-				3033C90E1CBBF415003307D1 /* witch.atlas */,
-				3033C90F1CBBF415003307D1 /* witch.json */,
-				3033C9101CBBF415003307D1 /* witch.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -671,10 +656,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3033C9181CBBF415003307D1 /* witch.png in Resources */,
 				52C9C98A1F4ECF8400F5F87A /* spineboy.skel in Resources */,
-				3033C9121CBBF415003307D1 /* witch.atlas in Resources */,
-				3033C9151CBBF415003307D1 /* witch.json in Resources */,
 				52C9C9881F4ECF8400F5F87A /* spineboy.png in Resources */,
 				52C9C9861F4ECF8400F5F87A /* spineboy.atlas in Resources */,
 				303647A11C418E4C0024DB5B /* Assets.xcassets in Resources */,
@@ -686,9 +668,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3033C9191CBBF415003307D1 /* witch.png in Resources */,
-				3033C9131CBBF415003307D1 /* witch.atlas in Resources */,
-				3033C9161CBBF415003307D1 /* witch.json in Resources */,
 				303647A31C418E7C0024DB5B /* Assets.xcassets in Resources */,
 				3011E1D11F008BBE00CB1DDC /* settings.ini in Resources */,
 			);
@@ -698,10 +677,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3033C9171CBBF415003307D1 /* witch.png in Resources */,
 				52C9C9891F4ECF8400F5F87A /* spineboy.skel in Resources */,
-				3033C9111CBBF415003307D1 /* witch.atlas in Resources */,
-				3033C9141CBBF415003307D1 /* witch.json in Resources */,
 				52C9C9871F4ECF8400F5F87A /* spineboy.png in Resources */,
 				52C9C9851F4ECF8400F5F87A /* spineboy.atlas in Resources */,
 				303647A21C418E790024DB5B /* Assets.xcassets in Resources */,
