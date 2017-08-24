@@ -160,6 +160,26 @@
 		30FC86D51DF3C1D2003E051B /* VertexAttachment.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FC86771DF3C1D2003E051B /* VertexAttachment.c */; };
 		30FC86D61DF3C1D2003E051B /* VertexAttachment.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FC86771DF3C1D2003E051B /* VertexAttachment.c */; };
 		30FC86D71DF3C1D2003E051B /* VertexAttachment.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FC86771DF3C1D2003E051B /* VertexAttachment.c */; };
+		52C9C9851F4ECF8400F5F87A /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9821F4ECF8400F5F87A /* spineboy.atlas */; };
+		52C9C9861F4ECF8400F5F87A /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9821F4ECF8400F5F87A /* spineboy.atlas */; };
+		52C9C9871F4ECF8400F5F87A /* spineboy.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9831F4ECF8400F5F87A /* spineboy.png */; };
+		52C9C9881F4ECF8400F5F87A /* spineboy.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9831F4ECF8400F5F87A /* spineboy.png */; };
+		52C9C9891F4ECF8400F5F87A /* spineboy.skel in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9841F4ECF8400F5F87A /* spineboy.skel */; };
+		52C9C98A1F4ECF8400F5F87A /* spineboy.skel in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9841F4ECF8400F5F87A /* spineboy.skel */; };
+		52C9C9921F4ED4CF00F5F87A /* Array.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98B1F4ED4CF00F5F87A /* Array.c */; };
+		52C9C9931F4ED4CF00F5F87A /* Array.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98B1F4ED4CF00F5F87A /* Array.c */; };
+		52C9C9941F4ED4CF00F5F87A /* ClippingAttachment.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98C1F4ED4CF00F5F87A /* ClippingAttachment.c */; };
+		52C9C9951F4ED4CF00F5F87A /* ClippingAttachment.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98C1F4ED4CF00F5F87A /* ClippingAttachment.c */; };
+		52C9C9961F4ED4CF00F5F87A /* Color.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98D1F4ED4CF00F5F87A /* Color.c */; };
+		52C9C9971F4ED4CF00F5F87A /* Color.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98D1F4ED4CF00F5F87A /* Color.c */; };
+		52C9C9981F4ED4CF00F5F87A /* PointAttachment.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98E1F4ED4CF00F5F87A /* PointAttachment.c */; };
+		52C9C9991F4ED4CF00F5F87A /* PointAttachment.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98E1F4ED4CF00F5F87A /* PointAttachment.c */; };
+		52C9C99A1F4ED4CF00F5F87A /* SkeletonClipping.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98F1F4ED4CF00F5F87A /* SkeletonClipping.c */; };
+		52C9C99B1F4ED4CF00F5F87A /* SkeletonClipping.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98F1F4ED4CF00F5F87A /* SkeletonClipping.c */; };
+		52C9C99C1F4ED4CF00F5F87A /* Triangulator.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C9901F4ED4CF00F5F87A /* Triangulator.c */; };
+		52C9C99D1F4ED4CF00F5F87A /* Triangulator.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C9901F4ED4CF00F5F87A /* Triangulator.c */; };
+		52C9C99E1F4ED4CF00F5F87A /* VertexEffect.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C9911F4ED4CF00F5F87A /* VertexEffect.c */; };
+		52C9C99F1F4ED4CF00F5F87A /* VertexEffect.c in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C9911F4ED4CF00F5F87A /* VertexEffect.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -275,6 +295,16 @@
 		30FC86751DF3C1D2003E051B /* TransformConstraint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TransformConstraint.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/TransformConstraint.c"; sourceTree = SOURCE_ROOT; };
 		30FC86761DF3C1D2003E051B /* TransformConstraintData.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TransformConstraintData.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/TransformConstraintData.c"; sourceTree = SOURCE_ROOT; };
 		30FC86771DF3C1D2003E051B /* VertexAttachment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = VertexAttachment.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/VertexAttachment.c"; sourceTree = SOURCE_ROOT; };
+		52C9C9821F4ECF8400F5F87A /* spineboy.atlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spineboy.atlas; sourceTree = "<group>"; };
+		52C9C9831F4ECF8400F5F87A /* spineboy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spineboy.png; sourceTree = "<group>"; };
+		52C9C9841F4ECF8400F5F87A /* spineboy.skel */ = {isa = PBXFileReference; lastKnownFileType = file; path = spineboy.skel; sourceTree = "<group>"; };
+		52C9C98B1F4ED4CF00F5F87A /* Array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Array.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/Array.c"; sourceTree = SOURCE_ROOT; };
+		52C9C98C1F4ED4CF00F5F87A /* ClippingAttachment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ClippingAttachment.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/ClippingAttachment.c"; sourceTree = SOURCE_ROOT; };
+		52C9C98D1F4ED4CF00F5F87A /* Color.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Color.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/Color.c"; sourceTree = SOURCE_ROOT; };
+		52C9C98E1F4ED4CF00F5F87A /* PointAttachment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = PointAttachment.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/PointAttachment.c"; sourceTree = SOURCE_ROOT; };
+		52C9C98F1F4ED4CF00F5F87A /* SkeletonClipping.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SkeletonClipping.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/SkeletonClipping.c"; sourceTree = SOURCE_ROOT; };
+		52C9C9901F4ED4CF00F5F87A /* Triangulator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Triangulator.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/Triangulator.c"; sourceTree = SOURCE_ROOT; };
+		52C9C9911F4ED4CF00F5F87A /* VertexEffect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = VertexEffect.c; path = "external/spine-runtimes/spine-c/spine-c/src/spine/VertexEffect.c"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,6 +476,9 @@
 		304A8EB21C2765C4008B1151 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				52C9C9821F4ECF8400F5F87A /* spineboy.atlas */,
+				52C9C9831F4ECF8400F5F87A /* spineboy.png */,
+				52C9C9841F4ECF8400F5F87A /* spineboy.skel */,
 				3011E1CE1F008BBE00CB1DDC /* settings.ini */,
 				3033C90E1CBBF415003307D1 /* witch.atlas */,
 				3033C90F1CBBF415003307D1 /* witch.json */,
@@ -469,6 +502,7 @@
 				30FC86561DF3C1D2003E051B /* Animation.c */,
 				30FC86571DF3C1D2003E051B /* AnimationState.c */,
 				30FC86581DF3C1D2003E051B /* AnimationStateData.c */,
+				52C9C98B1F4ED4CF00F5F87A /* Array.c */,
 				30FC86591DF3C1D2003E051B /* Atlas.c */,
 				30FC865A1DF3C1D2003E051B /* AtlasAttachmentLoader.c */,
 				30FC865B1DF3C1D2003E051B /* Attachment.c */,
@@ -476,6 +510,8 @@
 				30FC865D1DF3C1D2003E051B /* Bone.c */,
 				30FC865E1DF3C1D2003E051B /* BoneData.c */,
 				30FC865F1DF3C1D2003E051B /* BoundingBoxAttachment.c */,
+				52C9C98C1F4ED4CF00F5F87A /* ClippingAttachment.c */,
+				52C9C98D1F4ED4CF00F5F87A /* Color.c */,
 				30FC86601DF3C1D2003E051B /* Event.c */,
 				30FC86611DF3C1D2003E051B /* EventData.c */,
 				30FC86621DF3C1D2003E051B /* extension.c */,
@@ -488,10 +524,12 @@
 				30FC86691DF3C1D2003E051B /* PathAttachment.c */,
 				30FC866A1DF3C1D2003E051B /* PathConstraint.c */,
 				30FC866B1DF3C1D2003E051B /* PathConstraintData.c */,
+				52C9C98E1F4ED4CF00F5F87A /* PointAttachment.c */,
 				30FC866C1DF3C1D2003E051B /* RegionAttachment.c */,
 				30FC866D1DF3C1D2003E051B /* Skeleton.c */,
 				30FC866E1DF3C1D2003E051B /* SkeletonBinary.c */,
 				30FC866F1DF3C1D2003E051B /* SkeletonBounds.c */,
+				52C9C98F1F4ED4CF00F5F87A /* SkeletonClipping.c */,
 				30FC86701DF3C1D2003E051B /* SkeletonData.c */,
 				30FC86711DF3C1D2003E051B /* SkeletonJson.c */,
 				30FC86721DF3C1D2003E051B /* Skin.c */,
@@ -499,7 +537,9 @@
 				30FC86741DF3C1D2003E051B /* SlotData.c */,
 				30FC86751DF3C1D2003E051B /* TransformConstraint.c */,
 				30FC86761DF3C1D2003E051B /* TransformConstraintData.c */,
+				52C9C9901F4ED4CF00F5F87A /* Triangulator.c */,
 				30FC86771DF3C1D2003E051B /* VertexAttachment.c */,
+				52C9C9911F4ED4CF00F5F87A /* VertexEffect.c */,
 			);
 			name = spine;
 			path = "external/spine-runtimes/spine-c/src/spine";
@@ -632,8 +672,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3033C9181CBBF415003307D1 /* witch.png in Resources */,
+				52C9C98A1F4ECF8400F5F87A /* spineboy.skel in Resources */,
 				3033C9121CBBF415003307D1 /* witch.atlas in Resources */,
 				3033C9151CBBF415003307D1 /* witch.json in Resources */,
+				52C9C9881F4ECF8400F5F87A /* spineboy.png in Resources */,
+				52C9C9861F4ECF8400F5F87A /* spineboy.atlas in Resources */,
 				303647A11C418E4C0024DB5B /* Assets.xcassets in Resources */,
 				3011E1D01F008BBE00CB1DDC /* settings.ini in Resources */,
 			);
@@ -656,8 +699,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3033C9171CBBF415003307D1 /* witch.png in Resources */,
+				52C9C9891F4ECF8400F5F87A /* spineboy.skel in Resources */,
 				3033C9111CBBF415003307D1 /* witch.atlas in Resources */,
 				3033C9141CBBF415003307D1 /* witch.json in Resources */,
+				52C9C9871F4ECF8400F5F87A /* spineboy.png in Resources */,
+				52C9C9851F4ECF8400F5F87A /* spineboy.atlas in Resources */,
 				303647A21C418E790024DB5B /* Assets.xcassets in Resources */,
 				3011E1CF1F008BBE00CB1DDC /* settings.ini in Resources */,
 			);
@@ -673,8 +719,10 @@
 				30FC86B21DF3C1D2003E051B /* PathConstraintData.c in Sources */,
 				30FC86821DF3C1D2003E051B /* Atlas.c in Sources */,
 				30FC86881DF3C1D2003E051B /* Attachment.c in Sources */,
+				52C9C9931F4ED4CF00F5F87A /* Array.c in Sources */,
 				30FC86D31DF3C1D2003E051B /* TransformConstraintData.c in Sources */,
 				30FC867F1DF3C1D2003E051B /* AnimationStateData.c in Sources */,
+				52C9C99D1F4ED4CF00F5F87A /* Triangulator.c in Sources */,
 				30FC86C11DF3C1D2003E051B /* SkeletonData.c in Sources */,
 				30FC86CA1DF3C1D2003E051B /* Slot.c in Sources */,
 				30FC867C1DF3C1D2003E051B /* AnimationState.c in Sources */,
@@ -690,10 +738,13 @@
 				30FC86941DF3C1D2003E051B /* BoundingBoxAttachment.c in Sources */,
 				30FC86C71DF3C1D2003E051B /* Skin.c in Sources */,
 				30FC868E1DF3C1D2003E051B /* Bone.c in Sources */,
+				52C9C9951F4ED4CF00F5F87A /* ClippingAttachment.c in Sources */,
 				30FC869D1DF3C1D2003E051B /* extension.c in Sources */,
+				52C9C9971F4ED4CF00F5F87A /* Color.c in Sources */,
 				303B760E1C34CFE300FEDE92 /* SpineSample.cpp in Sources */,
 				30FC86AF1DF3C1D2003E051B /* PathConstraint.c in Sources */,
 				30FC86971DF3C1D2003E051B /* Event.c in Sources */,
+				52C9C99F1F4ED4CF00F5F87A /* VertexEffect.c in Sources */,
 				30FC86A01DF3C1D2003E051B /* IkConstraint.c in Sources */,
 				30FC86AC1DF3C1D2003E051B /* PathAttachment.c in Sources */,
 				30FC86B51DF3C1D2003E051B /* RegionAttachment.c in Sources */,
@@ -701,9 +752,11 @@
 				30FC86D01DF3C1D2003E051B /* TransformConstraint.c in Sources */,
 				30FC86CD1DF3C1D2003E051B /* SlotData.c in Sources */,
 				30FC86C41DF3C1D2003E051B /* SkeletonJson.c in Sources */,
+				52C9C9991F4ED4CF00F5F87A /* PointAttachment.c in Sources */,
 				30FC86791DF3C1D2003E051B /* Animation.c in Sources */,
 				30FC86A61DF3C1D2003E051B /* Json.c in Sources */,
 				30AFE17B1CB7064800478AA2 /* SpineDrawable.cpp in Sources */,
+				52C9C99B1F4ED4CF00F5F87A /* SkeletonClipping.c in Sources */,
 				30FC86D61DF3C1D2003E051B /* VertexAttachment.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -757,8 +810,10 @@
 				30FC86B11DF3C1D2003E051B /* PathConstraintData.c in Sources */,
 				30FC86811DF3C1D2003E051B /* Atlas.c in Sources */,
 				30FC86871DF3C1D2003E051B /* Attachment.c in Sources */,
+				52C9C9921F4ED4CF00F5F87A /* Array.c in Sources */,
 				30FC86D21DF3C1D2003E051B /* TransformConstraintData.c in Sources */,
 				30FC867E1DF3C1D2003E051B /* AnimationStateData.c in Sources */,
+				52C9C99C1F4ED4CF00F5F87A /* Triangulator.c in Sources */,
 				30FC86C01DF3C1D2003E051B /* SkeletonData.c in Sources */,
 				30FC86C91DF3C1D2003E051B /* Slot.c in Sources */,
 				30FC867B1DF3C1D2003E051B /* AnimationState.c in Sources */,
@@ -774,10 +829,13 @@
 				30FC86931DF3C1D2003E051B /* BoundingBoxAttachment.c in Sources */,
 				30FC86C61DF3C1D2003E051B /* Skin.c in Sources */,
 				30FC868D1DF3C1D2003E051B /* Bone.c in Sources */,
+				52C9C9941F4ED4CF00F5F87A /* ClippingAttachment.c in Sources */,
 				30FC869C1DF3C1D2003E051B /* extension.c in Sources */,
+				52C9C9961F4ED4CF00F5F87A /* Color.c in Sources */,
 				304A8EAA1C27429A008B1151 /* SpineSample.cpp in Sources */,
 				30FC86AE1DF3C1D2003E051B /* PathConstraint.c in Sources */,
 				30FC86961DF3C1D2003E051B /* Event.c in Sources */,
+				52C9C99E1F4ED4CF00F5F87A /* VertexEffect.c in Sources */,
 				30FC869F1DF3C1D2003E051B /* IkConstraint.c in Sources */,
 				30FC86AB1DF3C1D2003E051B /* PathAttachment.c in Sources */,
 				30FC86B41DF3C1D2003E051B /* RegionAttachment.c in Sources */,
@@ -785,9 +843,11 @@
 				30FC86CF1DF3C1D2003E051B /* TransformConstraint.c in Sources */,
 				30FC86CC1DF3C1D2003E051B /* SlotData.c in Sources */,
 				30FC86C31DF3C1D2003E051B /* SkeletonJson.c in Sources */,
+				52C9C9981F4ED4CF00F5F87A /* PointAttachment.c in Sources */,
 				30FC86781DF3C1D2003E051B /* Animation.c in Sources */,
 				30FC86A51DF3C1D2003E051B /* Json.c in Sources */,
 				30AFE1771CB7064700478AA2 /* SpineDrawable.cpp in Sources */,
+				52C9C99A1F4ED4CF00F5F87A /* SkeletonClipping.c in Sources */,
 				30FC86D51DF3C1D2003E051B /* VertexAttachment.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
