@@ -57,7 +57,8 @@ namespace spine
             return;
         }
 
-        if (skeletonFile.find(".json") != std::string::npos) {
+        if (skeletonFile.find(".json") != std::string::npos)
+        {
             // is json format
             spSkeletonJson* json = spSkeletonJson_create(atlas);
             skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonFile.c_str());
@@ -68,7 +69,9 @@ namespace spine
                 return;
             }
             spSkeletonJson_dispose(json);
-        } else {
+        }
+        else
+        {
             // binary format
             spSkeletonBinary* binary = spSkeletonBinary_create(atlas);
             skeletonData = spSkeletonBinary_readSkeletonDataFile(binary, skeletonFile.c_str());
