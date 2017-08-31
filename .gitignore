@@ -6,3 +6,5 @@ x64/
 ouzel_spine.sdf
 Release/
 Debug/
+*.db
+*.opendb

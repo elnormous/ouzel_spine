@@ -4,7 +4,43 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\SpineDrawable.cpp" />
     <ClCompile Include="src\SpineSample.cpp" />
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Animation.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\AnimationState.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\AnimationStateData.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Array.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Atlas.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\AtlasAttachmentLoader.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Attachment.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\AttachmentLoader.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Bone.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\BoneData.c">
+      <Filter>spine</Filter>
+    </ClCompile>
     <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\BoundingBoxAttachment.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\ClippingAttachment.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Color.c">
       <Filter>spine</Filter>
     </ClCompile>
     <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Event.c">
@@ -37,6 +73,9 @@
     <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\PathConstraintData.c">
       <Filter>spine</Filter>
     </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\PointAttachment.c">
+      <Filter>spine</Filter>
+    </ClCompile>
     <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\RegionAttachment.c">
       <Filter>spine</Filter>
     </ClCompile>
@@ -47,6 +86,9 @@
       <Filter>spine</Filter>
     </ClCompile>
     <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\SkeletonBounds.c">
+      <Filter>spine</Filter>
+    </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\SkeletonClipping.c">
       <Filter>spine</Filter>
     </ClCompile>
     <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\SkeletonData.c">
@@ -70,34 +112,13 @@
     <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\TransformConstraintData.c">
       <Filter>spine</Filter>
     </ClCompile>
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Triangulator.c">
+      <Filter>spine</Filter>
+    </ClCompile>
     <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\VertexAttachment.c">
       <Filter>spine</Filter>
     </ClCompile>
-    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Animation.c">
-      <Filter>spine</Filter>
-    </ClCompile>
-    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\AnimationState.c">
-      <Filter>spine</Filter>
-    </ClCompile>
-    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\AnimationStateData.c">
-      <Filter>spine</Filter>
-    </ClCompile>
-    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Atlas.c">
-      <Filter>spine</Filter>
-    </ClCompile>
-    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\AtlasAttachmentLoader.c">
-      <Filter>spine</Filter>
-    </ClCompile>
-    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Attachment.c">
-      <Filter>spine</Filter>
-    </ClCompile>
-    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\AttachmentLoader.c">
-      <Filter>spine</Filter>
-    </ClCompile>
-    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\Bone.c">
-      <Filter>spine</Filter>
-    </ClCompile>
-    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\BoneData.c">
+    <ClCompile Include="external\spine-runtimes\spine-c\spine-c\src\spine\VertexEffect.c">
       <Filter>spine</Filter>
     </ClCompile>
   </ItemGroup>
