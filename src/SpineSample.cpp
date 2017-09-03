@@ -31,10 +31,10 @@ SpineSample::SpineSample()
 
     spineBoy.reset(new spine::SpineDrawable("spineboy.atlas", "spineboy.skel"));
 
-    spineBoyNode.addComponent(spineBoy.get());
-    spineBoyNode.setPosition({0, -100});
-    spineBoyNode.setScale(Vector2(0.4f, 0.4f));
-    layer.addChild(&spineBoyNode);
+    actor.addComponent(spineBoy.get());
+    actor.setPosition({0, -100});
+    actor.setScale(Vector2(0.4f, 0.4f));
+    layer.addChild(&actor);
 
     spineBoy->setAnimation(0, "jump", false);
     spineBoy->addAnimation(0, "run", true, 2.0f);

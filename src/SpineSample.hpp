@@ -21,7 +21,7 @@ protected:
     ouzel::scene::Scene scene;
 
     std::unique_ptr<spine::SpineDrawable> spineBoy;
-    ouzel::scene::Node spineBoyNode;
+    ouzel::scene::Actor actor;
 
     ouzel::EventHandler eventHandler;
 };
