@@ -47,6 +47,9 @@
 		308265CF1F291167009417DD /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308265CE1F291167009417DD /* AudioUnit.framework */; };
 		308265D51F291178009417DD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30419E411D1A1A6A00A63759 /* CoreAudio.framework */; };
 		308265D61F291195009417DD /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30575AE71C3C98F50009C8A7 /* GameController.framework */; };
+		309C3D3E1F6ADB050027A64C /* spineboy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9821F4ECF8400F5F87A /* spineboy.atlas */; };
+		309C3D3F1F6ADB050027A64C /* spineboy.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9831F4ECF8400F5F87A /* spineboy.png */; };
+		309C3D401F6ADB050027A64C /* spineboy.skel in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9841F4ECF8400F5F87A /* spineboy.skel */; };
 		30AFE15A1CB6BD5900478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1581CB6BD5900478AA2 /* Metal.framework */; };
 		30AFE15E1CB6BD6500478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE15C1CB6BD6500478AA2 /* Metal.framework */; };
 		30AFE1621CB6BD7000478AA2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AFE1601CB6BD7000478AA2 /* Metal.framework */; };
@@ -668,8 +671,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				309C3D3F1F6ADB050027A64C /* spineboy.png in Resources */,
 				303647A31C418E7C0024DB5B /* Assets.xcassets in Resources */,
+				309C3D401F6ADB050027A64C /* spineboy.skel in Resources */,
 				3011E1D11F008BBE00CB1DDC /* settings.ini in Resources */,
+				309C3D3E1F6ADB050027A64C /* spineboy.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
