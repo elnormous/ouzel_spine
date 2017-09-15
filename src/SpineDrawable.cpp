@@ -97,8 +97,8 @@ namespace spine
         spSkeleton_setToSetupPose(skeleton);
         spSkeleton_updateWorldTransform(skeleton);
 
-        updateBoundingBox();
         updateMaterials();
+        updateBoundingBox();
 
         indexBuffer = std::make_shared<ouzel::graphics::Buffer>();
         indexBuffer->init(ouzel::graphics::Buffer::Usage::INDEX, ouzel::graphics::Buffer::DYNAMIC);
@@ -526,34 +526,45 @@ namespace spine
         {
             spSlot* slot = skeleton->drawOrder[i];
             spAttachment* attachment = slot->attachment;
-            if (!attachment) continue;
 
-            if (attachment->type == SP_ATTACHMENT_REGION)
+            if (attachment)
             {
-                spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
-                spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices, 0, 2);
-
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[0], worldVertices[1]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[2], worldVertices[3]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[4], worldVertices[5]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[6], worldVertices[7]));
-            }
-            else if (attachment->type == SP_ATTACHMENT_MESH)
-            {
-                spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
-                if (mesh->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
-                spVertexAttachment_computeWorldVertices(SUPER(mesh), slot, 0, mesh->super.worldVerticesLength, worldVertices, 0, 2);
-
-                for (int t = 0; t < mesh->trianglesCount; ++t)
+                if (attachment->type == SP_ATTACHMENT_REGION)
                 {
-                    int index = mesh->triangles[t] << 1;
+                    spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
+                    spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices, 0, 2);
 
-                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[index], worldVertices[index + 1]));
+                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[0], worldVertices[1]));
+                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[2], worldVertices[3]));
+                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[4], worldVertices[5]));
+                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[6], worldVertices[7]));
+
+                    if (!materials[static_cast<size_t>(i)]->textures[0])
+                    {
+                        SpineTexture* texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(regionAttachment->rendererObject))->page->rendererObject);
+                        if (texture) materials[static_cast<size_t>(i)]->textures[0] = texture->texture;
+                    }
+
                 }
-            }
-            else
-            {
-                continue;
+                else if (attachment->type == SP_ATTACHMENT_MESH)
+                {
+                    spMeshAttachment* meshAttachment = reinterpret_cast<spMeshAttachment*>(attachment);
+                    if (meshAttachment->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
+                    spVertexAttachment_computeWorldVertices(SUPER(meshAttachment), slot, 0, meshAttachment->super.worldVerticesLength, worldVertices, 0, 2);
+
+                    for (int t = 0; t < meshAttachment->trianglesCount; ++t)
+                    {
+                        int index = meshAttachment->triangles[t] << 1;
+
+                        boundingBox.insertPoint(ouzel::Vector2(worldVertices[index], worldVertices[index + 1]));
+                    }
+
+                    if (!materials[static_cast<size_t>(i)]->textures[0])
+                    {
+                        SpineTexture* texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(meshAttachment->rendererObject))->page->rendererObject);
+                        if (texture) materials[static_cast<size_t>(i)]->textures[0] = texture->texture;
+                    }
+                }
             }
         }
     }
@@ -571,8 +582,6 @@ namespace spine
             material->cullMode = ouzel::graphics::Renderer::CullMode::NONE;
 
             spSlot* slot = skeleton->drawOrder[i];
-            spAttachment* attachment = slot->attachment;
-            if (!attachment) continue;
 
             switch (slot->data->blendMode)
             {
@@ -590,19 +599,23 @@ namespace spine
                     material->blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
             }
 
-            SpineTexture* texture = nullptr;
 
-            if (attachment->type == SP_ATTACHMENT_REGION)
+            spAttachment* attachment = slot->attachment;
+
+            if (attachment)
             {
-                spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
-                texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(regionAttachment->rendererObject))->page->rendererObject);
-                if (texture) material->textures[0] = texture->texture;
-            }
-            else if (attachment->type == SP_ATTACHMENT_MESH)
-            {
-                spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
-                texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(mesh->rendererObject))->page->rendererObject);
-                if (texture) material->textures[0] = texture->texture;
+                if (attachment->type == SP_ATTACHMENT_REGION)
+                {
+                    spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
+                    SpineTexture* texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(regionAttachment->rendererObject))->page->rendererObject);
+                    if (texture) material->textures[0] = texture->texture;
+                }
+                else if (attachment->type == SP_ATTACHMENT_MESH)
+                {
+                    spMeshAttachment* meshAttachment = reinterpret_cast<spMeshAttachment*>(attachment);
+                    SpineTexture* texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(meshAttachment->rendererObject))->page->rendererObject);
+                    if (texture) material->textures[0] = texture->texture;
+                }
             }
         }
 
