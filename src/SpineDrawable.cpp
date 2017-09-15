@@ -250,31 +250,43 @@ namespace spine
                 boundingBox.insertPoint(ouzel::Vector2(worldVertices[2], worldVertices[3]));
                 boundingBox.insertPoint(ouzel::Vector2(worldVertices[4], worldVertices[5]));
                 boundingBox.insertPoint(ouzel::Vector2(worldVertices[6], worldVertices[7]));
+
+                if (!materials[static_cast<size_t>(i)]->textures[0])
+                {
+                    SpineTexture* texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(regionAttachment->rendererObject))->page->rendererObject);
+                    if (texture) materials[static_cast<size_t>(i)]->textures[0] = texture->texture;
+                }
             }
             else if (attachment->type == SP_ATTACHMENT_MESH)
             {
-                spMeshAttachment* mesh = reinterpret_cast<spMeshAttachment*>(attachment);
-                if (mesh->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
-                spVertexAttachment_computeWorldVertices(SUPER(mesh), slot, 0, mesh->super.worldVerticesLength, worldVertices, 0, 2);
+                spMeshAttachment* meshAttachment = reinterpret_cast<spMeshAttachment*>(attachment);
+                if (meshAttachment->trianglesCount * 3 > SPINE_MESH_VERTEX_COUNT_MAX) continue;
+                spVertexAttachment_computeWorldVertices(SUPER(meshAttachment), slot, 0, meshAttachment->super.worldVerticesLength, worldVertices, 0, 2);
 
                 vertex.color.r = static_cast<uint8_t>(skeleton->color.r * 255.0f);
                 vertex.color.g = static_cast<uint8_t>(skeleton->color.g * 255.0f);
                 vertex.color.b = static_cast<uint8_t>(skeleton->color.b * 255.0f);
                 vertex.color.a = static_cast<uint8_t>(skeleton->color.a * 255.0f);
 
-                for (int t = 0; t < mesh->trianglesCount; ++t)
+                for (int t = 0; t < meshAttachment->trianglesCount; ++t)
                 {
-                    int index = mesh->triangles[t] << 1;
+                    int index = meshAttachment->triangles[t] << 1;
                     vertex.position.x = worldVertices[index];
                     vertex.position.y = worldVertices[index + 1];
-                    vertex.texCoord.x = mesh->uvs[index];
-                    vertex.texCoord.y = mesh->uvs[index + 1];
+                    vertex.texCoord.x = meshAttachment->uvs[index];
+                    vertex.texCoord.y = meshAttachment->uvs[index + 1];
 
                     indices.push_back(currentVertexIndex);
                     currentVertexIndex++;
                     vertices.push_back(vertex);
 
                     boundingBox.insertPoint(ouzel::Vector2(worldVertices[index], worldVertices[index + 1]));
+                }
+
+                if (!materials[static_cast<size_t>(i)]->textures[0])
+                {
+                    SpineTexture* texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(meshAttachment->rendererObject))->page->rendererObject);
+                    if (texture) materials[static_cast<size_t>(i)]->textures[0] = texture->texture;
                 }
             }
             else
@@ -538,13 +550,6 @@ namespace spine
                     boundingBox.insertPoint(ouzel::Vector2(worldVertices[2], worldVertices[3]));
                     boundingBox.insertPoint(ouzel::Vector2(worldVertices[4], worldVertices[5]));
                     boundingBox.insertPoint(ouzel::Vector2(worldVertices[6], worldVertices[7]));
-
-                    if (!materials[static_cast<size_t>(i)]->textures[0])
-                    {
-                        SpineTexture* texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(regionAttachment->rendererObject))->page->rendererObject);
-                        if (texture) materials[static_cast<size_t>(i)]->textures[0] = texture->texture;
-                    }
-
                 }
                 else if (attachment->type == SP_ATTACHMENT_MESH)
                 {
@@ -557,12 +562,6 @@ namespace spine
                         int index = meshAttachment->triangles[t] << 1;
 
                         boundingBox.insertPoint(ouzel::Vector2(worldVertices[index], worldVertices[index + 1]));
-                    }
-
-                    if (!materials[static_cast<size_t>(i)]->textures[0])
-                    {
-                        SpineTexture* texture = static_cast<SpineTexture*>((static_cast<spAtlasRegion*>(meshAttachment->rendererObject))->page->rendererObject);
-                        if (texture) materials[static_cast<size_t>(i)]->textures[0] = texture->texture;
                     }
                 }
             }
