@@ -17,6 +17,7 @@ public:
 
 protected:
     ouzel::scene::Layer layer;
+    ouzel::scene::Actor cameraActor;
     ouzel::scene::Camera camera;
     ouzel::scene::Scene scene;
 

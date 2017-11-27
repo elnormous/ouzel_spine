@@ -20,13 +20,14 @@ SpineSample::SpineSample()
     eventHandler.gamepadHandler = std::bind(&SpineSample::handleGamepad, this, std::placeholders::_1, std::placeholders::_2);
     eventHandler.uiHandler = std::bind(&SpineSample::handleUI, this, std::placeholders::_1, std::placeholders::_2);
 
-    sharedEngine->getEventDispatcher()->addEventHandler(&eventHandler);
+    engine->getEventDispatcher()->addEventHandler(&eventHandler);
 
-    sharedEngine->getRenderer()->setClearColor(Color(64, 0, 0));
+    engine->getRenderer()->setClearColor(Color(64, 0, 0));
 
-    sharedEngine->getSceneManager()->setScene(&scene);
+    engine->getSceneManager()->setScene(&scene);
 
-    layer.addChild(&camera);
+    cameraActor.addComponent(&camera);
+    layer.addChild(&cameraActor);
     scene.addLayer(&layer);
 
     spineBoy.reset(new spine::SpineDrawable("spineboy.atlas", "spineboy.skel"));
@@ -61,14 +62,14 @@ SpineSample::SpineSample()
 
     //Slot* headSlot = Skeleton_findSlot(skeleton, "head");
 
-    sharedEngine->getInput()->startGamepadDiscovery();
+    engine->getInput()->startGamepadDiscovery();
 }
 
 bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event)
 {
     if (type == ouzel::Event::Type::KEY_PRESS)
     {
-        Vector2 position = camera.getPosition();
+        Vector2 position = cameraActor.getPosition();
 
         switch (event.key)
         {
@@ -85,13 +86,13 @@ bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event)
                 position.x += 10.0f;
                 break;
             case input::KeyboardKey::RETURN:
-                sharedEngine->getWindow()->setSize(Size2(640.0f, 480.0f));
+                engine->getWindow()->setSize(Size2(640.0f, 480.0f));
                 break;
             default:
                 break;
         }
 
-        camera.setPosition(position);
+        cameraActor.setPosition(position);
     }
 
     return true;

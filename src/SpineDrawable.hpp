@@ -113,7 +113,7 @@ namespace spine
         std::vector<std::shared_ptr<ouzel::graphics::Material>> materials;
 
         std::vector<uint16_t> indices;
-        std::vector<ouzel::graphics::VertexPCT> vertices;
+        std::vector<ouzel::graphics::Vertex> vertices;
 
         std::shared_ptr<ouzel::graphics::MeshBuffer> meshBuffer;
         std::shared_ptr<ouzel::graphics::Buffer> indexBuffer;

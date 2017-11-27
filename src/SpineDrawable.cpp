@@ -15,7 +15,7 @@ void _spAtlasPage_createTexture(spAtlasPage* self, const char* path)
 {
     SpineTexture* texture = new SpineTexture();
 
-    texture->texture = ouzel::sharedEngine->getCache()->getTexture(path);
+    texture->texture = ouzel::engine->getCache()->getTexture(path);
     self->rendererObject = texture;
     self->width = static_cast<int>(texture->texture->getSize().width);
     self->height = static_cast<int>(texture->texture->getSize().height);
@@ -31,7 +31,7 @@ char* _spUtil_readFile(const char* path, int* length)
     char* result;
     std::vector<uint8_t> data;
 
-    ouzel::sharedEngine->getFileSystem()->readFile(path, data);
+    ouzel::engine->getFileSystem()->readFile(path, data);
     *length = static_cast<int>(data.size());
 
     result = MALLOC(char, data.size());
@@ -107,12 +107,12 @@ namespace spine
         vertexBuffer->init(ouzel::graphics::Buffer::Usage::VERTEX, ouzel::graphics::Buffer::DYNAMIC);
 
         meshBuffer = std::make_shared<ouzel::graphics::MeshBuffer>();
-        meshBuffer->init(sizeof(uint16_t), indexBuffer, ouzel::graphics::VertexPCT::ATTRIBUTES, vertexBuffer);
+        meshBuffer->init(sizeof(uint16_t), indexBuffer, vertexBuffer);
 
-        whitePixelTexture = ouzel::sharedEngine->getCache()->getTexture(ouzel::graphics::TEXTURE_WHITE_PIXEL);
+        whitePixelTexture = ouzel::engine->getCache()->getTexture(ouzel::graphics::TEXTURE_WHITE_PIXEL);
 
         updateCallback.callback = std::bind(&SpineDrawable::update, this, std::placeholders::_1);
-        ouzel::sharedEngine->scheduleUpdate(&updateCallback);
+        ouzel::engine->scheduleUpdate(&updateCallback);
     }
 
     SpineDrawable::~SpineDrawable()
@@ -162,7 +162,7 @@ namespace spine
         ouzel::Matrix4 modelViewProj = renderViewProjection * transformMatrix;
         vertexShaderConstants[0] = {std::begin(modelViewProj.m), std::end(modelViewProj.m)};
 
-        ouzel::graphics::VertexPCT vertex;
+        ouzel::graphics::Vertex vertex;
 
         uint16_t currentVertexIndex = 0;
         indices.clear();
@@ -203,8 +203,9 @@ namespace spine
                 vertex.color.a = a;
                 vertex.position.x = worldVertices[0];
                 vertex.position.y = worldVertices[1];
-                vertex.texCoord.x = regionAttachment->uvs[0];
-                vertex.texCoord.y = regionAttachment->uvs[1];
+                vertex.texCoords[0].x = regionAttachment->uvs[0];
+                vertex.texCoords[0].y = regionAttachment->uvs[1];
+                vertex.normal = ouzel::Vector3(0.0f, 0.0f, -1.0f);
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
@@ -213,8 +214,9 @@ namespace spine
                 vertex.color.a = a;
                 vertex.position.x = worldVertices[2];
                 vertex.position.y = worldVertices[3];
-                vertex.texCoord.x = regionAttachment->uvs[2];
-                vertex.texCoord.y = regionAttachment->uvs[3];
+                vertex.texCoords[0].x = regionAttachment->uvs[2];
+                vertex.texCoords[0].y = regionAttachment->uvs[3];
+                vertex.normal = ouzel::Vector3(0.0f, 0.0f, -1.0f);
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
@@ -223,8 +225,9 @@ namespace spine
                 vertex.color.a = a;
                 vertex.position.x = worldVertices[4];
                 vertex.position.y = worldVertices[5];
-                vertex.texCoord.x = regionAttachment->uvs[4];
-                vertex.texCoord.y = regionAttachment->uvs[5];
+                vertex.texCoords[0].x = regionAttachment->uvs[4];
+                vertex.texCoords[0].y = regionAttachment->uvs[5];
+                vertex.normal = ouzel::Vector3(0.0f, 0.0f, -1.0f);
                 vertices.push_back(vertex);
 
                 vertex.color.r = r;
@@ -233,8 +236,9 @@ namespace spine
                 vertex.color.a = a;
                 vertex.position.x = worldVertices[6];
                 vertex.position.y = worldVertices[7];
-                vertex.texCoord.x = regionAttachment->uvs[6];
-                vertex.texCoord.y = regionAttachment->uvs[7];
+                vertex.texCoords[0].x = regionAttachment->uvs[6];
+                vertex.texCoords[0].y = regionAttachment->uvs[7];
+                vertex.normal = ouzel::Vector3(0.0f, 0.0f, -1.0f);
                 vertices.push_back(vertex);
 
                 indices.push_back(currentVertexIndex + 0);
@@ -273,8 +277,8 @@ namespace spine
                     int index = meshAttachment->triangles[t] << 1;
                     vertex.position.x = worldVertices[index];
                     vertex.position.y = worldVertices[index + 1];
-                    vertex.texCoord.x = meshAttachment->uvs[index];
-                    vertex.texCoord.y = meshAttachment->uvs[index + 1];
+                    vertex.texCoords[0].x = meshAttachment->uvs[index];
+                    vertex.texCoords[0].y = meshAttachment->uvs[index + 1];
 
                     indices.push_back(currentVertexIndex);
                     currentVertexIndex++;
@@ -300,23 +304,23 @@ namespace spine
                 if (wireframe) textures.push_back(whitePixelTexture);
                 else textures.assign(std::begin(material->textures), std::end(material->textures));
 
-                ouzel::sharedEngine->getRenderer()->addDrawCommand(textures,
-                                                                   material->shader,
-                                                                   pixelShaderConstants,
-                                                                   vertexShaderConstants,
-                                                                   material->blendState,
-                                                                   meshBuffer,
-                                                                   static_cast<uint32_t>(indices.size()) - offset,
-                                                                   ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
-                                                                   offset,
-                                                                   renderTarget,
-                                                                   renderViewport,
-                                                                   depthWrite,
-                                                                   depthTest,
-                                                                   wireframe,
-                                                                   scissorTest,
-                                                                   scissorRectangle,
-                                                                   material->cullMode);
+                ouzel::engine->getRenderer()->addDrawCommand(textures,
+                                                             material->shader,
+                                                             pixelShaderConstants,
+                                                             vertexShaderConstants,
+                                                             material->blendState,
+                                                             meshBuffer,
+                                                             static_cast<uint32_t>(indices.size()) - offset,
+                                                             ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
+                                                             offset,
+                                                             renderTarget,
+                                                             renderViewport,
+                                                             depthWrite,
+                                                             depthTest,
+                                                             wireframe,
+                                                             scissorTest,
+                                                             scissorRectangle,
+                                                             material->cullMode);
             }
 
             offset = static_cast<uint32_t>(indices.size());
@@ -577,7 +581,7 @@ namespace spine
         {
             std::shared_ptr<ouzel::graphics::Material>& material = materials[static_cast<size_t>(i)];
             material = std::make_shared<ouzel::graphics::Material>();
-            material->shader = ouzel::sharedEngine->getCache()->getShader(ouzel::graphics::SHADER_TEXTURE);
+            material->shader = ouzel::engine->getCache()->getShader(ouzel::graphics::SHADER_TEXTURE);
             material->cullMode = ouzel::graphics::Renderer::CullMode::NONE;
 
             spSlot* slot = skeleton->drawOrder[i];
@@ -585,17 +589,17 @@ namespace spine
             switch (slot->data->blendMode)
             {
                 case SP_BLEND_MODE_ADDITIVE:
-                    material->blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ADD);
+                    material->blendState = ouzel::engine->getCache()->getBlendState(ouzel::graphics::BLEND_ADD);
                     break;
                 case SP_BLEND_MODE_MULTIPLY:
-                    material->blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_MULTIPLY);
+                    material->blendState = ouzel::engine->getCache()->getBlendState(ouzel::graphics::BLEND_MULTIPLY);
                     break;
                 case SP_BLEND_MODE_SCREEN:
-                    material->blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_SCREEN);
+                    material->blendState = ouzel::engine->getCache()->getBlendState(ouzel::graphics::BLEND_SCREEN);
                     break;
                 case SP_BLEND_MODE_NORMAL:
                 default:
-                    material->blendState = ouzel::sharedEngine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
+                    material->blendState = ouzel::engine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
             }
 
 
