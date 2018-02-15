@@ -4,7 +4,7 @@
 
 #include "SpineDrawable.hpp"
 
-class SpineSample: public ouzel::Noncopyable
+class SpineSample
 {
 public:
     SpineSample();

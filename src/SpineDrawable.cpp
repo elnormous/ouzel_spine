@@ -135,12 +135,12 @@ namespace spine
                              float opacity,
                              const ouzel::Matrix4& renderViewProjection,
                              const std::shared_ptr<ouzel::graphics::Texture>& renderTarget,
-                             const ouzel::Rectangle& renderViewport,
+                             const ouzel::Rect& renderViewport,
                              bool depthWrite,
                              bool depthTest,
                              bool wireframe,
                              bool scissorTest,
-                             const ouzel::Rectangle& scissorRectangle)
+                             const ouzel::Rect& scissorRectangle)
     {
         Component::draw(transformMatrix,
                         opacity,
