@@ -112,7 +112,7 @@ namespace spine
         whitePixelTexture = ouzel::engine->getCache()->getTexture(ouzel::graphics::TEXTURE_WHITE_PIXEL);
 
         updateCallback.callback = std::bind(&SpineDrawable::update, this, std::placeholders::_1);
-        ouzel::engine->scheduleUpdate(&updateCallback);
+        ouzel::engine->getSceneManager()->scheduleUpdate(&updateCallback);
     }
 
     SpineDrawable::~SpineDrawable()

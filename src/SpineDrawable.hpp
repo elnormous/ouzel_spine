@@ -121,7 +121,7 @@ namespace spine
 
         std::shared_ptr<ouzel::graphics::Texture> whitePixelTexture;
 
-        ouzel::UpdateCallback updateCallback;
+        ouzel::scene::UpdateCallback updateCallback;
 
         std::function<void(int32_t, const Event&)> eventCallback;
     };
