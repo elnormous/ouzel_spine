@@ -29,9 +29,7 @@ void _spAtlasPage_disposeTexture(spAtlasPage* self)
 char* _spUtil_readFile(const char* path, int* length)
 {
     char* result;
-    std::vector<uint8_t> data;
-
-    ouzel::engine->getFileSystem()->readFile(path, data);
+    std::vector<uint8_t> data = ouzel::engine->getFileSystem()->readFile(path);
     *length = static_cast<int>(data.size());
 
     result = MALLOC(char, data.size());
@@ -100,14 +98,11 @@ namespace spine
         updateMaterials();
         updateBoundingBox();
 
-        indexBuffer = std::make_shared<ouzel::graphics::Buffer>();
+        indexBuffer = std::make_shared<ouzel::graphics::Buffer>(*ouzel::engine->getRenderer());
         indexBuffer->init(ouzel::graphics::Buffer::Usage::INDEX, ouzel::graphics::Buffer::DYNAMIC);
 
-        vertexBuffer = std::make_shared<ouzel::graphics::Buffer>();
+        vertexBuffer = std::make_shared<ouzel::graphics::Buffer>(*ouzel::engine->getRenderer());
         vertexBuffer->init(ouzel::graphics::Buffer::Usage::VERTEX, ouzel::graphics::Buffer::DYNAMIC);
-
-        meshBuffer = std::make_shared<ouzel::graphics::MeshBuffer>();
-        meshBuffer->init(sizeof(uint16_t), indexBuffer, vertexBuffer);
 
         whitePixelTexture = ouzel::engine->getCache()->getTexture(ouzel::graphics::TEXTURE_WHITE_PIXEL);
 
@@ -134,29 +129,16 @@ namespace spine
     void SpineDrawable::draw(const ouzel::Matrix4& transformMatrix,
                              float opacity,
                              const ouzel::Matrix4& renderViewProjection,
-                             const std::shared_ptr<ouzel::graphics::Texture>& renderTarget,
-                             const ouzel::Rect& renderViewport,
-                             bool depthWrite,
-                             bool depthTest,
-                             bool wireframe,
-                             bool scissorTest,
-                             const ouzel::Rect& scissorRectangle)
+                             bool wireframe)
     {
         Component::draw(transformMatrix,
                         opacity,
                         renderViewProjection,
-                        renderTarget,
-                        renderViewport,
-                        depthWrite,
-                        depthTest,
-                        wireframe,
-                        scissorTest,
-                        scissorRectangle);
+                        wireframe);
 
         spAnimationState_apply(animationState, skeleton);
         spSkeleton_updateWorldTransform(skeleton);
 
-        std::vector<std::vector<float>> pixelShaderConstants(1);
         std::vector<std::vector<float>> vertexShaderConstants(1);
 
         ouzel::Matrix4 modelViewProj = renderViewProjection * transformMatrix;
@@ -172,19 +154,30 @@ namespace spine
 
         boundingBox.reset();
 
+        struct DrawCommand
+        {
+            std::shared_ptr<ouzel::graphics::Material> material;
+            uint32_t indexCount;
+            uint32_t offset;
+            std::vector<std::vector<float>> pixelShaderConstants = std::vector<std::vector<float>>(1);
+        };
+
+        std::vector<DrawCommand> drawCommands;
+
         for (int i = 0; i < skeleton->slotsCount; ++i)
         {
             spSlot* slot = skeleton->drawOrder[i];
             spAttachment* attachment = slot->attachment;
             if (!attachment) continue;
 
-            const std::shared_ptr<ouzel::graphics::Material>& material = materials[static_cast<size_t>(i)];
+            DrawCommand drawCommand;
+            drawCommand.material = materials[static_cast<size_t>(i)];
 
-            float colorVector[] = {slot->color.r * material->diffuseColor.normR(),
-                slot->color.g * material->diffuseColor.normG(),
-                slot->color.b * material->diffuseColor.normB(),
-                slot->color.a * material->diffuseColor.normA() * opacity};
-            pixelShaderConstants[0] = {std::begin(colorVector), std::end(colorVector)};
+            float colorVector[] = {slot->color.r * drawCommand.material->diffuseColor.normR(),
+                slot->color.g * drawCommand.material->diffuseColor.normG(),
+                slot->color.b * drawCommand.material->diffuseColor.normB(),
+                slot->color.a * drawCommand.material->diffuseColor.normA() * opacity};
+            drawCommand.pixelShaderConstants[0] = {std::begin(colorVector), std::end(colorVector)};
 
             if (attachment->type == SP_ATTACHMENT_REGION)
             {
@@ -300,27 +293,9 @@ namespace spine
 
             if (indices.size() - offset > 0)
             {
-                std::vector<std::shared_ptr<ouzel::graphics::Texture>> textures;
-                if (wireframe) textures.push_back(whitePixelTexture);
-                else textures.assign(std::begin(material->textures), std::end(material->textures));
-
-                ouzel::engine->getRenderer()->addDrawCommand(textures,
-                                                             material->shader,
-                                                             pixelShaderConstants,
-                                                             vertexShaderConstants,
-                                                             material->blendState,
-                                                             meshBuffer,
-                                                             static_cast<uint32_t>(indices.size()) - offset,
-                                                             ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
-                                                             offset,
-                                                             renderTarget,
-                                                             renderViewport,
-                                                             depthWrite,
-                                                             depthTest,
-                                                             wireframe,
-                                                             scissorTest,
-                                                             scissorRectangle,
-                                                             material->cullMode);
+                drawCommand.indexCount = static_cast<uint32_t>(indices.size()) - offset;
+                drawCommand.offset = offset;
+                drawCommands.push_back(drawCommand);
             }
 
             offset = static_cast<uint32_t>(indices.size());
@@ -328,6 +303,26 @@ namespace spine
 
         indexBuffer->setData(indices.data(), static_cast<uint32_t>(ouzel::getVectorSize(indices)));
         vertexBuffer->setData(vertices.data(), static_cast<uint32_t>(ouzel::getVectorSize(vertices)));
+
+        for (const DrawCommand& drawCommand : drawCommands)
+        {
+            std::vector<std::shared_ptr<ouzel::graphics::Texture>> textures;
+            if (wireframe) textures.push_back(whitePixelTexture);
+            else textures.assign(std::begin(drawCommand.material->textures), std::end(drawCommand.material->textures));
+
+            ouzel::engine->getRenderer()->setCullMode(drawCommand.material->cullMode);
+            ouzel::engine->getRenderer()->setPipelineState(drawCommand.material->blendState,
+                                                           drawCommand.material->shader);
+            ouzel::engine->getRenderer()->setShaderConstants(drawCommand.pixelShaderConstants,
+                                                             vertexShaderConstants);
+            ouzel::engine->getRenderer()->setTextures(textures);
+            ouzel::engine->getRenderer()->draw(indexBuffer,
+                                               drawCommand.indexCount,
+                                               sizeof(uint16_t),
+                                               vertexBuffer,
+                                               ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
+                                               drawCommand.offset);
+        }
     }
 
     float SpineDrawable::getTimeScale() const

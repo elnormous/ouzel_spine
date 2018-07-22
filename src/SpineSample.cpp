@@ -62,7 +62,7 @@ SpineSample::SpineSample()
 
     //Slot* headSlot = Skeleton_findSlot(skeleton, "head");
 
-    engine->getInput()->startGamepadDiscovery();
+    engine->getInputManager()->startDeviceDiscovery();
 }
 
 bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event)

@@ -53,13 +53,7 @@ namespace spine
         virtual void draw(const ouzel::Matrix4& transformMatrix,
                           float opacity,
                           const ouzel::Matrix4& renderViewProjection,
-                          const std::shared_ptr<ouzel::graphics::Texture>& renderTarget,
-                          const ouzel::Rect& renderViewport,
-                          bool depthWrite,
-                          bool depthTest,
-                          bool wireframe,
-                          bool scissorTest,
-                          const ouzel::Rect& scissorRectangle) override;
+                          bool wireframe) override;
 
         float getTimeScale() const;
         void setTimeScale(float newTimeScale);
@@ -115,7 +109,6 @@ namespace spine
         std::vector<uint16_t> indices;
         std::vector<ouzel::graphics::Vertex> vertices;
 
-        std::shared_ptr<ouzel::graphics::MeshBuffer> meshBuffer;
         std::shared_ptr<ouzel::graphics::Buffer> indexBuffer;
         std::shared_ptr<ouzel::graphics::Buffer> vertexBuffer;
 
