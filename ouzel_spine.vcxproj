@@ -207,8 +207,8 @@ copy "$(ProjectDir)Resources\*" "$(OutDir)Resources\"</Command>
   <ItemGroup>
     <ClInclude Include="external\spine-runtimes\spine-c\spine-c\src\spine\Json.h" />
     <ClInclude Include="external\spine-runtimes\spine-c\spine-c\src\spine\kvec.h" />
-    <ClInclude Include="src\SpineDrawable.h" />
-    <ClInclude Include="src\SpineSample.h" />
+    <ClInclude Include="src\SpineDrawable.hpp" />
+    <ClInclude Include="src\SpineSample.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="external\ouzel\build\ouzel.vcxproj">

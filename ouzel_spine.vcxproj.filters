@@ -123,8 +123,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\SpineDrawable.h" />
-    <ClInclude Include="src\SpineSample.h" />
+    <ClInclude Include="src\SpineDrawable.hpp" />
+    <ClInclude Include="src\SpineSample.hpp" />
     <ClInclude Include="external\spine-runtimes\spine-c\spine-c\src\spine\Json.h">
       <Filter>spine</Filter>
     </ClInclude>
