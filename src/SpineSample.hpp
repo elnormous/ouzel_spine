@@ -4,22 +4,23 @@
 
 #include "SpineDrawable.hpp"
 
-class SpineSample
+class SpineSample: public ouzel::Application
 {
 public:
     SpineSample();
 
-    bool handleKeyboard(ouzel::Event::Type type, const ouzel::KeyboardEvent& event);
-    bool handleMouse(ouzel::Event::Type type, const ouzel::MouseEvent& event) const;
-    bool handleTouch(ouzel::Event::Type type, const ouzel::TouchEvent& event) const;
-    bool handleGamepad(ouzel::Event::Type type, const ouzel::GamepadEvent& event) const;
-    bool handleUI(ouzel::Event::Type type, const ouzel::UIEvent& event) const;
+    bool handleKeyboard(const ouzel::KeyboardEvent& event);
+    bool handleMouse(const ouzel::MouseEvent& event) const;
+    bool handleTouch(const ouzel::TouchEvent& event) const;
+    bool handleGamepad(const ouzel::GamepadEvent& event) const;
+    bool handleUI(const ouzel::UIEvent& event) const;
 
 protected:
     ouzel::scene::Layer layer;
     ouzel::scene::Actor cameraActor;
     ouzel::scene::Camera camera;
     ouzel::scene::Scene scene;
+    ouzel::assets::Bundle bundle;
 
     std::unique_ptr<spine::SpineDrawable> spineBoy;
     ouzel::scene::Actor actor;

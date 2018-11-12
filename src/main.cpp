@@ -2,14 +2,7 @@
 
 #include "SpineSample.hpp"
 
-std::string DEVELOPER_NAME = "elnormous";
-std::string APPLICATION_NAME = "Spine sample";
-
-std::unique_ptr<SpineSample> sample;
-
-void ouzelMain(const std::vector<std::string>& args)
+std::unique_ptr<ouzel::Application> ouzel::main(const std::vector<std::string>&)
 {
-    OUZEL_UNUSED(args);
-
-    sample.reset(new SpineSample());
+    return std::unique_ptr<Application>(new SpineSample());
 }

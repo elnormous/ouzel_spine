@@ -94,6 +94,7 @@ namespace spine
         const std::vector<std::shared_ptr<ouzel::graphics::Material>>& getMaterials() const { return materials; }
 
     private:
+        bool handleUpdate(const ouzel::UpdateEvent& event);
         void updateBoundingBox();
         void updateMaterials();
 
@@ -114,7 +115,7 @@ namespace spine
 
         std::shared_ptr<ouzel::graphics::Texture> whitePixelTexture;
 
-        ouzel::scene::UpdateCallback updateCallback;
+        ouzel::EventHandler updateHandler;
 
         std::function<void(int32_t, const Event&)> eventCallback;
     };

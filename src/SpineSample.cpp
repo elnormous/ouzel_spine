@@ -6,7 +6,8 @@
 using namespace std;
 using namespace ouzel;
 
-SpineSample::SpineSample()
+SpineSample::SpineSample():
+    bundle(engine->getCache())
 {
 #if OUZEL_PLATFORM_LINUX
     sharedEngine->getFileSystem()->addResourcePath("Resources");
@@ -14,22 +15,23 @@ SpineSample::SpineSample()
     sharedEngine->getFileSystem()->addResourcePath("Resources");
 #endif
 
-    eventHandler.keyboardHandler = std::bind(&SpineSample::handleKeyboard, this, std::placeholders::_1, std::placeholders::_2);
-    eventHandler.mouseHandler = std::bind(&SpineSample::handleMouse, this, std::placeholders::_1, std::placeholders::_2);
-    eventHandler.touchHandler = std::bind(&SpineSample::handleTouch, this, std::placeholders::_1, std::placeholders::_2);
-    eventHandler.gamepadHandler = std::bind(&SpineSample::handleGamepad, this, std::placeholders::_1, std::placeholders::_2);
-    eventHandler.uiHandler = std::bind(&SpineSample::handleUI, this, std::placeholders::_1, std::placeholders::_2);
+    eventHandler.keyboardHandler = std::bind(&SpineSample::handleKeyboard, this, std::placeholders::_1);
+    eventHandler.mouseHandler = std::bind(&SpineSample::handleMouse, this, std::placeholders::_1);
+    eventHandler.touchHandler = std::bind(&SpineSample::handleTouch, this, std::placeholders::_1);
+    eventHandler.gamepadHandler = std::bind(&SpineSample::handleGamepad, this, std::placeholders::_1);
+    eventHandler.uiHandler = std::bind(&SpineSample::handleUI, this, std::placeholders::_1);
 
-    engine->getEventDispatcher()->addEventHandler(&eventHandler);
+    engine->getEventDispatcher().addEventHandler(&eventHandler);
 
     engine->getRenderer()->setClearColor(Color(64, 0, 0));
 
-    engine->getSceneManager()->setScene(&scene);
+    engine->getSceneManager().setScene(&scene);
 
     cameraActor.addComponent(&camera);
     layer.addChild(&cameraActor);
     scene.addLayer(&layer);
 
+    bundle.loadAsset(assets::Loader::Type::IMAGE, "spineboy.png");
     spineBoy.reset(new spine::SpineDrawable("spineboy.atlas", "spineboy.skel"));
 
     actor.addComponent(spineBoy.get());
@@ -65,27 +67,27 @@ SpineSample::SpineSample()
     engine->getInputManager()->startDeviceDiscovery();
 }
 
-bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event)
+bool SpineSample::handleKeyboard(const KeyboardEvent& event)
 {
-    if (type == ouzel::Event::Type::KEY_PRESS)
+    if (event.type == ouzel::Event::Type::KEY_PRESS)
     {
-        Vector2 position = cameraActor.getPosition();
+        Vector3 position = cameraActor.getPosition();
 
         switch (event.key)
         {
-            case input::KeyboardKey::UP:
+            case input::Keyboard::Key::UP:
                 position.y += 10.0f;
                 break;
-            case input::KeyboardKey::DOWN:
+            case input::Keyboard::Key::DOWN:
                 position.y -= 10.0f;
                 break;
-            case input::KeyboardKey::LEFT:
+            case input::Keyboard::Key::LEFT:
                 position.x -= 10.0f;
                 break;
-            case input::KeyboardKey::RIGHT:
+            case input::Keyboard::Key::RIGHT:
                 position.x += 10.0f;
                 break;
-            case input::KeyboardKey::RETURN:
+            case input::Keyboard::Key::ENTER:
                 engine->getWindow()->setSize(Size2(640.0f, 480.0f));
                 break;
             default:
@@ -95,12 +97,12 @@ bool SpineSample::handleKeyboard(Event::Type type, const KeyboardEvent& event)
         cameraActor.setPosition(position);
     }
 
-    return true;
+    return false;
 }
 
-bool SpineSample::handleMouse(Event::Type type, const MouseEvent& event) const
+bool SpineSample::handleMouse(const MouseEvent& event) const
 {
-    switch (type)
+    switch (event.type)
     {
         case ouzel::Event::Type::MOUSE_PRESS:
         {
@@ -114,25 +116,25 @@ bool SpineSample::handleMouse(Event::Type type, const MouseEvent& event) const
             break;
     }
 
-    return true;
+    return false;
 }
 
-bool SpineSample::handleTouch(Event::Type type, const TouchEvent& event) const
+bool SpineSample::handleTouch(const TouchEvent& event) const
 {
-    return true;
+    return false;
 }
 
-bool SpineSample::handleGamepad(Event::Type type, const GamepadEvent& event) const
+bool SpineSample::handleGamepad(const GamepadEvent& event) const
 {
-    if (type == ouzel::Event::Type::GAMEPAD_BUTTON_CHANGE)
+    if (event.type == ouzel::Event::Type::GAMEPAD_BUTTON_CHANGE)
     {
 
     }
 
-    return true;
+    return false;
 }
 
-bool SpineSample::handleUI(Event::Type type, const UIEvent& event) const
+bool SpineSample::handleUI(const UIEvent& event) const
 {
-    return true;
+    return false;
 }

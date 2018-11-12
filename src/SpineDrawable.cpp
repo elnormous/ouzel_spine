@@ -15,7 +15,7 @@ void _spAtlasPage_createTexture(spAtlasPage* self, const char* path)
 {
     SpineTexture* texture = new SpineTexture();
 
-    texture->texture = ouzel::engine->getCache()->getTexture(path);
+    texture->texture = ouzel::engine->getCache().getTexture(path);
     self->rendererObject = texture;
     self->width = static_cast<int>(texture->texture->getSize().width);
     self->height = static_cast<int>(texture->texture->getSize().height);
@@ -29,7 +29,7 @@ void _spAtlasPage_disposeTexture(spAtlasPage* self)
 char* _spUtil_readFile(const char* path, int* length)
 {
     char* result;
-    std::vector<uint8_t> data = ouzel::engine->getFileSystem()->readFile(path);
+    std::vector<uint8_t> data = ouzel::engine->getFileSystem().readFile(path);
     *length = static_cast<int>(data.size());
 
     result = MALLOC(char, data.size());
@@ -104,10 +104,10 @@ namespace spine
         vertexBuffer = std::make_shared<ouzel::graphics::Buffer>(*ouzel::engine->getRenderer());
         vertexBuffer->init(ouzel::graphics::Buffer::Usage::VERTEX, ouzel::graphics::Buffer::DYNAMIC);
 
-        whitePixelTexture = ouzel::engine->getCache()->getTexture(ouzel::graphics::TEXTURE_WHITE_PIXEL);
+        whitePixelTexture = ouzel::engine->getCache().getTexture(ouzel::TEXTURE_WHITE_PIXEL);
 
-        updateCallback.callback = std::bind(&SpineDrawable::update, this, std::placeholders::_1);
-        ouzel::engine->getSceneManager()->scheduleUpdate(&updateCallback);
+        updateHandler.updateHandler = std::bind(&SpineDrawable::handleUpdate, this, std::placeholders::_1);
+        ouzel::engine->getEventDispatcher().addEventHandler(&updateHandler);
     }
 
     SpineDrawable::~SpineDrawable()
@@ -118,6 +118,12 @@ namespace spine
         if (animationStateData) spAnimationStateData_dispose(animationStateData);
         if (skeleton) spSkeleton_dispose(skeleton);
         if (skeletonData) spSkeletonData_dispose(skeletonData);
+    }
+
+    bool SpineDrawable::handleUpdate(const ouzel::UpdateEvent& event)
+    {
+        update(event.delta);
+        return false;
     }
 
     void SpineDrawable::update(float delta)
@@ -243,10 +249,10 @@ namespace spine
 
                 currentVertexIndex += 4;
 
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[0], worldVertices[1]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[2], worldVertices[3]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[4], worldVertices[5]));
-                boundingBox.insertPoint(ouzel::Vector2(worldVertices[6], worldVertices[7]));
+                boundingBox.insertPoint(ouzel::Vector3(worldVertices[0], worldVertices[1], 0.0F));
+                boundingBox.insertPoint(ouzel::Vector3(worldVertices[2], worldVertices[3], 0.0F));
+                boundingBox.insertPoint(ouzel::Vector3(worldVertices[4], worldVertices[5], 0.0F));
+                boundingBox.insertPoint(ouzel::Vector3(worldVertices[6], worldVertices[7], 0.0F));
 
                 if (!materials[static_cast<size_t>(i)]->textures[0])
                 {
@@ -277,7 +283,7 @@ namespace spine
                     currentVertexIndex++;
                     vertices.push_back(vertex);
 
-                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[index], worldVertices[index + 1]));
+                    boundingBox.insertPoint(ouzel::Vector3(worldVertices[index], worldVertices[index + 1], 0.0F));
                 }
 
                 if (!materials[static_cast<size_t>(i)]->textures[0])
@@ -306,21 +312,23 @@ namespace spine
 
         for (const DrawCommand& drawCommand : drawCommands)
         {
-            std::vector<std::shared_ptr<ouzel::graphics::Texture>> textures;
-            if (wireframe) textures.push_back(whitePixelTexture);
-            else textures.assign(std::begin(drawCommand.material->textures), std::end(drawCommand.material->textures));
+            std::vector<uintptr_t> textures;
+            if (wireframe) textures.push_back(whitePixelTexture->getResource());
+            else
+                for (const auto& texture : drawCommand.material->textures)
+                    textures.push_back(texture ? texture->getResource() : 0);
 
             ouzel::engine->getRenderer()->setCullMode(drawCommand.material->cullMode);
-            ouzel::engine->getRenderer()->setPipelineState(drawCommand.material->blendState,
-                                                           drawCommand.material->shader);
+            ouzel::engine->getRenderer()->setPipelineState(drawCommand.material->blendState->getResource(),
+                                                           drawCommand.material->shader->getResource());
             ouzel::engine->getRenderer()->setShaderConstants(drawCommand.pixelShaderConstants,
                                                              vertexShaderConstants);
             ouzel::engine->getRenderer()->setTextures(textures);
-            ouzel::engine->getRenderer()->draw(indexBuffer,
+            ouzel::engine->getRenderer()->draw(indexBuffer->getResource(),
                                                drawCommand.indexCount,
                                                sizeof(uint16_t),
-                                               vertexBuffer,
-                                               ouzel::graphics::Renderer::DrawMode::TRIANGLE_LIST,
+                                               vertexBuffer->getResource(),
+                                               ouzel::graphics::DrawMode::TRIANGLE_LIST,
                                                drawCommand.offset);
         }
     }
@@ -545,10 +553,10 @@ namespace spine
                     spRegionAttachment* regionAttachment = reinterpret_cast<spRegionAttachment*>(attachment);
                     spRegionAttachment_computeWorldVertices(regionAttachment, slot->bone, worldVertices, 0, 2);
 
-                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[0], worldVertices[1]));
-                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[2], worldVertices[3]));
-                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[4], worldVertices[5]));
-                    boundingBox.insertPoint(ouzel::Vector2(worldVertices[6], worldVertices[7]));
+                    boundingBox.insertPoint(ouzel::Vector3(worldVertices[0], worldVertices[1], 0.0F));
+                    boundingBox.insertPoint(ouzel::Vector3(worldVertices[2], worldVertices[3], 0.0F));
+                    boundingBox.insertPoint(ouzel::Vector3(worldVertices[4], worldVertices[5], 0.0F));
+                    boundingBox.insertPoint(ouzel::Vector3(worldVertices[6], worldVertices[7], 0.0F));
                 }
                 else if (attachment->type == SP_ATTACHMENT_MESH)
                 {
@@ -560,7 +568,7 @@ namespace spine
                     {
                         int index = meshAttachment->triangles[t] << 1;
 
-                        boundingBox.insertPoint(ouzel::Vector2(worldVertices[index], worldVertices[index + 1]));
+                        boundingBox.insertPoint(ouzel::Vector3(worldVertices[index], worldVertices[index + 1], 0.0F));
                     }
                 }
             }
@@ -576,25 +584,25 @@ namespace spine
         {
             std::shared_ptr<ouzel::graphics::Material>& material = materials[static_cast<size_t>(i)];
             material = std::make_shared<ouzel::graphics::Material>();
-            material->shader = ouzel::engine->getCache()->getShader(ouzel::graphics::SHADER_TEXTURE);
-            material->cullMode = ouzel::graphics::Renderer::CullMode::NONE;
+            material->shader = ouzel::engine->getCache().getShader(ouzel::SHADER_TEXTURE);
+            material->cullMode = ouzel::graphics::CullMode::NONE;
 
             spSlot* slot = skeleton->drawOrder[i];
 
             switch (slot->data->blendMode)
             {
                 case SP_BLEND_MODE_ADDITIVE:
-                    material->blendState = ouzel::engine->getCache()->getBlendState(ouzel::graphics::BLEND_ADD);
+                    material->blendState = ouzel::engine->getCache().getBlendState(ouzel::BLEND_ADD);
                     break;
                 case SP_BLEND_MODE_MULTIPLY:
-                    material->blendState = ouzel::engine->getCache()->getBlendState(ouzel::graphics::BLEND_MULTIPLY);
+                    material->blendState = ouzel::engine->getCache().getBlendState(ouzel::BLEND_MULTIPLY);
                     break;
                 case SP_BLEND_MODE_SCREEN:
-                    material->blendState = ouzel::engine->getCache()->getBlendState(ouzel::graphics::BLEND_SCREEN);
+                    material->blendState = ouzel::engine->getCache().getBlendState(ouzel::BLEND_SCREEN);
                     break;
                 case SP_BLEND_MODE_NORMAL:
                 default:
-                    material->blendState = ouzel::engine->getCache()->getBlendState(ouzel::graphics::BLEND_ALPHA);
+                    material->blendState = ouzel::engine->getCache().getBlendState(ouzel::BLEND_ALPHA);
             }
 
 
