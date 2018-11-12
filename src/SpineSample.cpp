@@ -10,9 +10,9 @@ SpineSample::SpineSample():
     bundle(engine->getCache())
 {
 #if OUZEL_PLATFORM_LINUX
-    sharedEngine->getFileSystem()->addResourcePath("Resources");
+    engine->getFileSystem().addResourcePath("Resources");
 #elif OUZEL_PLATFORM_WINDOWS
-    sharedEngine->getFileSystem()->addResourcePath("Resources");
+    engine->getFileSystem().addResourcePath("Resources");
 #endif
 
     eventHandler.keyboardHandler = std::bind(&SpineSample::handleKeyboard, this, std::placeholders::_1);
